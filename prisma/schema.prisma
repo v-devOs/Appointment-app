@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 1. Propietarios (Los dueños del SaaS)
+model Owner {
+  id         String     @id @default(uuid())
+  email      String     @unique
+  name       String
+  businesses Business[]
+  createdAt  DateTime   @default(now())
+}
+
+// 2. Negocios (Cada empresa registrada)
+model Business {
+  id           String         @id @default(uuid())
+  name         String
+  ownerId      String
+  owner        Owner          @relation(fields: [ownerId], references: [id])
+  availabilities Availability[] // Reglas maestras (ej: Lunes 9am-5pm)
+  timeSlots    TimeSlot[]     // La tabla auxiliar pre-generada
+  appointments Appointment[]
+}
+
+// 3. Usuarios (Clientes finales que reservan)
+model User {
+  id           String        @id @default(uuid())
+  email        String        @unique
+  name         String
+  appointments Appointment[]
+}
+
+// 4. Citas (La reserva confirmada)
+model Appointment {
+  id         String   @id @default(uuid())
+  businessId String
+  userId     String
+  slotId     String   @unique // Relación 1:1 con el horario generado
+  status     String   @default("confirmed") // confirmed, cancelled, completed
+  
+  business   Business @relation(fields: [businessId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
+  slot       TimeSlot @relation(fields: [slotId], references: [id])
+}
+
+// Configuración maestra de horarios (Ej: "Lunes de 09:00 a 14:00")
+model Availability {
+  id          String   @id @default(uuid())
+  businessId  String
+  dayOfWeek   Int      // 0 (Domingo) a 6 (Sábado)
+  startTime   String   // Ejemplo: "09:00"
+  endTime     String   // Ejemplo: "18:00"
+  slotDuration Int     // Duración en minutos (ej: 30, 60)
+  
+  business    Business @relation(fields: [businessId], references: [id])
+}
+
+// TABLA AUXILIAR: Horarios Generados (La que consultará el cliente)
+model TimeSlot {
+  id          String   @id @default(uuid())
+  businessId  String
+  startDateTime DateTime // Fecha y hora exacta: 2026-02-23T09:00:00
+  endDateTime   DateTime
+  isAvailable   Boolean  @default(true) // Se vuelve false cuando alguien reserva
+  
+  business    Business @relation(fields: [businessId], references: [id])
+  appointment Appointment?
+}
