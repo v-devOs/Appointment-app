@@ -13,67 +13,142 @@ datasource db {
   provider = "postgresql"
 }
 
-// 1. Propietarios (Los dueños del SaaS)
+// --- NÚCLEO DEL SAAS ---
+
 model Owner {
-  id         String     @id @default(uuid())
-  email      String     @unique
-  name       String
-  businesses Business[]
-  createdAt  DateTime   @default(now())
+  id              String        @id @default(uuid())
+  email           String        @unique
+  password        String
+  firstName       String
+  lastNameP       String
+  lastNameM       String?
+  age             Int?
+  phone           String
+  subscription    Subscription?
+  businesses      Business[]
+  createdAt       DateTime      @default(now())
 }
 
-// 2. Negocios (Cada empresa registrada)
+model Subscription {
+  id                String    @id @default(uuid())
+  ownerId           String    @unique
+  owner             Owner     @relation(fields: [ownerId], references: [id])
+  status            String    // "PAID", "UNPAID"
+  firstPaymentDate  DateTime  @default(now())
+  lastPaymentDate   DateTime
+  endDate           DateTime
+  extraBusinessCount Int      @default(0) // Para el cobro de negocios extra
+}
+
+// --- ESTRUCTURA DE NEGOCIO ---
+
 model Business {
-  id           String         @id @default(uuid())
-  name         String
-  ownerId      String
-  owner        Owner          @relation(fields: [ownerId], references: [id])
-  availabilities Availability[] // Reglas maestras (ej: Lunes 9am-5pm)
-  timeSlots    TimeSlot[]     // La tabla auxiliar pre-generada
+  id              String            @id @default(uuid())
+  ownerId         String
+  owner           Owner             @relation(fields: [ownerId], references: [id])
+  name            String
+  location        String
+  phone           String
+  startTime       DateTime            // "09:00"
+  endTime         DateTime            // "18:00"
+  employees       Employee[]
+  clients         Client[]
+  appointmentTypes AppointmentType[]
+  timeSlots       TimeSlot[]
+  appointments    Appointment[]
+  logs            AuditLog[]
+}
+
+model Employee {
+  id              String        @id @default(uuid())
+  businessId      String
+  business        Business      @relation(fields: [businessId], references: [id])
+  firstName       String
+  lastNameP       String
+  lastNameM       String?
+  email           String        @unique
+  password        String
+  age             Int
+  status          String        @default("ACTIVE") // "ACTIVE", "INACTIVE"
+  schedules       Schedule[]
+  appointments    Appointment[]
+}
+
+// --- GESTIÓN DE CITAS ---
+
+model Client {
+  id              String        @id @default(uuid())
+  businessId      String
+  business        Business      @relation(fields: [businessId], references: [id])
+  firstName       String
+  lastNameP       String
+  lastNameM       String?
+  phone           String
+  appointments    Appointment[]
+}
+
+model AppointmentType {
+  id          String        @id @default(uuid())
+  businessId  String
+  business    Business      @relation(fields: [businessId], references: [id])
+  name        String        // Ej: "Consulta Inicial", "Corte de Cabello"
+  detail      String?
+  duration    Int           // Duración en minutos
   appointments Appointment[]
 }
 
-// 3. Usuarios (Clientes finales que reservan)
-model User {
-  id           String        @id @default(uuid())
-  email        String        @unique
-  name         String
-  appointments Appointment[]
-}
-
-// 4. Citas (La reserva confirmada)
 model Appointment {
-  id         String   @id @default(uuid())
-  businessId String
-  userId     String
-  slotId     String   @unique // Relación 1:1 con el horario generado
-  status     String   @default("confirmed") // confirmed, cancelled, completed
+  id                String          @id @default(uuid())
+  businessId        String
+  employeeId        String
+  clientId          String
+  appointmentTypeId String
+  slotId            String          @unique
+  date              DateTime
+  startTime         DateTime
+  endTime           DateTime
+  status            String          @default("PENDING") // "PENDING", "ATTENDED", "NO_SHOW"
+  reason            String?
+  observations      String?
   
-  business   Business @relation(fields: [businessId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
-  slot       TimeSlot @relation(fields: [slotId], references: [id])
+  business          Business        @relation(fields: [businessId], references: [id])
+  employee          Employee        @relation(fields: [employeeId], references: [id])
+  client            Client          @relation(fields: [clientId], references: [id])
+  type              AppointmentType @relation(fields: [appointmentTypeId], references: [id])
+  slot              TimeSlot        @relation(fields: [slotId], references: [id])
 }
 
-// Configuración maestra de horarios (Ej: "Lunes de 09:00 a 14:00")
-model Availability {
-  id          String   @id @default(uuid())
-  businessId  String
-  dayOfWeek   Int      // 0 (Domingo) a 6 (Sábado)
-  startTime   String   // Ejemplo: "09:00"
-  endTime     String   // Ejemplo: "18:00"
-  slotDuration Int     // Duración en minutos (ej: 30, 60)
-  
-  business    Business @relation(fields: [businessId], references: [id])
+// --- DISPONIBILIDAD Y LOGS ---
+
+model Schedule {
+  id          String    @id @default(uuid())
+  employeeId  String
+  employee    Employee  @relation(fields: [employeeId], references: [id])
+  dayOfWeek   Int       // 0-6
+  startTime   DateTime
+  endTime     DateTime
+  shift       String?   // "Matutino", "Vespertino"
 }
 
-// TABLA AUXILIAR: Horarios Generados (La que consultará el cliente)
 model TimeSlot {
-  id          String   @id @default(uuid())
-  businessId  String
-  startDateTime DateTime // Fecha y hora exacta: 2026-02-23T09:00:00
+  id            String      @id @default(uuid())
+  businessId    String
+  employeeId    String
+  startDateTime DateTime
   endDateTime   DateTime
-  isAvailable   Boolean  @default(true) // Se vuelve false cuando alguien reserva
-  
-  business    Business @relation(fields: [businessId], references: [id])
-  appointment Appointment?
+  isAvailable   Boolean     @default(true)
+  business      Business    @relation(fields: [businessId], references: [id])
+  appointment   Appointment?
+}
+
+model AuditLog {
+  id          String    @id @default(uuid())
+  businessId  String
+  userId      String    // ID del Dueño o Empleado que hizo el cambio
+  action      String    // "UPDATE_CLIENT", "DELETE_APPOINTMENT"
+  entity      String    // "Appointment", "Client"
+  oldData     Json?
+  newData     Json?
+  timestamp   DateTime  @default(now())
+  business    Business  @relation(fields: [businessId], references: [id])
 }
