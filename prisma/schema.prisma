@@ -13,142 +13,181 @@ datasource db {
   provider = "postgresql"
 }
 
-// --- NÚCLEO DEL SAAS ---
+// Enums
+enum StatusPayment {
+  ACEPTED
+  CANCELED
+  DECLINED
+  PENDING
+}
 
-model Owner {
-  id              String        @id @default(uuid())
-  email           String        @unique
-  password        String
-  firstName       String
-  lastNameP       String
-  lastNameM       String?
-  age             Int?
-  phone           String
-  subscription    Subscription?
-  businesses      Business[]
-  createdAt       DateTime      @default(now())
+enum SubscriptionStatus {
+  ACTIVE
+  PENDING_PAYMENT
+  CANCELED
+}
+
+enum TypeUser {
+  ADMIN
+  OWNER_BUSSINES
+  EMPLOYEE
+}
+
+enum StatusAppointment {
+  PENDING
+  CANCELED
+  ATTENDED
+  NO_ATTENDED
+}
+
+model Payment {
+  id            String @id @default(uuid())
+  amount        Float
+  discount      Float
+  datePayment   DateTime
+  status        StatusPayment
+
+  subscriptionDetails SubscriptionDetails[]
+  personalBusinessDetails PersonalBusinessDetails[]
+}
+
+model User {
+  id            String @id @default(uuid())
+  email         String @unique
+  password      String 
+  typeUser      TypeUser @default(OWNER_BUSSINES)
+
+  personal Personal?
 }
 
 model Subscription {
-  id                String    @id @default(uuid())
-  ownerId           String    @unique
-  owner             Owner     @relation(fields: [ownerId], references: [id])
-  status            String    // "PAID", "UNPAID"
-  firstPaymentDate  DateTime  @default(now())
-  lastPaymentDate   DateTime
-  endDate           DateTime
-  extraBusinessCount Int      @default(0) // Para el cobro de negocios extra
+  id                       String @id @default(uuid())
+  amount                   Float @default(299.99)
+  status                   SubscriptionStatus @default(PENDING_PAYMENT)
+  createdAt                DateTime @default(now())
+  dateStartCurrentPeriod   DateTime
+  dateEndCurrentPeriod     DateTime
+
+  subscriptionDetails SubscriptionDetails[]
 }
 
-// --- ESTRUCTURA DE NEGOCIO ---
+model Journal {
+  id            String @id @default(uuid())
+  hourStart     DateTime
+  hourEnd       DateTime
+  freeTime      DateTime
+  startAbsence  DateTime
+  endAbsence    DateTime
+
+  personals Personal[]
+}
 
 model Business {
-  id              String            @id @default(uuid())
-  ownerId         String
-  owner           Owner             @relation(fields: [ownerId], references: [id])
-  name            String
-  location        String
-  phone           String
-  startTime       DateTime            // "09:00"
-  endTime         DateTime            // "18:00"
-  employees       Employee[]
-  clients         Client[]
-  appointmentTypes AppointmentType[]
-  timeSlots       TimeSlot[]
-  appointments    Appointment[]
-  logs            AuditLog[]
+  id           String @id @default(uuid())
+  name         String
+  tel          String?
+  email        String?
+  direction    String
+  hourOpen     DateTime
+  hourClose    DateTime
+
+  personalBusinessDetails PersonalBusinessDetails[]
+  employees    Personal[]
+  typeAppointments TypeAppointment[]
+  clients      Client[]
 }
 
-model Employee {
-  id              String        @id @default(uuid())
-  businessId      String
-  business        Business      @relation(fields: [businessId], references: [id])
-  firstName       String
-  lastNameP       String
-  lastNameM       String?
-  email           String        @unique
-  password        String
-  age             Int
-  status          String        @default("ACTIVE") // "ACTIVE", "INACTIVE"
-  schedules       Schedule[]
-  appointments    Appointment[]
-}
+model Personal {
+  id           String @id @default(uuid())
 
-// --- GESTIÓN DE CITAS ---
+  // Relations
+  userid       String @unique
+  businessid   String
+  journalid    String
 
-model Client {
-  id              String        @id @default(uuid())
-  businessId      String
-  business        Business      @relation(fields: [businessId], references: [id])
-  firstName       String
-  lastNameP       String
-  lastNameM       String?
-  phone           String
-  appointments    Appointment[]
-}
+  user         User  @relation(fields: [userid], references: [id])
+  journal      Journal @relation(fields: [journalid], references: [id])
+  business     Business @relation(fields: [businessid], references: [id])
 
-model AppointmentType {
-  id          String        @id @default(uuid())
-  businessId  String
-  business    Business      @relation(fields: [businessId], references: [id])
-  name        String        // Ej: "Consulta Inicial", "Corte de Cabello"
-  detail      String?
-  duration    Int           // Duración en minutos
+  firstName    String
+  secondName   String?
+  lastNameP    String
+  lastNameM    String?
+  tel          String 
+
+  subscriptionDetails SubscriptionDetails[]
+  personalBusinessDetails PersonalBusinessDetails[]
   appointments Appointment[]
 }
 
+model TypeAppointment {
+  id               String @id @default(uuid())
+  typeAppointment  String
+  description      String?
+
+  // Relations
+  businessid       String
+  business         Business @relation(fields: [businessid], references: [id])
+
+  appointments     Appointment[]
+}
+
 model Appointment {
-  id                String          @id @default(uuid())
-  businessId        String
-  employeeId        String
-  clientId          String
-  appointmentTypeId String
-  slotId            String          @unique
-  date              DateTime
-  startTime         DateTime
-  endTime           DateTime
-  status            String          @default("PENDING") // "PENDING", "ATTENDED", "NO_SHOW"
-  reason            String?
-  observations      String?
-  
-  business          Business        @relation(fields: [businessId], references: [id])
-  employee          Employee        @relation(fields: [employeeId], references: [id])
-  client            Client          @relation(fields: [clientId], references: [id])
-  type              AppointmentType @relation(fields: [appointmentTypeId], references: [id])
-  slot              TimeSlot        @relation(fields: [slotId], references: [id])
+  id                 String @id @default(uuid())
+  status             StatusAppointment
+  date               DateTime
+  estimatedDuration  Float
+  realDuration       Float
+
+  // Relations
+  clientid           String
+  typeAppointmentid  String
+  personalid         String
+
+  client             Client @relation(fields: [clientid], references: [id])
+  typeAppointment    TypeAppointment @relation(fields: [typeAppointmentid], references: [id])
+  personal           Personal @relation(fields: [personalid], references: [id])
 }
 
-// --- DISPONIBILIDAD Y LOGS ---
+model Client {
+  id           String @id @default(uuid())
+  firstName    String
+  secondName   String?
+  lastNameP    String
+  lastNameM    String?
+  tel          String 
 
-model Schedule {
-  id          String    @id @default(uuid())
-  employeeId  String
-  employee    Employee  @relation(fields: [employeeId], references: [id])
-  dayOfWeek   Int       // 0-6
-  startTime   DateTime
-  endTime     DateTime
-  shift       String?   // "Matutino", "Vespertino"
+  // Relations
+  businessid   String
+  business     Business @relation(fields: [businessid], references: [id])
+
+  appointments Appointment[]
 }
 
-model TimeSlot {
-  id            String      @id @default(uuid())
-  businessId    String
-  employeeId    String
-  startDateTime DateTime
-  endDateTime   DateTime
-  isAvailable   Boolean     @default(true)
-  business      Business    @relation(fields: [businessId], references: [id])
-  appointment   Appointment?
+// Auxiliar Tables
+// 1. Manage the historial of the payments made by the owner
+model SubscriptionDetails { 
+  id              String @id @default(uuid())
+
+  // Relations
+  subscriptionid  String
+  paymentid       String
+  personalid      String
+
+  subscription   Subscription @relation(fields: [subscriptionid], references: [id]) 
+  payment        Payment @relation(fields: [paymentid], references: [id])
+  personal       Personal @relation(fields: [personalid], references: [id])
 }
 
-model AuditLog {
-  id          String    @id @default(uuid())
-  businessId  String
-  userId      String    // ID del Dueño o Empleado que hizo el cambio
-  action      String    // "UPDATE_CLIENT", "DELETE_APPOINTMENT"
-  entity      String    // "Appointment", "Client"
-  oldData     Json?
-  newData     Json?
-  timestamp   DateTime  @default(now())
-  business    Business  @relation(fields: [businessId], references: [id])
+model PersonalBusinessDetails {
+  id             String @id @default(uuid())
+
+  // Relations
+  personalid    String
+  businessid    String
+  paymentid     String
+
+  personal      Personal @relation(fields: [personalid], references: [id])
+  business      Business @relation(fields: [businessid], references: [id])
+  payment       Payment @relation(fields: [paymentid], references: [id])
 }
