@@ -42,38 +42,41 @@ export type PersonalSumAggregateOutputType = {
 
 export type PersonalMinAggregateOutputType = {
   id: number | null
-  userid: number | null
-  businessid: number | null
-  journalid: number | null
   firstName: string | null
   secondName: string | null
   lastNameP: string | null
   lastNameM: string | null
   tel: string | null
+  typePersonal: $Enums.TypeUser | null
+  userid: number | null
+  businessid: number | null
+  journalid: number | null
 }
 
 export type PersonalMaxAggregateOutputType = {
   id: number | null
-  userid: number | null
-  businessid: number | null
-  journalid: number | null
   firstName: string | null
   secondName: string | null
   lastNameP: string | null
   lastNameM: string | null
   tel: string | null
+  typePersonal: $Enums.TypeUser | null
+  userid: number | null
+  businessid: number | null
+  journalid: number | null
 }
 
 export type PersonalCountAggregateOutputType = {
   id: number
-  userid: number
-  businessid: number
-  journalid: number
   firstName: number
   secondName: number
   lastNameP: number
   lastNameM: number
   tel: number
+  typePersonal: number
+  userid: number
+  businessid: number
+  journalid: number
   _all: number
 }
 
@@ -94,38 +97,41 @@ export type PersonalSumAggregateInputType = {
 
 export type PersonalMinAggregateInputType = {
   id?: true
-  userid?: true
-  businessid?: true
-  journalid?: true
   firstName?: true
   secondName?: true
   lastNameP?: true
   lastNameM?: true
   tel?: true
+  typePersonal?: true
+  userid?: true
+  businessid?: true
+  journalid?: true
 }
 
 export type PersonalMaxAggregateInputType = {
   id?: true
-  userid?: true
-  businessid?: true
-  journalid?: true
   firstName?: true
   secondName?: true
   lastNameP?: true
   lastNameM?: true
   tel?: true
+  typePersonal?: true
+  userid?: true
+  businessid?: true
+  journalid?: true
 }
 
 export type PersonalCountAggregateInputType = {
   id?: true
-  userid?: true
-  businessid?: true
-  journalid?: true
   firstName?: true
   secondName?: true
   lastNameP?: true
   lastNameM?: true
   tel?: true
+  typePersonal?: true
+  userid?: true
+  businessid?: true
+  journalid?: true
   _all?: true
 }
 
@@ -217,14 +223,15 @@ export type PersonalGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type PersonalGroupByOutputType = {
   id: number
-  userid: number
-  businessid: number
-  journalid: number
   firstName: string
   secondName: string | null
   lastNameP: string
   lastNameM: string | null
   tel: string
+  typePersonal: $Enums.TypeUser
+  userid: number
+  businessid: number
+  journalid: number | null
   _count: PersonalCountAggregateOutputType | null
   _avg: PersonalAvgAggregateOutputType | null
   _sum: PersonalSumAggregateOutputType | null
@@ -252,71 +259,69 @@ export type PersonalWhereInput = {
   OR?: Prisma.PersonalWhereInput[]
   NOT?: Prisma.PersonalWhereInput | Prisma.PersonalWhereInput[]
   id?: Prisma.IntFilter<"Personal"> | number
-  userid?: Prisma.IntFilter<"Personal"> | number
-  businessid?: Prisma.IntFilter<"Personal"> | number
-  journalid?: Prisma.IntFilter<"Personal"> | number
   firstName?: Prisma.StringFilter<"Personal"> | string
   secondName?: Prisma.StringNullableFilter<"Personal"> | string | null
   lastNameP?: Prisma.StringFilter<"Personal"> | string
   lastNameM?: Prisma.StringNullableFilter<"Personal"> | string | null
   tel?: Prisma.StringFilter<"Personal"> | string
+  typePersonal?: Prisma.EnumTypeUserFilter<"Personal"> | $Enums.TypeUser
+  userid?: Prisma.IntFilter<"Personal"> | number
+  businessid?: Prisma.IntFilter<"Personal"> | number
+  journalid?: Prisma.IntNullableFilter<"Personal"> | number | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  journal?: Prisma.XOR<Prisma.JournalScalarRelationFilter, Prisma.JournalWhereInput>
   business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>
-  subscriptionDetails?: Prisma.SubscriptionDetailsListRelationFilter
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsListRelationFilter
-  appointments?: Prisma.AppointmentListRelationFilter
+  journal?: Prisma.XOR<Prisma.JournalNullableScalarRelationFilter, Prisma.JournalWhereInput> | null
+  appointmentDetails?: Prisma.AppointmentDetailsListRelationFilter
 }
 
 export type PersonalOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  userid?: Prisma.SortOrder
-  businessid?: Prisma.SortOrder
-  journalid?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   secondName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastNameP?: Prisma.SortOrder
   lastNameM?: Prisma.SortOrderInput | Prisma.SortOrder
   tel?: Prisma.SortOrder
+  typePersonal?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
+  businessid?: Prisma.SortOrder
+  journalid?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
-  journal?: Prisma.JournalOrderByWithRelationInput
   business?: Prisma.BusinessOrderByWithRelationInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsOrderByRelationAggregateInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsOrderByRelationAggregateInput
-  appointments?: Prisma.AppointmentOrderByRelationAggregateInput
+  journal?: Prisma.JournalOrderByWithRelationInput
+  appointmentDetails?: Prisma.AppointmentDetailsOrderByRelationAggregateInput
 }
 
 export type PersonalWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  userid?: number
   AND?: Prisma.PersonalWhereInput | Prisma.PersonalWhereInput[]
   OR?: Prisma.PersonalWhereInput[]
   NOT?: Prisma.PersonalWhereInput | Prisma.PersonalWhereInput[]
-  businessid?: Prisma.IntFilter<"Personal"> | number
-  journalid?: Prisma.IntFilter<"Personal"> | number
   firstName?: Prisma.StringFilter<"Personal"> | string
   secondName?: Prisma.StringNullableFilter<"Personal"> | string | null
   lastNameP?: Prisma.StringFilter<"Personal"> | string
   lastNameM?: Prisma.StringNullableFilter<"Personal"> | string | null
   tel?: Prisma.StringFilter<"Personal"> | string
+  typePersonal?: Prisma.EnumTypeUserFilter<"Personal"> | $Enums.TypeUser
+  userid?: Prisma.IntFilter<"Personal"> | number
+  businessid?: Prisma.IntFilter<"Personal"> | number
+  journalid?: Prisma.IntNullableFilter<"Personal"> | number | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  journal?: Prisma.XOR<Prisma.JournalScalarRelationFilter, Prisma.JournalWhereInput>
   business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>
-  subscriptionDetails?: Prisma.SubscriptionDetailsListRelationFilter
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsListRelationFilter
-  appointments?: Prisma.AppointmentListRelationFilter
-}, "id" | "userid">
+  journal?: Prisma.XOR<Prisma.JournalNullableScalarRelationFilter, Prisma.JournalWhereInput> | null
+  appointmentDetails?: Prisma.AppointmentDetailsListRelationFilter
+}, "id">
 
 export type PersonalOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  userid?: Prisma.SortOrder
-  businessid?: Prisma.SortOrder
-  journalid?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   secondName?: Prisma.SortOrderInput | Prisma.SortOrder
   lastNameP?: Prisma.SortOrder
   lastNameM?: Prisma.SortOrderInput | Prisma.SortOrder
   tel?: Prisma.SortOrder
+  typePersonal?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
+  businessid?: Prisma.SortOrder
+  journalid?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.PersonalCountOrderByAggregateInput
   _avg?: Prisma.PersonalAvgOrderByAggregateInput
   _max?: Prisma.PersonalMaxOrderByAggregateInput
@@ -329,14 +334,15 @@ export type PersonalScalarWhereWithAggregatesInput = {
   OR?: Prisma.PersonalScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PersonalScalarWhereWithAggregatesInput | Prisma.PersonalScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Personal"> | number
-  userid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
-  businessid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
-  journalid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
   firstName?: Prisma.StringWithAggregatesFilter<"Personal"> | string
   secondName?: Prisma.StringNullableWithAggregatesFilter<"Personal"> | string | null
   lastNameP?: Prisma.StringWithAggregatesFilter<"Personal"> | string
   lastNameM?: Prisma.StringNullableWithAggregatesFilter<"Personal"> | string | null
   tel?: Prisma.StringWithAggregatesFilter<"Personal"> | string
+  typePersonal?: Prisma.EnumTypeUserWithAggregatesFilter<"Personal"> | $Enums.TypeUser
+  userid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
+  businessid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
+  journalid?: Prisma.IntNullableWithAggregatesFilter<"Personal"> | number | null
 }
 
 export type PersonalCreateInput = {
@@ -345,27 +351,25 @@ export type PersonalCreateInput = {
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  user: Prisma.UserCreateNestedOneWithoutPersonalInput
-  journal: Prisma.JournalCreateNestedOneWithoutPersonalsInput
-  business: Prisma.BusinessCreateNestedOneWithoutEmployeesInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  user: Prisma.UserCreateNestedOneWithoutPersonalsInput
+  business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
+  journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
 }
 
 export type PersonalUncheckedCreateInput = {
   id?: number
-  userid: number
-  businessid: number
-  journalid: number
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  userid: number
+  businessid: number
+  journalid?: number | null
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
 }
 
 export type PersonalUpdateInput = {
@@ -374,39 +378,38 @@ export type PersonalUpdateInput = {
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPersonalNestedInput
-  journal?: Prisma.JournalUpdateOneRequiredWithoutPersonalsNestedInput
-  business?: Prisma.BusinessUpdateOneRequiredWithoutEmployeesNestedInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
+  business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
+  journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
 }
 
 export type PersonalUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  businessid?: Prisma.IntFieldUpdateOperationsInput | number
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
 }
 
 export type PersonalCreateManyInput = {
   id?: number
-  userid: number
-  businessid: number
-  journalid: number
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
+  typePersonal: $Enums.TypeUser
+  userid: number
+  businessid: number
+  journalid?: number | null
 }
 
 export type PersonalUpdateManyMutationInput = {
@@ -415,23 +418,20 @@ export type PersonalUpdateManyMutationInput = {
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
 }
 
 export type PersonalUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-}
-
-export type PersonalNullableScalarRelationFilter = {
-  is?: Prisma.PersonalWhereInput | null
-  isNot?: Prisma.PersonalWhereInput | null
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  businessid?: Prisma.IntFieldUpdateOperationsInput | number
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PersonalListRelationFilter = {
@@ -446,14 +446,15 @@ export type PersonalOrderByRelationAggregateInput = {
 
 export type PersonalCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userid?: Prisma.SortOrder
-  businessid?: Prisma.SortOrder
-  journalid?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   secondName?: Prisma.SortOrder
   lastNameP?: Prisma.SortOrder
   lastNameM?: Prisma.SortOrder
   tel?: Prisma.SortOrder
+  typePersonal?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
+  businessid?: Prisma.SortOrder
+  journalid?: Prisma.SortOrder
 }
 
 export type PersonalAvgOrderByAggregateInput = {
@@ -465,26 +466,28 @@ export type PersonalAvgOrderByAggregateInput = {
 
 export type PersonalMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userid?: Prisma.SortOrder
-  businessid?: Prisma.SortOrder
-  journalid?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   secondName?: Prisma.SortOrder
   lastNameP?: Prisma.SortOrder
   lastNameM?: Prisma.SortOrder
   tel?: Prisma.SortOrder
+  typePersonal?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
+  businessid?: Prisma.SortOrder
+  journalid?: Prisma.SortOrder
 }
 
 export type PersonalMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  userid?: Prisma.SortOrder
-  businessid?: Prisma.SortOrder
-  journalid?: Prisma.SortOrder
   firstName?: Prisma.SortOrder
   secondName?: Prisma.SortOrder
   lastNameP?: Prisma.SortOrder
   lastNameM?: Prisma.SortOrder
   tel?: Prisma.SortOrder
+  typePersonal?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
+  businessid?: Prisma.SortOrder
+  journalid?: Prisma.SortOrder
 }
 
 export type PersonalSumOrderByAggregateInput = {
@@ -494,41 +497,9 @@ export type PersonalSumOrderByAggregateInput = {
   journalid?: Prisma.SortOrder
 }
 
-export type PersonalScalarRelationFilter = {
-  is?: Prisma.PersonalWhereInput
-  isNot?: Prisma.PersonalWhereInput
-}
-
-export type PersonalCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput
-  connect?: Prisma.PersonalWhereUniqueInput
-}
-
-export type PersonalUncheckedCreateNestedOneWithoutUserInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput
-  connect?: Prisma.PersonalWhereUniqueInput
-}
-
-export type PersonalUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput
-  upsert?: Prisma.PersonalUpsertWithoutUserInput
-  disconnect?: Prisma.PersonalWhereInput | boolean
-  delete?: Prisma.PersonalWhereInput | boolean
-  connect?: Prisma.PersonalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonalUpdateToOneWithWhereWithoutUserInput, Prisma.PersonalUpdateWithoutUserInput>, Prisma.PersonalUncheckedUpdateWithoutUserInput>
-}
-
-export type PersonalUncheckedUpdateOneWithoutUserNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput
-  upsert?: Prisma.PersonalUpsertWithoutUserInput
-  disconnect?: Prisma.PersonalWhereInput | boolean
-  delete?: Prisma.PersonalWhereInput | boolean
-  connect?: Prisma.PersonalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonalUpdateToOneWithWhereWithoutUserInput, Prisma.PersonalUpdateWithoutUserInput>, Prisma.PersonalUncheckedUpdateWithoutUserInput>
+export type PersonalNullableScalarRelationFilter = {
+  is?: Prisma.PersonalWhereInput | null
+  isNot?: Prisma.PersonalWhereInput | null
 }
 
 export type PersonalCreateNestedManyWithoutJournalInput = {
@@ -570,6 +541,48 @@ export type PersonalUncheckedUpdateManyWithoutJournalNestedInput = {
   connect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
   update?: Prisma.PersonalUpdateWithWhereUniqueWithoutJournalInput | Prisma.PersonalUpdateWithWhereUniqueWithoutJournalInput[]
   updateMany?: Prisma.PersonalUpdateManyWithWhereWithoutJournalInput | Prisma.PersonalUpdateManyWithWhereWithoutJournalInput[]
+  deleteMany?: Prisma.PersonalScalarWhereInput | Prisma.PersonalScalarWhereInput[]
+}
+
+export type PersonalCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput> | Prisma.PersonalCreateWithoutUserInput[] | Prisma.PersonalUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput | Prisma.PersonalCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.PersonalCreateManyUserInputEnvelope
+  connect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+}
+
+export type PersonalUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput> | Prisma.PersonalCreateWithoutUserInput[] | Prisma.PersonalUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput | Prisma.PersonalCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.PersonalCreateManyUserInputEnvelope
+  connect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+}
+
+export type PersonalUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput> | Prisma.PersonalCreateWithoutUserInput[] | Prisma.PersonalUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput | Prisma.PersonalCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.PersonalUpsertWithWhereUniqueWithoutUserInput | Prisma.PersonalUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.PersonalCreateManyUserInputEnvelope
+  set?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  disconnect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  delete?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  connect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  update?: Prisma.PersonalUpdateWithWhereUniqueWithoutUserInput | Prisma.PersonalUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.PersonalUpdateManyWithWhereWithoutUserInput | Prisma.PersonalUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.PersonalScalarWhereInput | Prisma.PersonalScalarWhereInput[]
+}
+
+export type PersonalUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput> | Prisma.PersonalCreateWithoutUserInput[] | Prisma.PersonalUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutUserInput | Prisma.PersonalCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.PersonalUpsertWithWhereUniqueWithoutUserInput | Prisma.PersonalUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.PersonalCreateManyUserInputEnvelope
+  set?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  disconnect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  delete?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  connect?: Prisma.PersonalWhereUniqueInput | Prisma.PersonalWhereUniqueInput[]
+  update?: Prisma.PersonalUpdateWithWhereUniqueWithoutUserInput | Prisma.PersonalUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.PersonalUpdateManyWithWhereWithoutUserInput | Prisma.PersonalUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.PersonalScalarWhereInput | Prisma.PersonalScalarWhereInput[]
 }
 
@@ -615,116 +628,32 @@ export type PersonalUncheckedUpdateManyWithoutBusinessNestedInput = {
   deleteMany?: Prisma.PersonalScalarWhereInput | Prisma.PersonalScalarWhereInput[]
 }
 
-export type PersonalCreateNestedOneWithoutAppointmentsInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentsInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutAppointmentsInput
+export type EnumTypeUserFieldUpdateOperationsInput = {
+  set?: $Enums.TypeUser
+}
+
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type PersonalCreateNestedOneWithoutAppointmentDetailsInput = {
+  create?: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentDetailsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentDetailsInput>
+  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutAppointmentDetailsInput
   connect?: Prisma.PersonalWhereUniqueInput
 }
 
-export type PersonalUpdateOneRequiredWithoutAppointmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentsInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutAppointmentsInput
-  upsert?: Prisma.PersonalUpsertWithoutAppointmentsInput
+export type PersonalUpdateOneWithoutAppointmentDetailsNestedInput = {
+  create?: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentDetailsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentDetailsInput>
+  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutAppointmentDetailsInput
+  upsert?: Prisma.PersonalUpsertWithoutAppointmentDetailsInput
+  disconnect?: Prisma.PersonalWhereInput | boolean
+  delete?: Prisma.PersonalWhereInput | boolean
   connect?: Prisma.PersonalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonalUpdateToOneWithWhereWithoutAppointmentsInput, Prisma.PersonalUpdateWithoutAppointmentsInput>, Prisma.PersonalUncheckedUpdateWithoutAppointmentsInput>
-}
-
-export type PersonalCreateNestedOneWithoutSubscriptionDetailsInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutSubscriptionDetailsInput, Prisma.PersonalUncheckedCreateWithoutSubscriptionDetailsInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutSubscriptionDetailsInput
-  connect?: Prisma.PersonalWhereUniqueInput
-}
-
-export type PersonalUpdateOneRequiredWithoutSubscriptionDetailsNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutSubscriptionDetailsInput, Prisma.PersonalUncheckedCreateWithoutSubscriptionDetailsInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutSubscriptionDetailsInput
-  upsert?: Prisma.PersonalUpsertWithoutSubscriptionDetailsInput
-  connect?: Prisma.PersonalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonalUpdateToOneWithWhereWithoutSubscriptionDetailsInput, Prisma.PersonalUpdateWithoutSubscriptionDetailsInput>, Prisma.PersonalUncheckedUpdateWithoutSubscriptionDetailsInput>
-}
-
-export type PersonalCreateNestedOneWithoutPersonalBusinessDetailsInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutPersonalBusinessDetailsInput, Prisma.PersonalUncheckedCreateWithoutPersonalBusinessDetailsInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutPersonalBusinessDetailsInput
-  connect?: Prisma.PersonalWhereUniqueInput
-}
-
-export type PersonalUpdateOneRequiredWithoutPersonalBusinessDetailsNestedInput = {
-  create?: Prisma.XOR<Prisma.PersonalCreateWithoutPersonalBusinessDetailsInput, Prisma.PersonalUncheckedCreateWithoutPersonalBusinessDetailsInput>
-  connectOrCreate?: Prisma.PersonalCreateOrConnectWithoutPersonalBusinessDetailsInput
-  upsert?: Prisma.PersonalUpsertWithoutPersonalBusinessDetailsInput
-  connect?: Prisma.PersonalWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonalUpdateToOneWithWhereWithoutPersonalBusinessDetailsInput, Prisma.PersonalUpdateWithoutPersonalBusinessDetailsInput>, Prisma.PersonalUncheckedUpdateWithoutPersonalBusinessDetailsInput>
-}
-
-export type PersonalCreateWithoutUserInput = {
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  journal: Prisma.JournalCreateNestedOneWithoutPersonalsInput
-  business: Prisma.BusinessCreateNestedOneWithoutEmployeesInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentCreateNestedManyWithoutPersonalInput
-}
-
-export type PersonalUncheckedCreateWithoutUserInput = {
-  id?: number
-  businessid: number
-  journalid: number
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPersonalInput
-}
-
-export type PersonalCreateOrConnectWithoutUserInput = {
-  where: Prisma.PersonalWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
-}
-
-export type PersonalUpsertWithoutUserInput = {
-  update: Prisma.XOR<Prisma.PersonalUpdateWithoutUserInput, Prisma.PersonalUncheckedUpdateWithoutUserInput>
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
-  where?: Prisma.PersonalWhereInput
-}
-
-export type PersonalUpdateToOneWithWhereWithoutUserInput = {
-  where?: Prisma.PersonalWhereInput
-  data: Prisma.XOR<Prisma.PersonalUpdateWithoutUserInput, Prisma.PersonalUncheckedUpdateWithoutUserInput>
-}
-
-export type PersonalUpdateWithoutUserInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  journal?: Prisma.JournalUpdateOneRequiredWithoutPersonalsNestedInput
-  business?: Prisma.BusinessUpdateOneRequiredWithoutEmployeesNestedInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUpdateManyWithoutPersonalNestedInput
-}
-
-export type PersonalUncheckedUpdateWithoutUserInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPersonalNestedInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.PersonalUpdateToOneWithWhereWithoutAppointmentDetailsInput, Prisma.PersonalUpdateWithoutAppointmentDetailsInput>, Prisma.PersonalUncheckedUpdateWithoutAppointmentDetailsInput>
 }
 
 export type PersonalCreateWithoutJournalInput = {
@@ -733,25 +662,23 @@ export type PersonalCreateWithoutJournalInput = {
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  user: Prisma.UserCreateNestedOneWithoutPersonalInput
-  business: Prisma.BusinessCreateNestedOneWithoutEmployeesInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  user: Prisma.UserCreateNestedOneWithoutPersonalsInput
+  business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
 }
 
 export type PersonalUncheckedCreateWithoutJournalInput = {
   id?: number
-  userid: number
-  businessid: number
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  userid: number
+  businessid: number
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
 }
 
 export type PersonalCreateOrConnectWithoutJournalInput = {
@@ -785,14 +712,66 @@ export type PersonalScalarWhereInput = {
   OR?: Prisma.PersonalScalarWhereInput[]
   NOT?: Prisma.PersonalScalarWhereInput | Prisma.PersonalScalarWhereInput[]
   id?: Prisma.IntFilter<"Personal"> | number
-  userid?: Prisma.IntFilter<"Personal"> | number
-  businessid?: Prisma.IntFilter<"Personal"> | number
-  journalid?: Prisma.IntFilter<"Personal"> | number
   firstName?: Prisma.StringFilter<"Personal"> | string
   secondName?: Prisma.StringNullableFilter<"Personal"> | string | null
   lastNameP?: Prisma.StringFilter<"Personal"> | string
   lastNameM?: Prisma.StringNullableFilter<"Personal"> | string | null
   tel?: Prisma.StringFilter<"Personal"> | string
+  typePersonal?: Prisma.EnumTypeUserFilter<"Personal"> | $Enums.TypeUser
+  userid?: Prisma.IntFilter<"Personal"> | number
+  businessid?: Prisma.IntFilter<"Personal"> | number
+  journalid?: Prisma.IntNullableFilter<"Personal"> | number | null
+}
+
+export type PersonalCreateWithoutUserInput = {
+  firstName: string
+  secondName?: string | null
+  lastNameP: string
+  lastNameM?: string | null
+  tel: string
+  typePersonal: $Enums.TypeUser
+  business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
+  journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
+}
+
+export type PersonalUncheckedCreateWithoutUserInput = {
+  id?: number
+  firstName: string
+  secondName?: string | null
+  lastNameP: string
+  lastNameM?: string | null
+  tel: string
+  typePersonal: $Enums.TypeUser
+  businessid: number
+  journalid?: number | null
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
+}
+
+export type PersonalCreateOrConnectWithoutUserInput = {
+  where: Prisma.PersonalWhereUniqueInput
+  create: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
+}
+
+export type PersonalCreateManyUserInputEnvelope = {
+  data: Prisma.PersonalCreateManyUserInput | Prisma.PersonalCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type PersonalUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.PersonalWhereUniqueInput
+  update: Prisma.XOR<Prisma.PersonalUpdateWithoutUserInput, Prisma.PersonalUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.PersonalCreateWithoutUserInput, Prisma.PersonalUncheckedCreateWithoutUserInput>
+}
+
+export type PersonalUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.PersonalWhereUniqueInput
+  data: Prisma.XOR<Prisma.PersonalUpdateWithoutUserInput, Prisma.PersonalUncheckedUpdateWithoutUserInput>
+}
+
+export type PersonalUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.PersonalScalarWhereInput
+  data: Prisma.XOR<Prisma.PersonalUpdateManyMutationInput, Prisma.PersonalUncheckedUpdateManyWithoutUserInput>
 }
 
 export type PersonalCreateWithoutBusinessInput = {
@@ -801,25 +780,23 @@ export type PersonalCreateWithoutBusinessInput = {
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  user: Prisma.UserCreateNestedOneWithoutPersonalInput
-  journal: Prisma.JournalCreateNestedOneWithoutPersonalsInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  user: Prisma.UserCreateNestedOneWithoutPersonalsInput
+  journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
 }
 
 export type PersonalUncheckedCreateWithoutBusinessInput = {
   id?: number
-  userid: number
-  journalid: number
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  userid: number
+  journalid?: number | null
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
 }
 
 export type PersonalCreateOrConnectWithoutBusinessInput = {
@@ -848,225 +825,82 @@ export type PersonalUpdateManyWithWhereWithoutBusinessInput = {
   data: Prisma.XOR<Prisma.PersonalUpdateManyMutationInput, Prisma.PersonalUncheckedUpdateManyWithoutBusinessInput>
 }
 
-export type PersonalCreateWithoutAppointmentsInput = {
+export type PersonalCreateWithoutAppointmentDetailsInput = {
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
-  user: Prisma.UserCreateNestedOneWithoutPersonalInput
-  journal: Prisma.JournalCreateNestedOneWithoutPersonalsInput
-  business: Prisma.BusinessCreateNestedOneWithoutEmployeesInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutPersonalInput
+  typePersonal: $Enums.TypeUser
+  user: Prisma.UserCreateNestedOneWithoutPersonalsInput
+  business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
+  journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
 }
 
-export type PersonalUncheckedCreateWithoutAppointmentsInput = {
+export type PersonalUncheckedCreateWithoutAppointmentDetailsInput = {
   id?: number
+  firstName: string
+  secondName?: string | null
+  lastNameP: string
+  lastNameM?: string | null
+  tel: string
+  typePersonal: $Enums.TypeUser
   userid: number
   businessid: number
-  journalid: number
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutPersonalInput
+  journalid?: number | null
 }
 
-export type PersonalCreateOrConnectWithoutAppointmentsInput = {
+export type PersonalCreateOrConnectWithoutAppointmentDetailsInput = {
   where: Prisma.PersonalWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentsInput>
+  create: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentDetailsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentDetailsInput>
 }
 
-export type PersonalUpsertWithoutAppointmentsInput = {
-  update: Prisma.XOR<Prisma.PersonalUpdateWithoutAppointmentsInput, Prisma.PersonalUncheckedUpdateWithoutAppointmentsInput>
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentsInput>
+export type PersonalUpsertWithoutAppointmentDetailsInput = {
+  update: Prisma.XOR<Prisma.PersonalUpdateWithoutAppointmentDetailsInput, Prisma.PersonalUncheckedUpdateWithoutAppointmentDetailsInput>
+  create: Prisma.XOR<Prisma.PersonalCreateWithoutAppointmentDetailsInput, Prisma.PersonalUncheckedCreateWithoutAppointmentDetailsInput>
   where?: Prisma.PersonalWhereInput
 }
 
-export type PersonalUpdateToOneWithWhereWithoutAppointmentsInput = {
+export type PersonalUpdateToOneWithWhereWithoutAppointmentDetailsInput = {
   where?: Prisma.PersonalWhereInput
-  data: Prisma.XOR<Prisma.PersonalUpdateWithoutAppointmentsInput, Prisma.PersonalUncheckedUpdateWithoutAppointmentsInput>
+  data: Prisma.XOR<Prisma.PersonalUpdateWithoutAppointmentDetailsInput, Prisma.PersonalUncheckedUpdateWithoutAppointmentDetailsInput>
 }
 
-export type PersonalUpdateWithoutAppointmentsInput = {
+export type PersonalUpdateWithoutAppointmentDetailsInput = {
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPersonalNestedInput
-  journal?: Prisma.JournalUpdateOneRequiredWithoutPersonalsNestedInput
-  business?: Prisma.BusinessUpdateOneRequiredWithoutEmployeesNestedInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
+  business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
+  journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
 }
 
-export type PersonalUncheckedUpdateWithoutAppointmentsInput = {
+export type PersonalUncheckedUpdateWithoutAppointmentDetailsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-}
-
-export type PersonalCreateWithoutSubscriptionDetailsInput = {
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  user: Prisma.UserCreateNestedOneWithoutPersonalInput
-  journal: Prisma.JournalCreateNestedOneWithoutPersonalsInput
-  business: Prisma.BusinessCreateNestedOneWithoutEmployeesInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentCreateNestedManyWithoutPersonalInput
-}
-
-export type PersonalUncheckedCreateWithoutSubscriptionDetailsInput = {
-  id?: number
-  userid: number
-  businessid: number
-  journalid: number
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPersonalInput
-}
-
-export type PersonalCreateOrConnectWithoutSubscriptionDetailsInput = {
-  where: Prisma.PersonalWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutSubscriptionDetailsInput, Prisma.PersonalUncheckedCreateWithoutSubscriptionDetailsInput>
-}
-
-export type PersonalUpsertWithoutSubscriptionDetailsInput = {
-  update: Prisma.XOR<Prisma.PersonalUpdateWithoutSubscriptionDetailsInput, Prisma.PersonalUncheckedUpdateWithoutSubscriptionDetailsInput>
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutSubscriptionDetailsInput, Prisma.PersonalUncheckedCreateWithoutSubscriptionDetailsInput>
-  where?: Prisma.PersonalWhereInput
-}
-
-export type PersonalUpdateToOneWithWhereWithoutSubscriptionDetailsInput = {
-  where?: Prisma.PersonalWhereInput
-  data: Prisma.XOR<Prisma.PersonalUpdateWithoutSubscriptionDetailsInput, Prisma.PersonalUncheckedUpdateWithoutSubscriptionDetailsInput>
-}
-
-export type PersonalUpdateWithoutSubscriptionDetailsInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPersonalNestedInput
-  journal?: Prisma.JournalUpdateOneRequiredWithoutPersonalsNestedInput
-  business?: Prisma.BusinessUpdateOneRequiredWithoutEmployeesNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUpdateManyWithoutPersonalNestedInput
-}
-
-export type PersonalUncheckedUpdateWithoutSubscriptionDetailsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPersonalNestedInput
-}
-
-export type PersonalCreateWithoutPersonalBusinessDetailsInput = {
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  user: Prisma.UserCreateNestedOneWithoutPersonalInput
-  journal: Prisma.JournalCreateNestedOneWithoutPersonalsInput
-  business: Prisma.BusinessCreateNestedOneWithoutEmployeesInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentCreateNestedManyWithoutPersonalInput
-}
-
-export type PersonalUncheckedCreateWithoutPersonalBusinessDetailsInput = {
-  id?: number
-  userid: number
-  businessid: number
-  journalid: number
-  firstName: string
-  secondName?: string | null
-  lastNameP: string
-  lastNameM?: string | null
-  tel: string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput
-  appointments?: Prisma.AppointmentUncheckedCreateNestedManyWithoutPersonalInput
-}
-
-export type PersonalCreateOrConnectWithoutPersonalBusinessDetailsInput = {
-  where: Prisma.PersonalWhereUniqueInput
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutPersonalBusinessDetailsInput, Prisma.PersonalUncheckedCreateWithoutPersonalBusinessDetailsInput>
-}
-
-export type PersonalUpsertWithoutPersonalBusinessDetailsInput = {
-  update: Prisma.XOR<Prisma.PersonalUpdateWithoutPersonalBusinessDetailsInput, Prisma.PersonalUncheckedUpdateWithoutPersonalBusinessDetailsInput>
-  create: Prisma.XOR<Prisma.PersonalCreateWithoutPersonalBusinessDetailsInput, Prisma.PersonalUncheckedCreateWithoutPersonalBusinessDetailsInput>
-  where?: Prisma.PersonalWhereInput
-}
-
-export type PersonalUpdateToOneWithWhereWithoutPersonalBusinessDetailsInput = {
-  where?: Prisma.PersonalWhereInput
-  data: Prisma.XOR<Prisma.PersonalUpdateWithoutPersonalBusinessDetailsInput, Prisma.PersonalUncheckedUpdateWithoutPersonalBusinessDetailsInput>
-}
-
-export type PersonalUpdateWithoutPersonalBusinessDetailsInput = {
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPersonalNestedInput
-  journal?: Prisma.JournalUpdateOneRequiredWithoutPersonalsNestedInput
-  business?: Prisma.BusinessUpdateOneRequiredWithoutEmployeesNestedInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUpdateManyWithoutPersonalNestedInput
-}
-
-export type PersonalUncheckedUpdateWithoutPersonalBusinessDetailsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
-  firstName?: Prisma.StringFieldUpdateOperationsInput | string
-  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
-  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  tel?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPersonalNestedInput
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type PersonalCreateManyJournalInput = {
   id?: number
-  userid: number
-  businessid: number
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
+  typePersonal: $Enums.TypeUser
+  userid: number
+  businessid: number
 }
 
 export type PersonalUpdateWithoutJournalInput = {
@@ -1075,47 +909,96 @@ export type PersonalUpdateWithoutJournalInput = {
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPersonalNestedInput
-  business?: Prisma.BusinessUpdateOneRequiredWithoutEmployeesNestedInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
+  business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
 }
 
 export type PersonalUncheckedUpdateWithoutJournalInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  businessid?: Prisma.IntFieldUpdateOperationsInput | number
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
 }
 
 export type PersonalUncheckedUpdateManyWithoutJournalInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  businessid?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  businessid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type PersonalCreateManyBusinessInput = {
+export type PersonalCreateManyUserInput = {
   id?: number
-  userid: number
-  journalid: number
   firstName: string
   secondName?: string | null
   lastNameP: string
   lastNameM?: string | null
   tel: string
+  typePersonal: $Enums.TypeUser
+  businessid: number
+  journalid?: number | null
+}
+
+export type PersonalUpdateWithoutUserInput = {
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
+  journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
+}
+
+export type PersonalUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  businessid?: Prisma.IntFieldUpdateOperationsInput | number
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
+}
+
+export type PersonalUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
+  lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  businessid?: Prisma.IntFieldUpdateOperationsInput | number
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type PersonalCreateManyBusinessInput = {
+  id?: number
+  firstName: string
+  secondName?: string | null
+  lastNameP: string
+  lastNameM?: string | null
+  tel: string
+  typePersonal: $Enums.TypeUser
+  userid: number
+  journalid?: number | null
 }
 
 export type PersonalUpdateWithoutBusinessInput = {
@@ -1124,36 +1007,35 @@ export type PersonalUpdateWithoutBusinessInput = {
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutPersonalNestedInput
-  journal?: Prisma.JournalUpdateOneRequiredWithoutPersonalsNestedInput
-  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
+  journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
 }
 
 export type PersonalUncheckedUpdateWithoutBusinessInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
-  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutPersonalNestedInput
-  appointments?: Prisma.AppointmentUncheckedUpdateManyWithoutPersonalNestedInput
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
 }
 
 export type PersonalUncheckedUpdateManyWithoutBusinessInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  userid?: Prisma.IntFieldUpdateOperationsInput | number
-  journalid?: Prisma.IntFieldUpdateOperationsInput | number
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   secondName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   lastNameP?: Prisma.StringFieldUpdateOperationsInput | string
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
+  typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
+  journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -1162,15 +1044,11 @@ export type PersonalUncheckedUpdateManyWithoutBusinessInput = {
  */
 
 export type PersonalCountOutputType = {
-  subscriptionDetails: number
-  personalBusinessDetails: number
-  appointments: number
+  appointmentDetails: number
 }
 
 export type PersonalCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  subscriptionDetails?: boolean | PersonalCountOutputTypeCountSubscriptionDetailsArgs
-  personalBusinessDetails?: boolean | PersonalCountOutputTypeCountPersonalBusinessDetailsArgs
-  appointments?: boolean | PersonalCountOutputTypeCountAppointmentsArgs
+  appointmentDetails?: boolean | PersonalCountOutputTypeCountAppointmentDetailsArgs
 }
 
 /**
@@ -1186,127 +1064,112 @@ export type PersonalCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * PersonalCountOutputType without action
  */
-export type PersonalCountOutputTypeCountSubscriptionDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.SubscriptionDetailsWhereInput
-}
-
-/**
- * PersonalCountOutputType without action
- */
-export type PersonalCountOutputTypeCountPersonalBusinessDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PersonalBusinessDetailsWhereInput
-}
-
-/**
- * PersonalCountOutputType without action
- */
-export type PersonalCountOutputTypeCountAppointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AppointmentWhereInput
+export type PersonalCountOutputTypeCountAppointmentDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppointmentDetailsWhereInput
 }
 
 
 export type PersonalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userid?: boolean
-  businessid?: boolean
-  journalid?: boolean
   firstName?: boolean
   secondName?: boolean
   lastNameP?: boolean
   lastNameM?: boolean
   tel?: boolean
+  typePersonal?: boolean
+  userid?: boolean
+  businessid?: boolean
+  journalid?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  journal?: boolean | Prisma.JournalDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
-  subscriptionDetails?: boolean | Prisma.Personal$subscriptionDetailsArgs<ExtArgs>
-  personalBusinessDetails?: boolean | Prisma.Personal$personalBusinessDetailsArgs<ExtArgs>
-  appointments?: boolean | Prisma.Personal$appointmentsArgs<ExtArgs>
+  journal?: boolean | Prisma.Personal$journalArgs<ExtArgs>
+  appointmentDetails?: boolean | Prisma.Personal$appointmentDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.PersonalCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["personal"]>
 
 export type PersonalSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userid?: boolean
-  businessid?: boolean
-  journalid?: boolean
   firstName?: boolean
   secondName?: boolean
   lastNameP?: boolean
   lastNameM?: boolean
   tel?: boolean
+  typePersonal?: boolean
+  userid?: boolean
+  businessid?: boolean
+  journalid?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  journal?: boolean | Prisma.JournalDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
+  journal?: boolean | Prisma.Personal$journalArgs<ExtArgs>
 }, ExtArgs["result"]["personal"]>
 
 export type PersonalSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  userid?: boolean
-  businessid?: boolean
-  journalid?: boolean
   firstName?: boolean
   secondName?: boolean
   lastNameP?: boolean
   lastNameM?: boolean
   tel?: boolean
+  typePersonal?: boolean
+  userid?: boolean
+  businessid?: boolean
+  journalid?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  journal?: boolean | Prisma.JournalDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
+  journal?: boolean | Prisma.Personal$journalArgs<ExtArgs>
 }, ExtArgs["result"]["personal"]>
 
 export type PersonalSelectScalar = {
   id?: boolean
-  userid?: boolean
-  businessid?: boolean
-  journalid?: boolean
   firstName?: boolean
   secondName?: boolean
   lastNameP?: boolean
   lastNameM?: boolean
   tel?: boolean
+  typePersonal?: boolean
+  userid?: boolean
+  businessid?: boolean
+  journalid?: boolean
 }
 
-export type PersonalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userid" | "businessid" | "journalid" | "firstName" | "secondName" | "lastNameP" | "lastNameM" | "tel", ExtArgs["result"]["personal"]>
+export type PersonalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "secondName" | "lastNameP" | "lastNameM" | "tel" | "typePersonal" | "userid" | "businessid" | "journalid", ExtArgs["result"]["personal"]>
 export type PersonalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  journal?: boolean | Prisma.JournalDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
-  subscriptionDetails?: boolean | Prisma.Personal$subscriptionDetailsArgs<ExtArgs>
-  personalBusinessDetails?: boolean | Prisma.Personal$personalBusinessDetailsArgs<ExtArgs>
-  appointments?: boolean | Prisma.Personal$appointmentsArgs<ExtArgs>
+  journal?: boolean | Prisma.Personal$journalArgs<ExtArgs>
+  appointmentDetails?: boolean | Prisma.Personal$appointmentDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.PersonalCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type PersonalIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  journal?: boolean | Prisma.JournalDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
+  journal?: boolean | Prisma.Personal$journalArgs<ExtArgs>
 }
 export type PersonalIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  journal?: boolean | Prisma.JournalDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
+  journal?: boolean | Prisma.Personal$journalArgs<ExtArgs>
 }
 
 export type $PersonalPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Personal"
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
-    journal: Prisma.$JournalPayload<ExtArgs>
     business: Prisma.$BusinessPayload<ExtArgs>
-    subscriptionDetails: Prisma.$SubscriptionDetailsPayload<ExtArgs>[]
-    personalBusinessDetails: Prisma.$PersonalBusinessDetailsPayload<ExtArgs>[]
-    appointments: Prisma.$AppointmentPayload<ExtArgs>[]
+    journal: Prisma.$JournalPayload<ExtArgs> | null
+    appointmentDetails: Prisma.$AppointmentDetailsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    userid: number
-    businessid: number
-    journalid: number
     firstName: string
     secondName: string | null
     lastNameP: string
     lastNameM: string | null
     tel: string
+    typePersonal: $Enums.TypeUser
+    userid: number
+    businessid: number
+    journalid: number | null
   }, ExtArgs["result"]["personal"]>
   composites: {}
 }
@@ -1702,11 +1565,9 @@ readonly fields: PersonalFieldRefs;
 export interface Prisma__PersonalClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  journal<T extends Prisma.JournalDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.JournalDefaultArgs<ExtArgs>>): Prisma.Prisma__JournalClient<runtime.Types.Result.GetResult<Prisma.$JournalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   business<T extends Prisma.BusinessDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BusinessDefaultArgs<ExtArgs>>): Prisma.Prisma__BusinessClient<runtime.Types.Result.GetResult<Prisma.$BusinessPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subscriptionDetails<T extends Prisma.Personal$subscriptionDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Personal$subscriptionDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  personalBusinessDetails<T extends Prisma.Personal$personalBusinessDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Personal$personalBusinessDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonalBusinessDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  appointments<T extends Prisma.Personal$appointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Personal$appointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  journal<T extends Prisma.Personal$journalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Personal$journalArgs<ExtArgs>>): Prisma.Prisma__JournalClient<runtime.Types.Result.GetResult<Prisma.$JournalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  appointmentDetails<T extends Prisma.Personal$appointmentDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Personal$appointmentDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1737,14 +1598,15 @@ export interface Prisma__PersonalClient<T, Null = never, ExtArgs extends runtime
  */
 export interface PersonalFieldRefs {
   readonly id: Prisma.FieldRef<"Personal", 'Int'>
-  readonly userid: Prisma.FieldRef<"Personal", 'Int'>
-  readonly businessid: Prisma.FieldRef<"Personal", 'Int'>
-  readonly journalid: Prisma.FieldRef<"Personal", 'Int'>
   readonly firstName: Prisma.FieldRef<"Personal", 'String'>
   readonly secondName: Prisma.FieldRef<"Personal", 'String'>
   readonly lastNameP: Prisma.FieldRef<"Personal", 'String'>
   readonly lastNameM: Prisma.FieldRef<"Personal", 'String'>
   readonly tel: Prisma.FieldRef<"Personal", 'String'>
+  readonly typePersonal: Prisma.FieldRef<"Personal", 'TypeUser'>
+  readonly userid: Prisma.FieldRef<"Personal", 'Int'>
+  readonly businessid: Prisma.FieldRef<"Personal", 'Int'>
+  readonly journalid: Prisma.FieldRef<"Personal", 'Int'>
 }
     
 
@@ -2141,75 +2003,46 @@ export type PersonalDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Personal.subscriptionDetails
+ * Personal.journal
  */
-export type Personal$subscriptionDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Personal$journalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the SubscriptionDetails
+   * Select specific fields to fetch from the Journal
    */
-  select?: Prisma.SubscriptionDetailsSelect<ExtArgs> | null
+  select?: Prisma.JournalSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the SubscriptionDetails
+   * Omit specific fields from the Journal
    */
-  omit?: Prisma.SubscriptionDetailsOmit<ExtArgs> | null
+  omit?: Prisma.JournalOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.SubscriptionDetailsInclude<ExtArgs> | null
-  where?: Prisma.SubscriptionDetailsWhereInput
-  orderBy?: Prisma.SubscriptionDetailsOrderByWithRelationInput | Prisma.SubscriptionDetailsOrderByWithRelationInput[]
-  cursor?: Prisma.SubscriptionDetailsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.SubscriptionDetailsScalarFieldEnum | Prisma.SubscriptionDetailsScalarFieldEnum[]
+  include?: Prisma.JournalInclude<ExtArgs> | null
+  where?: Prisma.JournalWhereInput
 }
 
 /**
- * Personal.personalBusinessDetails
+ * Personal.appointmentDetails
  */
-export type Personal$personalBusinessDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Personal$appointmentDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the PersonalBusinessDetails
+   * Select specific fields to fetch from the AppointmentDetails
    */
-  select?: Prisma.PersonalBusinessDetailsSelect<ExtArgs> | null
+  select?: Prisma.AppointmentDetailsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the PersonalBusinessDetails
+   * Omit specific fields from the AppointmentDetails
    */
-  omit?: Prisma.PersonalBusinessDetailsOmit<ExtArgs> | null
+  omit?: Prisma.AppointmentDetailsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.PersonalBusinessDetailsInclude<ExtArgs> | null
-  where?: Prisma.PersonalBusinessDetailsWhereInput
-  orderBy?: Prisma.PersonalBusinessDetailsOrderByWithRelationInput | Prisma.PersonalBusinessDetailsOrderByWithRelationInput[]
-  cursor?: Prisma.PersonalBusinessDetailsWhereUniqueInput
+  include?: Prisma.AppointmentDetailsInclude<ExtArgs> | null
+  where?: Prisma.AppointmentDetailsWhereInput
+  orderBy?: Prisma.AppointmentDetailsOrderByWithRelationInput | Prisma.AppointmentDetailsOrderByWithRelationInput[]
+  cursor?: Prisma.AppointmentDetailsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.PersonalBusinessDetailsScalarFieldEnum | Prisma.PersonalBusinessDetailsScalarFieldEnum[]
-}
-
-/**
- * Personal.appointments
- */
-export type Personal$appointmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Appointment
-   */
-  select?: Prisma.AppointmentSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Appointment
-   */
-  omit?: Prisma.AppointmentOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AppointmentInclude<ExtArgs> | null
-  where?: Prisma.AppointmentWhereInput
-  orderBy?: Prisma.AppointmentOrderByWithRelationInput | Prisma.AppointmentOrderByWithRelationInput[]
-  cursor?: Prisma.AppointmentWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AppointmentScalarFieldEnum | Prisma.AppointmentScalarFieldEnum[]
+  distinct?: Prisma.AppointmentDetailsScalarFieldEnum | Prisma.AppointmentDetailsScalarFieldEnum[]
 }
 
 /**

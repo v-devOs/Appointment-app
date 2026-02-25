@@ -39,28 +39,28 @@ export type SubscriptionSumAggregateOutputType = {
 export type SubscriptionMinAggregateOutputType = {
   id: number | null
   amount: number | null
-  status: $Enums.SubscriptionStatus | null
-  createdAt: Date | null
   dateStartCurrentPeriod: Date | null
   dateEndCurrentPeriod: Date | null
+  status: $Enums.StatusSubscription | null
+  createdAt: Date | null
 }
 
 export type SubscriptionMaxAggregateOutputType = {
   id: number | null
   amount: number | null
-  status: $Enums.SubscriptionStatus | null
-  createdAt: Date | null
   dateStartCurrentPeriod: Date | null
   dateEndCurrentPeriod: Date | null
+  status: $Enums.StatusSubscription | null
+  createdAt: Date | null
 }
 
 export type SubscriptionCountAggregateOutputType = {
   id: number
   amount: number
-  status: number
-  createdAt: number
   dateStartCurrentPeriod: number
   dateEndCurrentPeriod: number
+  status: number
+  createdAt: number
   _all: number
 }
 
@@ -78,28 +78,28 @@ export type SubscriptionSumAggregateInputType = {
 export type SubscriptionMinAggregateInputType = {
   id?: true
   amount?: true
-  status?: true
-  createdAt?: true
   dateStartCurrentPeriod?: true
   dateEndCurrentPeriod?: true
+  status?: true
+  createdAt?: true
 }
 
 export type SubscriptionMaxAggregateInputType = {
   id?: true
   amount?: true
-  status?: true
-  createdAt?: true
   dateStartCurrentPeriod?: true
   dateEndCurrentPeriod?: true
+  status?: true
+  createdAt?: true
 }
 
 export type SubscriptionCountAggregateInputType = {
   id?: true
   amount?: true
-  status?: true
-  createdAt?: true
   dateStartCurrentPeriod?: true
   dateEndCurrentPeriod?: true
+  status?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -192,10 +192,10 @@ export type SubscriptionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type SubscriptionGroupByOutputType = {
   id: number
   amount: number
-  status: $Enums.SubscriptionStatus
-  createdAt: Date
   dateStartCurrentPeriod: Date
   dateEndCurrentPeriod: Date
+  status: $Enums.StatusSubscription
+  createdAt: Date
   _count: SubscriptionCountAggregateOutputType | null
   _avg: SubscriptionAvgAggregateOutputType | null
   _sum: SubscriptionSumAggregateOutputType | null
@@ -224,20 +224,20 @@ export type SubscriptionWhereInput = {
   NOT?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
   id?: Prisma.IntFilter<"Subscription"> | number
   amount?: Prisma.FloatFilter<"Subscription"> | number
-  status?: Prisma.EnumSubscriptionStatusFilter<"Subscription"> | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFilter<"Subscription"> | Date | string
+  status?: Prisma.EnumStatusSubscriptionFilter<"Subscription"> | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   subscriptionDetails?: Prisma.SubscriptionDetailsListRelationFilter
 }
 
 export type SubscriptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   dateStartCurrentPeriod?: Prisma.SortOrder
   dateEndCurrentPeriod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   subscriptionDetails?: Prisma.SubscriptionDetailsOrderByRelationAggregateInput
 }
 
@@ -247,20 +247,20 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SubscriptionWhereInput[]
   NOT?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
   amount?: Prisma.FloatFilter<"Subscription"> | number
-  status?: Prisma.EnumSubscriptionStatusFilter<"Subscription"> | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFilter<"Subscription"> | Date | string
+  status?: Prisma.EnumStatusSubscriptionFilter<"Subscription"> | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFilter<"Subscription"> | Date | string
   subscriptionDetails?: Prisma.SubscriptionDetailsListRelationFilter
 }, "id">
 
 export type SubscriptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   dateStartCurrentPeriod?: Prisma.SortOrder
   dateEndCurrentPeriod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.SubscriptionCountOrderByAggregateInput
   _avg?: Prisma.SubscriptionAvgOrderByAggregateInput
   _max?: Prisma.SubscriptionMaxOrderByAggregateInput
@@ -274,83 +274,83 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SubscriptionScalarWhereWithAggregatesInput | Prisma.SubscriptionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Subscription"> | number
   amount?: Prisma.FloatWithAggregatesFilter<"Subscription"> | number
-  status?: Prisma.EnumSubscriptionStatusWithAggregatesFilter<"Subscription"> | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Subscription"> | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeWithAggregatesFilter<"Subscription"> | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeWithAggregatesFilter<"Subscription"> | Date | string
+  status?: Prisma.EnumStatusSubscriptionWithAggregatesFilter<"Subscription"> | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Subscription"> | Date | string
 }
 
 export type SubscriptionCreateInput = {
   amount?: number
-  status?: $Enums.SubscriptionStatus
-  createdAt?: Date | string
-  dateStartCurrentPeriod: Date | string
+  dateStartCurrentPeriod?: Date | string
   dateEndCurrentPeriod: Date | string
+  status: $Enums.StatusSubscription
+  createdAt?: Date | string
   subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutSubscriptionInput
 }
 
 export type SubscriptionUncheckedCreateInput = {
   id?: number
   amount?: number
-  status?: $Enums.SubscriptionStatus
-  createdAt?: Date | string
-  dateStartCurrentPeriod: Date | string
+  dateStartCurrentPeriod?: Date | string
   dateEndCurrentPeriod: Date | string
+  status: $Enums.StatusSubscription
+  createdAt?: Date | string
   subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutSubscriptionInput
 }
 
 export type SubscriptionUpdateInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusSubscriptionFieldUpdateOperationsInput | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutSubscriptionNestedInput
 }
 
 export type SubscriptionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusSubscriptionFieldUpdateOperationsInput | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutSubscriptionNestedInput
 }
 
 export type SubscriptionCreateManyInput = {
   id?: number
   amount?: number
-  status?: $Enums.SubscriptionStatus
-  createdAt?: Date | string
-  dateStartCurrentPeriod: Date | string
+  dateStartCurrentPeriod?: Date | string
   dateEndCurrentPeriod: Date | string
+  status: $Enums.StatusSubscription
+  createdAt?: Date | string
 }
 
 export type SubscriptionUpdateManyMutationInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusSubscriptionFieldUpdateOperationsInput | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SubscriptionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusSubscriptionFieldUpdateOperationsInput | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SubscriptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   dateStartCurrentPeriod?: Prisma.SortOrder
   dateEndCurrentPeriod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type SubscriptionAvgOrderByAggregateInput = {
@@ -361,19 +361,19 @@ export type SubscriptionAvgOrderByAggregateInput = {
 export type SubscriptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   dateStartCurrentPeriod?: Prisma.SortOrder
   dateEndCurrentPeriod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type SubscriptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   amount?: Prisma.SortOrder
-  status?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
   dateStartCurrentPeriod?: Prisma.SortOrder
   dateEndCurrentPeriod?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type SubscriptionSumOrderByAggregateInput = {
@@ -386,8 +386,8 @@ export type SubscriptionScalarRelationFilter = {
   isNot?: Prisma.SubscriptionWhereInput
 }
 
-export type EnumSubscriptionStatusFieldUpdateOperationsInput = {
-  set?: $Enums.SubscriptionStatus
+export type EnumStatusSubscriptionFieldUpdateOperationsInput = {
+  set?: $Enums.StatusSubscription
 }
 
 export type SubscriptionCreateNestedOneWithoutSubscriptionDetailsInput = {
@@ -406,19 +406,19 @@ export type SubscriptionUpdateOneRequiredWithoutSubscriptionDetailsNestedInput =
 
 export type SubscriptionCreateWithoutSubscriptionDetailsInput = {
   amount?: number
-  status?: $Enums.SubscriptionStatus
-  createdAt?: Date | string
-  dateStartCurrentPeriod: Date | string
+  dateStartCurrentPeriod?: Date | string
   dateEndCurrentPeriod: Date | string
+  status: $Enums.StatusSubscription
+  createdAt?: Date | string
 }
 
 export type SubscriptionUncheckedCreateWithoutSubscriptionDetailsInput = {
   id?: number
   amount?: number
-  status?: $Enums.SubscriptionStatus
-  createdAt?: Date | string
-  dateStartCurrentPeriod: Date | string
+  dateStartCurrentPeriod?: Date | string
   dateEndCurrentPeriod: Date | string
+  status: $Enums.StatusSubscription
+  createdAt?: Date | string
 }
 
 export type SubscriptionCreateOrConnectWithoutSubscriptionDetailsInput = {
@@ -439,19 +439,19 @@ export type SubscriptionUpdateToOneWithWhereWithoutSubscriptionDetailsInput = {
 
 export type SubscriptionUpdateWithoutSubscriptionDetailsInput = {
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusSubscriptionFieldUpdateOperationsInput | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type SubscriptionUncheckedUpdateWithoutSubscriptionDetailsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   amount?: Prisma.FloatFieldUpdateOperationsInput | number
-  status?: Prisma.EnumSubscriptionStatusFieldUpdateOperationsInput | $Enums.SubscriptionStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateStartCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   dateEndCurrentPeriod?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusSubscriptionFieldUpdateOperationsInput | $Enums.StatusSubscription
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -488,10 +488,10 @@ export type SubscriptionCountOutputTypeCountSubscriptionDetailsArgs<ExtArgs exte
 export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   amount?: boolean
-  status?: boolean
-  createdAt?: boolean
   dateStartCurrentPeriod?: boolean
   dateEndCurrentPeriod?: boolean
+  status?: boolean
+  createdAt?: boolean
   subscriptionDetails?: boolean | Prisma.Subscription$subscriptionDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.SubscriptionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subscription"]>
@@ -499,31 +499,31 @@ export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   amount?: boolean
-  status?: boolean
-  createdAt?: boolean
   dateStartCurrentPeriod?: boolean
   dateEndCurrentPeriod?: boolean
+  status?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["subscription"]>
 
 export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   amount?: boolean
-  status?: boolean
-  createdAt?: boolean
   dateStartCurrentPeriod?: boolean
   dateEndCurrentPeriod?: boolean
+  status?: boolean
+  createdAt?: boolean
 }, ExtArgs["result"]["subscription"]>
 
 export type SubscriptionSelectScalar = {
   id?: boolean
   amount?: boolean
-  status?: boolean
-  createdAt?: boolean
   dateStartCurrentPeriod?: boolean
   dateEndCurrentPeriod?: boolean
+  status?: boolean
+  createdAt?: boolean
 }
 
-export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "amount" | "status" | "createdAt" | "dateStartCurrentPeriod" | "dateEndCurrentPeriod", ExtArgs["result"]["subscription"]>
+export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "amount" | "dateStartCurrentPeriod" | "dateEndCurrentPeriod" | "status" | "createdAt", ExtArgs["result"]["subscription"]>
 export type SubscriptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subscriptionDetails?: boolean | Prisma.Subscription$subscriptionDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.SubscriptionCountOutputTypeDefaultArgs<ExtArgs>
@@ -539,10 +539,10 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     amount: number
-    status: $Enums.SubscriptionStatus
-    createdAt: Date
     dateStartCurrentPeriod: Date
     dateEndCurrentPeriod: Date
+    status: $Enums.StatusSubscription
+    createdAt: Date
   }, ExtArgs["result"]["subscription"]>
   composites: {}
 }
@@ -969,10 +969,10 @@ export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends run
 export interface SubscriptionFieldRefs {
   readonly id: Prisma.FieldRef<"Subscription", 'Int'>
   readonly amount: Prisma.FieldRef<"Subscription", 'Float'>
-  readonly status: Prisma.FieldRef<"Subscription", 'SubscriptionStatus'>
-  readonly createdAt: Prisma.FieldRef<"Subscription", 'DateTime'>
   readonly dateStartCurrentPeriod: Prisma.FieldRef<"Subscription", 'DateTime'>
   readonly dateEndCurrentPeriod: Prisma.FieldRef<"Subscription", 'DateTime'>
+  readonly status: Prisma.FieldRef<"Subscription", 'StatusSubscription'>
+  readonly createdAt: Prisma.FieldRef<"Subscription", 'DateTime'>
 }
     
 

@@ -38,21 +38,18 @@ export type UserMinAggregateOutputType = {
   id: number | null
   email: string | null
   password: string | null
-  typeUser: $Enums.TypeUser | null
 }
 
 export type UserMaxAggregateOutputType = {
   id: number | null
   email: string | null
   password: string | null
-  typeUser: $Enums.TypeUser | null
 }
 
 export type UserCountAggregateOutputType = {
   id: number
   email: number
   password: number
-  typeUser: number
   _all: number
 }
 
@@ -69,21 +66,18 @@ export type UserMinAggregateInputType = {
   id?: true
   email?: true
   password?: true
-  typeUser?: true
 }
 
 export type UserMaxAggregateInputType = {
   id?: true
   email?: true
   password?: true
-  typeUser?: true
 }
 
 export type UserCountAggregateInputType = {
   id?: true
   email?: true
   password?: true
-  typeUser?: true
   _all?: true
 }
 
@@ -177,7 +171,6 @@ export type UserGroupByOutputType = {
   id: number
   email: string
   password: string
-  typeUser: $Enums.TypeUser
   _count: UserCountAggregateOutputType | null
   _avg: UserAvgAggregateOutputType | null
   _sum: UserSumAggregateOutputType | null
@@ -207,34 +200,36 @@ export type UserWhereInput = {
   id?: Prisma.IntFilter<"User"> | number
   email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
-  typeUser?: Prisma.EnumTypeUserFilter<"User"> | $Enums.TypeUser
-  personal?: Prisma.XOR<Prisma.PersonalNullableScalarRelationFilter, Prisma.PersonalWhereInput> | null
+  personals?: Prisma.PersonalListRelationFilter
+  businesses?: Prisma.BusinessListRelationFilter
+  subscriptionDetails?: Prisma.SubscriptionDetailsListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  typeUser?: Prisma.SortOrder
-  personal?: Prisma.PersonalOrderByWithRelationInput
+  personals?: Prisma.PersonalOrderByRelationAggregateInput
+  businesses?: Prisma.BusinessOrderByRelationAggregateInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  email?: string
   AND?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   OR?: Prisma.UserWhereInput[]
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
+  email?: Prisma.StringFilter<"User"> | string
   password?: Prisma.StringFilter<"User"> | string
-  typeUser?: Prisma.EnumTypeUserFilter<"User"> | $Enums.TypeUser
-  personal?: Prisma.XOR<Prisma.PersonalNullableScalarRelationFilter, Prisma.PersonalWhereInput> | null
-}, "id" | "email">
+  personals?: Prisma.PersonalListRelationFilter
+  businesses?: Prisma.BusinessListRelationFilter
+  subscriptionDetails?: Prisma.SubscriptionDetailsListRelationFilter
+}, "id">
 
 export type UserOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  typeUser?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
   _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
@@ -249,64 +244,63 @@ export type UserScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"User"> | number
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   password?: Prisma.StringWithAggregatesFilter<"User"> | string
-  typeUser?: Prisma.EnumTypeUserWithAggregatesFilter<"User"> | $Enums.TypeUser
 }
 
 export type UserCreateInput = {
   email: string
   password: string
-  typeUser?: $Enums.TypeUser
-  personal?: Prisma.PersonalCreateNestedOneWithoutUserInput
+  personals?: Prisma.PersonalCreateNestedManyWithoutUserInput
+  businesses?: Prisma.BusinessCreateNestedManyWithoutOwnerInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
   id?: number
   email: string
   password: string
-  typeUser?: $Enums.TypeUser
-  personal?: Prisma.PersonalUncheckedCreateNestedOneWithoutUserInput
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutUserInput
+  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutOwnerInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  typeUser?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
-  personal?: Prisma.PersonalUpdateOneWithoutUserNestedInput
+  personals?: Prisma.PersonalUpdateManyWithoutUserNestedInput
+  businesses?: Prisma.BusinessUpdateManyWithoutOwnerNestedInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  typeUser?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
-  personal?: Prisma.PersonalUncheckedUpdateOneWithoutUserNestedInput
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutUserNestedInput
+  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutOwnerNestedInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
   id?: number
   email: string
   password: string
-  typeUser?: $Enums.TypeUser
 }
 
 export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  typeUser?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
 }
 
 export type UserUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  typeUser?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
 }
 
 export type UserCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  typeUser?: Prisma.SortOrder
 }
 
 export type UserAvgOrderByAggregateInput = {
@@ -317,14 +311,12 @@ export type UserMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  typeUser?: Prisma.SortOrder
 }
 
 export type UserMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   email?: Prisma.SortOrder
   password?: Prisma.SortOrder
-  typeUser?: Prisma.SortOrder
 }
 
 export type UserSumOrderByAggregateInput = {
@@ -340,100 +332,269 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
-export type EnumTypeUserFieldUpdateOperationsInput = {
-  set?: $Enums.TypeUser
-}
-
-export type UserCreateNestedOneWithoutPersonalInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPersonalInput, Prisma.UserUncheckedCreateWithoutPersonalInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPersonalInput
+export type UserCreateNestedOneWithoutBusinessesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessesInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutPersonalNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPersonalInput, Prisma.UserUncheckedCreateWithoutPersonalInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPersonalInput
-  upsert?: Prisma.UserUpsertWithoutPersonalInput
+export type UserUpdateOneRequiredWithoutBusinessesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBusinessesInput
+  upsert?: Prisma.UserUpsertWithoutBusinessesInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPersonalInput, Prisma.UserUpdateWithoutPersonalInput>, Prisma.UserUncheckedUpdateWithoutPersonalInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBusinessesInput, Prisma.UserUpdateWithoutBusinessesInput>, Prisma.UserUncheckedUpdateWithoutBusinessesInput>
 }
 
-export type UserCreateWithoutPersonalInput = {
+export type UserCreateNestedOneWithoutPersonalsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPersonalsInput, Prisma.UserUncheckedCreateWithoutPersonalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPersonalsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutPersonalsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutPersonalsInput, Prisma.UserUncheckedCreateWithoutPersonalsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPersonalsInput
+  upsert?: Prisma.UserUpsertWithoutPersonalsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPersonalsInput, Prisma.UserUpdateWithoutPersonalsInput>, Prisma.UserUncheckedUpdateWithoutPersonalsInput>
+}
+
+export type UserCreateNestedOneWithoutSubscriptionDetailsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionDetailsInput, Prisma.UserUncheckedCreateWithoutSubscriptionDetailsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionDetailsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubscriptionDetailsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionDetailsInput, Prisma.UserUncheckedCreateWithoutSubscriptionDetailsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubscriptionDetailsInput
+  upsert?: Prisma.UserUpsertWithoutSubscriptionDetailsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubscriptionDetailsInput, Prisma.UserUpdateWithoutSubscriptionDetailsInput>, Prisma.UserUncheckedUpdateWithoutSubscriptionDetailsInput>
+}
+
+export type UserCreateWithoutBusinessesInput = {
   email: string
   password: string
-  typeUser?: $Enums.TypeUser
+  personals?: Prisma.PersonalCreateNestedManyWithoutUserInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutPersonalInput = {
+export type UserUncheckedCreateWithoutBusinessesInput = {
   id?: number
   email: string
   password: string
-  typeUser?: $Enums.TypeUser
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutUserInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutPersonalInput = {
+export type UserCreateOrConnectWithoutBusinessesInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPersonalInput, Prisma.UserUncheckedCreateWithoutPersonalInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
 }
 
-export type UserUpsertWithoutPersonalInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPersonalInput, Prisma.UserUncheckedUpdateWithoutPersonalInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPersonalInput, Prisma.UserUncheckedCreateWithoutPersonalInput>
+export type UserUpsertWithoutBusinessesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBusinessesInput, Prisma.UserUncheckedUpdateWithoutBusinessesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBusinessesInput, Prisma.UserUncheckedCreateWithoutBusinessesInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutPersonalInput = {
+export type UserUpdateToOneWithWhereWithoutBusinessesInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPersonalInput, Prisma.UserUncheckedUpdateWithoutPersonalInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBusinessesInput, Prisma.UserUncheckedUpdateWithoutBusinessesInput>
 }
 
-export type UserUpdateWithoutPersonalInput = {
+export type UserUpdateWithoutBusinessesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  typeUser?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  personals?: Prisma.PersonalUpdateManyWithoutUserNestedInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutPersonalInput = {
+export type UserUncheckedUpdateWithoutBusinessesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
-  typeUser?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutUserNestedInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutUserNestedInput
 }
 
+export type UserCreateWithoutPersonalsInput = {
+  email: string
+  password: string
+  businesses?: Prisma.BusinessCreateNestedManyWithoutOwnerInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutPersonalsInput = {
+  id?: number
+  email: string
+  password: string
+  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutOwnerInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutPersonalsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutPersonalsInput, Prisma.UserUncheckedCreateWithoutPersonalsInput>
+}
+
+export type UserUpsertWithoutPersonalsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutPersonalsInput, Prisma.UserUncheckedUpdateWithoutPersonalsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutPersonalsInput, Prisma.UserUncheckedCreateWithoutPersonalsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutPersonalsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutPersonalsInput, Prisma.UserUncheckedUpdateWithoutPersonalsInput>
+}
+
+export type UserUpdateWithoutPersonalsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  businesses?: Prisma.BusinessUpdateManyWithoutOwnerNestedInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutPersonalsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutOwnerNestedInput
+  subscriptionDetails?: Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutSubscriptionDetailsInput = {
+  email: string
+  password: string
+  personals?: Prisma.PersonalCreateNestedManyWithoutUserInput
+  businesses?: Prisma.BusinessCreateNestedManyWithoutOwnerInput
+}
+
+export type UserUncheckedCreateWithoutSubscriptionDetailsInput = {
+  id?: number
+  email: string
+  password: string
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutUserInput
+  businesses?: Prisma.BusinessUncheckedCreateNestedManyWithoutOwnerInput
+}
+
+export type UserCreateOrConnectWithoutSubscriptionDetailsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionDetailsInput, Prisma.UserUncheckedCreateWithoutSubscriptionDetailsInput>
+}
+
+export type UserUpsertWithoutSubscriptionDetailsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionDetailsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionDetailsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubscriptionDetailsInput, Prisma.UserUncheckedCreateWithoutSubscriptionDetailsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubscriptionDetailsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubscriptionDetailsInput, Prisma.UserUncheckedUpdateWithoutSubscriptionDetailsInput>
+}
+
+export type UserUpdateWithoutSubscriptionDetailsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  personals?: Prisma.PersonalUpdateManyWithoutUserNestedInput
+  businesses?: Prisma.BusinessUpdateManyWithoutOwnerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubscriptionDetailsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutUserNestedInput
+  businesses?: Prisma.BusinessUncheckedUpdateManyWithoutOwnerNestedInput
+}
+
+
+/**
+ * Count Type UserCountOutputType
+ */
+
+export type UserCountOutputType = {
+  personals: number
+  businesses: number
+  subscriptionDetails: number
+}
+
+export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  personals?: boolean | UserCountOutputTypeCountPersonalsArgs
+  businesses?: boolean | UserCountOutputTypeCountBusinessesArgs
+  subscriptionDetails?: boolean | UserCountOutputTypeCountSubscriptionDetailsArgs
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserCountOutputType
+   */
+  select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountPersonalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PersonalWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBusinessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BusinessWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubscriptionDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.SubscriptionDetailsWhereInput
+}
 
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   password?: boolean
-  typeUser?: boolean
-  personal?: boolean | Prisma.User$personalArgs<ExtArgs>
+  personals?: boolean | Prisma.User$personalsArgs<ExtArgs>
+  businesses?: boolean | Prisma.User$businessesArgs<ExtArgs>
+  subscriptionDetails?: boolean | Prisma.User$subscriptionDetailsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   password?: boolean
-  typeUser?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   email?: boolean
   password?: boolean
-  typeUser?: boolean
 }, ExtArgs["result"]["user"]>
 
 export type UserSelectScalar = {
   id?: boolean
   email?: boolean
   password?: boolean
-  typeUser?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password" | "typeUser", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "email" | "password", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  personal?: boolean | Prisma.User$personalArgs<ExtArgs>
+  personals?: boolean | Prisma.User$personalsArgs<ExtArgs>
+  businesses?: boolean | Prisma.User$businessesArgs<ExtArgs>
+  subscriptionDetails?: boolean | Prisma.User$subscriptionDetailsArgs<ExtArgs>
+  _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
 export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -441,13 +602,14 @@ export type UserIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "User"
   objects: {
-    personal: Prisma.$PersonalPayload<ExtArgs> | null
+    personals: Prisma.$PersonalPayload<ExtArgs>[]
+    businesses: Prisma.$BusinessPayload<ExtArgs>[]
+    subscriptionDetails: Prisma.$SubscriptionDetailsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     email: string
     password: string
-    typeUser: $Enums.TypeUser
   }, ExtArgs["result"]["user"]>
   composites: {}
 }
@@ -842,7 +1004,9 @@ readonly fields: UserFieldRefs;
  */
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  personal<T extends Prisma.User$personalArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$personalArgs<ExtArgs>>): Prisma.Prisma__PersonalClient<runtime.Types.Result.GetResult<Prisma.$PersonalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  personals<T extends Prisma.User$personalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$personalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  businesses<T extends Prisma.User$businessesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$businessesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BusinessPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  subscriptionDetails<T extends Prisma.User$subscriptionDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$subscriptionDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SubscriptionDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -875,7 +1039,6 @@ export interface UserFieldRefs {
   readonly id: Prisma.FieldRef<"User", 'Int'>
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly password: Prisma.FieldRef<"User", 'String'>
-  readonly typeUser: Prisma.FieldRef<"User", 'TypeUser'>
 }
     
 
@@ -1264,9 +1427,9 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.personal
+ * User.personals
  */
-export type User$personalArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$personalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Personal
    */
@@ -1280,6 +1443,59 @@ export type User$personalArgs<ExtArgs extends runtime.Types.Extensions.InternalA
    */
   include?: Prisma.PersonalInclude<ExtArgs> | null
   where?: Prisma.PersonalWhereInput
+  orderBy?: Prisma.PersonalOrderByWithRelationInput | Prisma.PersonalOrderByWithRelationInput[]
+  cursor?: Prisma.PersonalWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PersonalScalarFieldEnum | Prisma.PersonalScalarFieldEnum[]
+}
+
+/**
+ * User.businesses
+ */
+export type User$businessesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Business
+   */
+  select?: Prisma.BusinessSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Business
+   */
+  omit?: Prisma.BusinessOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BusinessInclude<ExtArgs> | null
+  where?: Prisma.BusinessWhereInput
+  orderBy?: Prisma.BusinessOrderByWithRelationInput | Prisma.BusinessOrderByWithRelationInput[]
+  cursor?: Prisma.BusinessWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BusinessScalarFieldEnum | Prisma.BusinessScalarFieldEnum[]
+}
+
+/**
+ * User.subscriptionDetails
+ */
+export type User$subscriptionDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the SubscriptionDetails
+   */
+  select?: Prisma.SubscriptionDetailsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the SubscriptionDetails
+   */
+  omit?: Prisma.SubscriptionDetailsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.SubscriptionDetailsInclude<ExtArgs> | null
+  where?: Prisma.SubscriptionDetailsWhereInput
+  orderBy?: Prisma.SubscriptionDetailsOrderByWithRelationInput | Prisma.SubscriptionDetailsOrderByWithRelationInput[]
+  cursor?: Prisma.SubscriptionDetailsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.SubscriptionDetailsScalarFieldEnum | Prisma.SubscriptionDetailsScalarFieldEnum[]
 }
 
 /**

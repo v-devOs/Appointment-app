@@ -51,17 +51,16 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Payment: 'Payment',
-  User: 'User',
-  Subscription: 'Subscription',
   Journal: 'Journal',
+  User: 'User',
   Business: 'Business',
+  Payment: 'Payment',
+  Client: 'Client',
+  Subscription: 'Subscription',
   Personal: 'Personal',
   TypeAppointment: 'TypeAppointment',
-  Appointment: 'Appointment',
-  Client: 'Client',
   SubscriptionDetails: 'SubscriptionDetails',
-  PersonalBusinessDetails: 'PersonalBusinessDetails'
+  AppointmentDetails: 'AppointmentDetails'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -80,50 +79,26 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const PaymentScalarFieldEnum = {
-  id: 'id',
-  amount: 'amount',
-  discount: 'discount',
-  datePayment: 'datePayment',
-  status: 'status'
-} as const
-
-export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
-
-
-export const UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  password: 'password',
-  typeUser: 'typeUser'
-} as const
-
-export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
-
-
-export const SubscriptionScalarFieldEnum = {
-  id: 'id',
-  amount: 'amount',
-  status: 'status',
-  createdAt: 'createdAt',
-  dateStartCurrentPeriod: 'dateStartCurrentPeriod',
-  dateEndCurrentPeriod: 'dateEndCurrentPeriod'
-} as const
-
-export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
-
-
 export const JournalScalarFieldEnum = {
   id: 'id',
   hourStart: 'hourStart',
   hourEnd: 'hourEnd',
   freeTime: 'freeTime',
+  durationFreeTime: 'durationFreeTime',
   startAbsence: 'startAbsence',
-  endAbsence: 'endAbsence',
-  durationFreeTime: 'durationFreeTime'
+  endAbsence: 'endAbsence'
 } as const
 
 export type JournalScalarFieldEnum = (typeof JournalScalarFieldEnum)[keyof typeof JournalScalarFieldEnum]
+
+
+export const UserScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password'
+} as const
+
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
 export const BusinessScalarFieldEnum = {
@@ -133,49 +108,23 @@ export const BusinessScalarFieldEnum = {
   email: 'email',
   direction: 'direction',
   hourOpen: 'hourOpen',
-  hourClose: 'hourClose'
+  hourClose: 'hourClose',
+  ownerid: 'ownerid'
 } as const
 
 export type BusinessScalarFieldEnum = (typeof BusinessScalarFieldEnum)[keyof typeof BusinessScalarFieldEnum]
 
 
-export const PersonalScalarFieldEnum = {
+export const PaymentScalarFieldEnum = {
   id: 'id',
-  userid: 'userid',
-  businessid: 'businessid',
-  journalid: 'journalid',
-  firstName: 'firstName',
-  secondName: 'secondName',
-  lastNameP: 'lastNameP',
-  lastNameM: 'lastNameM',
-  tel: 'tel'
+  amount: 'amount',
+  discount: 'discount',
+  datePayment: 'datePayment',
+  comentaries: 'comentaries',
+  status: 'status'
 } as const
 
-export type PersonalScalarFieldEnum = (typeof PersonalScalarFieldEnum)[keyof typeof PersonalScalarFieldEnum]
-
-
-export const TypeAppointmentScalarFieldEnum = {
-  id: 'id',
-  typeAppointment: 'typeAppointment',
-  description: 'description',
-  businessid: 'businessid'
-} as const
-
-export type TypeAppointmentScalarFieldEnum = (typeof TypeAppointmentScalarFieldEnum)[keyof typeof TypeAppointmentScalarFieldEnum]
-
-
-export const AppointmentScalarFieldEnum = {
-  id: 'id',
-  status: 'status',
-  date: 'date',
-  estimatedDuration: 'estimatedDuration',
-  realDuration: 'realDuration',
-  clientid: 'clientid',
-  typeAppointmentid: 'typeAppointmentid',
-  personalid: 'personalid'
-} as const
-
-export type AppointmentScalarFieldEnum = (typeof AppointmentScalarFieldEnum)[keyof typeof AppointmentScalarFieldEnum]
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
 
 
 export const ClientScalarFieldEnum = {
@@ -191,24 +140,69 @@ export const ClientScalarFieldEnum = {
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
 
 
+export const SubscriptionScalarFieldEnum = {
+  id: 'id',
+  amount: 'amount',
+  dateStartCurrentPeriod: 'dateStartCurrentPeriod',
+  dateEndCurrentPeriod: 'dateEndCurrentPeriod',
+  status: 'status',
+  createdAt: 'createdAt'
+} as const
+
+export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
+export const PersonalScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  secondName: 'secondName',
+  lastNameP: 'lastNameP',
+  lastNameM: 'lastNameM',
+  tel: 'tel',
+  typePersonal: 'typePersonal',
+  userid: 'userid',
+  businessid: 'businessid',
+  journalid: 'journalid'
+} as const
+
+export type PersonalScalarFieldEnum = (typeof PersonalScalarFieldEnum)[keyof typeof PersonalScalarFieldEnum]
+
+
+export const TypeAppointmentScalarFieldEnum = {
+  id: 'id',
+  typeAppointment: 'typeAppointment',
+  description: 'description',
+  businessid: 'businessid'
+} as const
+
+export type TypeAppointmentScalarFieldEnum = (typeof TypeAppointmentScalarFieldEnum)[keyof typeof TypeAppointmentScalarFieldEnum]
+
+
 export const SubscriptionDetailsScalarFieldEnum = {
   id: 'id',
   subscriptionid: 'subscriptionid',
   paymentid: 'paymentid',
-  personalid: 'personalid'
+  userid: 'userid'
 } as const
 
 export type SubscriptionDetailsScalarFieldEnum = (typeof SubscriptionDetailsScalarFieldEnum)[keyof typeof SubscriptionDetailsScalarFieldEnum]
 
 
-export const PersonalBusinessDetailsScalarFieldEnum = {
+export const AppointmentDetailsScalarFieldEnum = {
   id: 'id',
+  date: 'date',
+  status: 'status',
+  estimatedDuration: 'estimatedDuration',
+  realDuration: 'realDuration',
+  hourStart: 'hourStart',
+  hourEnd: 'hourEnd',
   personalid: 'personalid',
   businessid: 'businessid',
-  paymentid: 'paymentid'
+  typeAppointmentid: 'typeAppointmentid',
+  clientid: 'clientid'
 } as const
 
-export type PersonalBusinessDetailsScalarFieldEnum = (typeof PersonalBusinessDetailsScalarFieldEnum)[keyof typeof PersonalBusinessDetailsScalarFieldEnum]
+export type AppointmentDetailsScalarFieldEnum = (typeof AppointmentDetailsScalarFieldEnum)[keyof typeof AppointmentDetailsScalarFieldEnum]
 
 
 export const SortOrder = {

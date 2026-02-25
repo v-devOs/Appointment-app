@@ -1,7 +1,7 @@
-import { SubscriptionStatus } from "@/app/generated/prisma/enums";
+import { StatusSubscription } from "@/app/generated/prisma/enums";
 import * as z from "zod";
 
-export const typeSubscriptionStatusEnum = z.enum(SubscriptionStatus);
+export const typeSubscriptionStatusEnum = z.enum(StatusSubscription);
 
 export const SubscriptionSchema = z.object({
   id: z.number().int().optional(),

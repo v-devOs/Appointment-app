@@ -19,13 +19,13 @@ export const StatusPayment = {
 export type StatusPayment = (typeof StatusPayment)[keyof typeof StatusPayment]
 
 
-export const SubscriptionStatus = {
+export const StatusSubscription = {
   ACTIVE: 'ACTIVE',
   PENDING_PAYMENT: 'PENDING_PAYMENT',
   CANCELED: 'CANCELED'
 } as const
 
-export type SubscriptionStatus = (typeof SubscriptionStatus)[keyof typeof SubscriptionStatus]
+export type StatusSubscription = (typeof StatusSubscription)[keyof typeof StatusSubscription]
 
 
 export const TypeUser = {

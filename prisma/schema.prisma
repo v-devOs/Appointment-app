@@ -21,7 +21,7 @@ enum StatusPayment {
   PENDING
 }
 
-enum SubscriptionStatus {
+enum StatusSubscription {
   ACTIVE
   PENDING_PAYMENT
   CANCELED
@@ -39,156 +39,154 @@ enum StatusAppointment {
   ATTENDED
   NO_ATTENDED
 }
-
-model Payment {
-  id            Int @id @default(autoincrement())
-  amount        Float
-  discount      Float
-  datePayment   DateTime
-  status        StatusPayment
-
-  subscriptionDetails SubscriptionDetails[]
-  personalBusinessDetails PersonalBusinessDetails[]
-}
-
-model User {
-  id            Int @id @default(autoincrement())
-  email         String @unique
-  password      String 
-  typeUser      TypeUser @default(OWNER_BUSSINES)
-
-  personal Personal?
-}
-
-model Subscription {
-  id                       Int @id @default(autoincrement())
-  amount                   Float @default(299.99)
-  status                   SubscriptionStatus @default(PENDING_PAYMENT)
-  createdAt                DateTime @default(now())
-  dateStartCurrentPeriod   DateTime
-  dateEndCurrentPeriod     DateTime
-
-  subscriptionDetails SubscriptionDetails[]
-}
-
+// Models
 model Journal {
-  id            Int @id @default(autoincrement())
-  hourStart     String
-  hourEnd       String
-  freeTime      String
-  startAbsence  DateTime
-  endAbsence    DateTime
-  durationFreeTime Int // Durations of the free time for the brear
+  id Int @id @default(autoincrement())
+  hourStart DateTime
+  hourEnd   DateTime
+  freeTime  DateTime
+  durationFreeTime Int
+  startAbsence DateTime
+  endAbsence DateTime
 
   personals Personal[]
 }
 
-model Business {
-  id           Int @id @default(autoincrement())
-  name         String
-  tel          String?
-  email        String?
-  direction    String
-  hourOpen     String
-  hourClose    String
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  password String
 
-  personalBusinessDetails PersonalBusinessDetails[]
-  employees    Personal[]
-  typeAppointments TypeAppointment[]
-  clients      Client[]
-}
-
-model Personal {
-  id           Int @id @default(autoincrement())
-
-  // Relations
-  userid       Int @unique
-  businessid   Int
-  journalid    Int
-
-  user         User  @relation(fields: [userid], references: [id])
-  journal      Journal @relation(fields: [journalid], references: [id])
-  business     Business @relation(fields: [businessid], references: [id])
-
-  firstName    String
-  secondName   String?
-  lastNameP    String
-  lastNameM    String?
-  tel          String 
+  personals Personal[]
+  businesses Business[]
 
   subscriptionDetails SubscriptionDetails[]
-  personalBusinessDetails PersonalBusinessDetails[]
-  appointments Appointment[]
 }
 
-model TypeAppointment {
-  id               Int @id @default(autoincrement())
-  typeAppointment  String
-  description      String?
+model Business {
+  id Int @id @default(autoincrement())
+  name String
+  tel String?
+  email String?
+  direction String?
+  hourOpen DateTime
+  hourClose DateTime
 
   // Relations
-  businessid       Int
-  business         Business @relation(fields: [businessid], references: [id])
+  ownerid Int
+  owner User @relation(fields: [ownerid], references: [id])
+  personals Personal[]
 
-  appointments     Appointment[]
+  clients Client[]
+
+  typeAppointments TypeAppointment[]
+
+  appointmentDetails AppointmentDetails[]
 }
 
-model Appointment {
-  id                 Int @id @default(autoincrement())
-  status             StatusAppointment
-  date               DateTime
-  estimatedDuration  Float
-  realDuration       Float
+model Payment {
+  id Int @id @default(autoincrement())
+  amount Float @default(0.00)
+  discount Float? @default(0.00)
+  datePayment DateTime
+  comentaries String?
+  status StatusPayment
 
-  // Relations
-  clientid           Int
-  typeAppointmentid  Int
-  personalid         Int
-
-  client             Client @relation(fields: [clientid], references: [id])
-  typeAppointment    TypeAppointment @relation(fields: [typeAppointmentid], references: [id])
-  personal           Personal @relation(fields: [personalid], references: [id])
+  subscriptionDetails SubscriptionDetails[]
 }
 
 model Client {
-  id           Int @id @default(autoincrement())
-  firstName    String
-  secondName   String?
-  lastNameP    String
-  lastNameM    String?
-  tel          String 
+  id Int @id @default(autoincrement())
+  firstName String
+  secondName String?
+  lastNameP String
+  lastNameM String?
+  tel String
 
   // Relations
-  businessid   Int
-  business     Business @relation(fields: [businessid], references: [id])
+  businessid Int
 
-  appointments Appointment[]
+  business Business @relation(fields: [businessid], references: [id])
+
+
+  appointmentDetails AppointmentDetails[]
 }
 
-// Auxiliar Tables
-// 1. Manage the historial of the payments made by the owner
-model SubscriptionDetails { 
-  id              Int @id @default(autoincrement())
+model Subscription {
+  id Int @id @default(autoincrement())
+  amount Float @default(239.99)
+  dateStartCurrentPeriod DateTime @default(now())
+  dateEndCurrentPeriod DateTime
+  status StatusSubscription
+  createdAt DateTime @default(now())
 
-  // Relations
-  subscriptionid  Int
-  paymentid       Int
-  personalid      Int
-
-  subscription   Subscription @relation(fields: [subscriptionid], references: [id]) 
-  payment        Payment @relation(fields: [paymentid], references: [id])
-  personal       Personal @relation(fields: [personalid], references: [id])
+  subscriptionDetails SubscriptionDetails[]
 }
 
-model PersonalBusinessDetails {
-  id             Int @id @default(autoincrement())
+model Personal {
+  id Int @id @default(autoincrement())
+  firstName String
+  secondName String?
+  lastNameP String
+  lastNameM String?
+  tel String
+  typePersonal TypeUser
 
   // Relations
-  personalid    Int
-  businessid    Int
-  paymentid     Int
+  userid Int
+  businessid Int
+  journalid Int?
 
-  personal      Personal @relation(fields: [personalid], references: [id])
-  business      Business @relation(fields: [businessid], references: [id])
-  payment       Payment @relation(fields: [paymentid], references: [id])
+  user User @relation(fields: [userid], references: [id])
+  business Business @relation(fields: [businessid], references: [id])
+  journal Journal? @relation(fields: [journalid], references: [id])
+
+  appointmentDetails AppointmentDetails[]
+}
+
+model TypeAppointment {
+  id Int @id @default(autoincrement())
+  typeAppointment String
+  description String?
+
+  // Relations
+  businessid Int
+  business Business @relation(fields: [businessid], references: [id])
+
+  appointmentDetails AppointmentDetails[]
+}
+
+model SubscriptionDetails {
+  id Int @id @default(autoincrement())
+  // Referencias
+  subscriptionid Int
+  paymentid Int
+  userid Int
+
+  subscription Subscription @relation(fields: [subscriptionid], references: [id])
+  payment Payment @relation(fields: [paymentid], references: [id])
+  user User @relation(fields: [userid], references: [id])
+}
+
+model AppointmentDetails {
+  id Int @id @default(autoincrement())
+
+  date DateTime
+  status StatusAppointment
+  estimatedDuration Int
+  realDuration Int
+
+  hourStart DateTime
+  hourEnd DateTime
+
+  // Relations
+  personalid Int?
+  businessid Int?
+  typeAppointmentid Int?
+  clientid Int?
+
+  personal Personal? @relation(fields: [personalid], references: [id])
+  business Business? @relation(fields: [businessid], references: [id])
+  typeAppointment TypeAppointment? @relation(fields: [typeAppointmentid], references: [id]) 
+  client Client? @relation(fields: [clientid], references: [id])
 }

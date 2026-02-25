@@ -28,10 +28,12 @@ export type AggregateBusiness = {
 
 export type BusinessAvgAggregateOutputType = {
   id: number | null
+  ownerid: number | null
 }
 
 export type BusinessSumAggregateOutputType = {
   id: number | null
+  ownerid: number | null
 }
 
 export type BusinessMinAggregateOutputType = {
@@ -40,8 +42,9 @@ export type BusinessMinAggregateOutputType = {
   tel: string | null
   email: string | null
   direction: string | null
-  hourOpen: string | null
-  hourClose: string | null
+  hourOpen: Date | null
+  hourClose: Date | null
+  ownerid: number | null
 }
 
 export type BusinessMaxAggregateOutputType = {
@@ -50,8 +53,9 @@ export type BusinessMaxAggregateOutputType = {
   tel: string | null
   email: string | null
   direction: string | null
-  hourOpen: string | null
-  hourClose: string | null
+  hourOpen: Date | null
+  hourClose: Date | null
+  ownerid: number | null
 }
 
 export type BusinessCountAggregateOutputType = {
@@ -62,16 +66,19 @@ export type BusinessCountAggregateOutputType = {
   direction: number
   hourOpen: number
   hourClose: number
+  ownerid: number
   _all: number
 }
 
 
 export type BusinessAvgAggregateInputType = {
   id?: true
+  ownerid?: true
 }
 
 export type BusinessSumAggregateInputType = {
   id?: true
+  ownerid?: true
 }
 
 export type BusinessMinAggregateInputType = {
@@ -82,6 +89,7 @@ export type BusinessMinAggregateInputType = {
   direction?: true
   hourOpen?: true
   hourClose?: true
+  ownerid?: true
 }
 
 export type BusinessMaxAggregateInputType = {
@@ -92,6 +100,7 @@ export type BusinessMaxAggregateInputType = {
   direction?: true
   hourOpen?: true
   hourClose?: true
+  ownerid?: true
 }
 
 export type BusinessCountAggregateInputType = {
@@ -102,6 +111,7 @@ export type BusinessCountAggregateInputType = {
   direction?: true
   hourOpen?: true
   hourClose?: true
+  ownerid?: true
   _all?: true
 }
 
@@ -196,9 +206,10 @@ export type BusinessGroupByOutputType = {
   name: string
   tel: string | null
   email: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
+  direction: string | null
+  hourOpen: Date
+  hourClose: Date
+  ownerid: number
   _count: BusinessCountAggregateOutputType | null
   _avg: BusinessAvgAggregateOutputType | null
   _sum: BusinessSumAggregateOutputType | null
@@ -229,13 +240,15 @@ export type BusinessWhereInput = {
   name?: Prisma.StringFilter<"Business"> | string
   tel?: Prisma.StringNullableFilter<"Business"> | string | null
   email?: Prisma.StringNullableFilter<"Business"> | string | null
-  direction?: Prisma.StringFilter<"Business"> | string
-  hourOpen?: Prisma.StringFilter<"Business"> | string
-  hourClose?: Prisma.StringFilter<"Business"> | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsListRelationFilter
-  employees?: Prisma.PersonalListRelationFilter
-  typeAppointments?: Prisma.TypeAppointmentListRelationFilter
+  direction?: Prisma.StringNullableFilter<"Business"> | string | null
+  hourOpen?: Prisma.DateTimeFilter<"Business"> | Date | string
+  hourClose?: Prisma.DateTimeFilter<"Business"> | Date | string
+  ownerid?: Prisma.IntFilter<"Business"> | number
+  owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  personals?: Prisma.PersonalListRelationFilter
   clients?: Prisma.ClientListRelationFilter
+  typeAppointments?: Prisma.TypeAppointmentListRelationFilter
+  appointmentDetails?: Prisma.AppointmentDetailsListRelationFilter
 }
 
 export type BusinessOrderByWithRelationInput = {
@@ -243,13 +256,15 @@ export type BusinessOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   tel?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
-  direction?: Prisma.SortOrder
+  direction?: Prisma.SortOrderInput | Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsOrderByRelationAggregateInput
-  employees?: Prisma.PersonalOrderByRelationAggregateInput
-  typeAppointments?: Prisma.TypeAppointmentOrderByRelationAggregateInput
+  ownerid?: Prisma.SortOrder
+  owner?: Prisma.UserOrderByWithRelationInput
+  personals?: Prisma.PersonalOrderByRelationAggregateInput
   clients?: Prisma.ClientOrderByRelationAggregateInput
+  typeAppointments?: Prisma.TypeAppointmentOrderByRelationAggregateInput
+  appointmentDetails?: Prisma.AppointmentDetailsOrderByRelationAggregateInput
 }
 
 export type BusinessWhereUniqueInput = Prisma.AtLeast<{
@@ -260,13 +275,15 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Business"> | string
   tel?: Prisma.StringNullableFilter<"Business"> | string | null
   email?: Prisma.StringNullableFilter<"Business"> | string | null
-  direction?: Prisma.StringFilter<"Business"> | string
-  hourOpen?: Prisma.StringFilter<"Business"> | string
-  hourClose?: Prisma.StringFilter<"Business"> | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsListRelationFilter
-  employees?: Prisma.PersonalListRelationFilter
-  typeAppointments?: Prisma.TypeAppointmentListRelationFilter
+  direction?: Prisma.StringNullableFilter<"Business"> | string | null
+  hourOpen?: Prisma.DateTimeFilter<"Business"> | Date | string
+  hourClose?: Prisma.DateTimeFilter<"Business"> | Date | string
+  ownerid?: Prisma.IntFilter<"Business"> | number
+  owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  personals?: Prisma.PersonalListRelationFilter
   clients?: Prisma.ClientListRelationFilter
+  typeAppointments?: Prisma.TypeAppointmentListRelationFilter
+  appointmentDetails?: Prisma.AppointmentDetailsListRelationFilter
 }, "id">
 
 export type BusinessOrderByWithAggregationInput = {
@@ -274,9 +291,10 @@ export type BusinessOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   tel?: Prisma.SortOrderInput | Prisma.SortOrder
   email?: Prisma.SortOrderInput | Prisma.SortOrder
-  direction?: Prisma.SortOrder
+  direction?: Prisma.SortOrderInput | Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  ownerid?: Prisma.SortOrder
   _count?: Prisma.BusinessCountOrderByAggregateInput
   _avg?: Prisma.BusinessAvgOrderByAggregateInput
   _max?: Prisma.BusinessMaxOrderByAggregateInput
@@ -292,22 +310,24 @@ export type BusinessScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Business"> | string
   tel?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
   email?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
-  direction?: Prisma.StringWithAggregatesFilter<"Business"> | string
-  hourOpen?: Prisma.StringWithAggregatesFilter<"Business"> | string
-  hourClose?: Prisma.StringWithAggregatesFilter<"Business"> | string
+  direction?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
+  hourOpen?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
+  hourClose?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
+  ownerid?: Prisma.IntWithAggregatesFilter<"Business"> | number
 }
 
 export type BusinessCreateInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutBusinessInput
-  employees?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
-  typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
+  personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateInput = {
@@ -315,26 +335,28 @@ export type BusinessUncheckedCreateInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutBusinessInput
-  employees?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
-  typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  ownerid: number
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutBusinessNestedInput
-  employees?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
-  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
+  personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateInput = {
@@ -342,13 +364,14 @@ export type BusinessUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutBusinessNestedInput
-  employees?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
-  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerid?: Prisma.IntFieldUpdateOperationsInput | number
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessCreateManyInput = {
@@ -356,18 +379,19 @@ export type BusinessCreateManyInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  ownerid: number
 }
 
 export type BusinessUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type BusinessUncheckedUpdateManyInput = {
@@ -375,9 +399,20 @@ export type BusinessUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerid?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type BusinessListRelationFilter = {
+  every?: Prisma.BusinessWhereInput
+  some?: Prisma.BusinessWhereInput
+  none?: Prisma.BusinessWhereInput
+}
+
+export type BusinessOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type BusinessCountOrderByAggregateInput = {
@@ -388,10 +423,12 @@ export type BusinessCountOrderByAggregateInput = {
   direction?: Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  ownerid?: Prisma.SortOrder
 }
 
 export type BusinessAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ownerid?: Prisma.SortOrder
 }
 
 export type BusinessMaxOrderByAggregateInput = {
@@ -402,6 +439,7 @@ export type BusinessMaxOrderByAggregateInput = {
   direction?: Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  ownerid?: Prisma.SortOrder
 }
 
 export type BusinessMinOrderByAggregateInput = {
@@ -412,10 +450,12 @@ export type BusinessMinOrderByAggregateInput = {
   direction?: Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  ownerid?: Prisma.SortOrder
 }
 
 export type BusinessSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  ownerid?: Prisma.SortOrder
 }
 
 export type BusinessScalarRelationFilter = {
@@ -423,36 +463,55 @@ export type BusinessScalarRelationFilter = {
   isNot?: Prisma.BusinessWhereInput
 }
 
+export type BusinessNullableScalarRelationFilter = {
+  is?: Prisma.BusinessWhereInput | null
+  isNot?: Prisma.BusinessWhereInput | null
+}
+
+export type BusinessCreateNestedManyWithoutOwnerInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutOwnerInput, Prisma.BusinessUncheckedCreateWithoutOwnerInput> | Prisma.BusinessCreateWithoutOwnerInput[] | Prisma.BusinessUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutOwnerInput | Prisma.BusinessCreateOrConnectWithoutOwnerInput[]
+  createMany?: Prisma.BusinessCreateManyOwnerInputEnvelope
+  connect?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+}
+
+export type BusinessUncheckedCreateNestedManyWithoutOwnerInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutOwnerInput, Prisma.BusinessUncheckedCreateWithoutOwnerInput> | Prisma.BusinessCreateWithoutOwnerInput[] | Prisma.BusinessUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutOwnerInput | Prisma.BusinessCreateOrConnectWithoutOwnerInput[]
+  createMany?: Prisma.BusinessCreateManyOwnerInputEnvelope
+  connect?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+}
+
+export type BusinessUpdateManyWithoutOwnerNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutOwnerInput, Prisma.BusinessUncheckedCreateWithoutOwnerInput> | Prisma.BusinessCreateWithoutOwnerInput[] | Prisma.BusinessUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutOwnerInput | Prisma.BusinessCreateOrConnectWithoutOwnerInput[]
+  upsert?: Prisma.BusinessUpsertWithWhereUniqueWithoutOwnerInput | Prisma.BusinessUpsertWithWhereUniqueWithoutOwnerInput[]
+  createMany?: Prisma.BusinessCreateManyOwnerInputEnvelope
+  set?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  disconnect?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  delete?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  connect?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  update?: Prisma.BusinessUpdateWithWhereUniqueWithoutOwnerInput | Prisma.BusinessUpdateWithWhereUniqueWithoutOwnerInput[]
+  updateMany?: Prisma.BusinessUpdateManyWithWhereWithoutOwnerInput | Prisma.BusinessUpdateManyWithWhereWithoutOwnerInput[]
+  deleteMany?: Prisma.BusinessScalarWhereInput | Prisma.BusinessScalarWhereInput[]
+}
+
+export type BusinessUncheckedUpdateManyWithoutOwnerNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutOwnerInput, Prisma.BusinessUncheckedCreateWithoutOwnerInput> | Prisma.BusinessCreateWithoutOwnerInput[] | Prisma.BusinessUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutOwnerInput | Prisma.BusinessCreateOrConnectWithoutOwnerInput[]
+  upsert?: Prisma.BusinessUpsertWithWhereUniqueWithoutOwnerInput | Prisma.BusinessUpsertWithWhereUniqueWithoutOwnerInput[]
+  createMany?: Prisma.BusinessCreateManyOwnerInputEnvelope
+  set?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  disconnect?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  delete?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  connect?: Prisma.BusinessWhereUniqueInput | Prisma.BusinessWhereUniqueInput[]
+  update?: Prisma.BusinessUpdateWithWhereUniqueWithoutOwnerInput | Prisma.BusinessUpdateWithWhereUniqueWithoutOwnerInput[]
+  updateMany?: Prisma.BusinessUpdateManyWithWhereWithoutOwnerInput | Prisma.BusinessUpdateManyWithWhereWithoutOwnerInput[]
+  deleteMany?: Prisma.BusinessScalarWhereInput | Prisma.BusinessScalarWhereInput[]
+}
+
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
-}
-
-export type BusinessCreateNestedOneWithoutEmployeesInput = {
-  create?: Prisma.XOR<Prisma.BusinessCreateWithoutEmployeesInput, Prisma.BusinessUncheckedCreateWithoutEmployeesInput>
-  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutEmployeesInput
-  connect?: Prisma.BusinessWhereUniqueInput
-}
-
-export type BusinessUpdateOneRequiredWithoutEmployeesNestedInput = {
-  create?: Prisma.XOR<Prisma.BusinessCreateWithoutEmployeesInput, Prisma.BusinessUncheckedCreateWithoutEmployeesInput>
-  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutEmployeesInput
-  upsert?: Prisma.BusinessUpsertWithoutEmployeesInput
-  connect?: Prisma.BusinessWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutEmployeesInput, Prisma.BusinessUpdateWithoutEmployeesInput>, Prisma.BusinessUncheckedUpdateWithoutEmployeesInput>
-}
-
-export type BusinessCreateNestedOneWithoutTypeAppointmentsInput = {
-  create?: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
-  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutTypeAppointmentsInput
-  connect?: Prisma.BusinessWhereUniqueInput
-}
-
-export type BusinessUpdateOneRequiredWithoutTypeAppointmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
-  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutTypeAppointmentsInput
-  upsert?: Prisma.BusinessUpsertWithoutTypeAppointmentsInput
-  connect?: Prisma.BusinessWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutTypeAppointmentsInput, Prisma.BusinessUpdateWithoutTypeAppointmentsInput>, Prisma.BusinessUncheckedUpdateWithoutTypeAppointmentsInput>
 }
 
 export type BusinessCreateNestedOneWithoutClientsInput = {
@@ -469,162 +528,128 @@ export type BusinessUpdateOneRequiredWithoutClientsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutClientsInput, Prisma.BusinessUpdateWithoutClientsInput>, Prisma.BusinessUncheckedUpdateWithoutClientsInput>
 }
 
-export type BusinessCreateNestedOneWithoutPersonalBusinessDetailsInput = {
-  create?: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalBusinessDetailsInput, Prisma.BusinessUncheckedCreateWithoutPersonalBusinessDetailsInput>
-  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutPersonalBusinessDetailsInput
+export type BusinessCreateNestedOneWithoutPersonalsInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalsInput, Prisma.BusinessUncheckedCreateWithoutPersonalsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutPersonalsInput
   connect?: Prisma.BusinessWhereUniqueInput
 }
 
-export type BusinessUpdateOneRequiredWithoutPersonalBusinessDetailsNestedInput = {
-  create?: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalBusinessDetailsInput, Prisma.BusinessUncheckedCreateWithoutPersonalBusinessDetailsInput>
-  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutPersonalBusinessDetailsInput
-  upsert?: Prisma.BusinessUpsertWithoutPersonalBusinessDetailsInput
+export type BusinessUpdateOneRequiredWithoutPersonalsNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalsInput, Prisma.BusinessUncheckedCreateWithoutPersonalsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutPersonalsInput
+  upsert?: Prisma.BusinessUpsertWithoutPersonalsInput
   connect?: Prisma.BusinessWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutPersonalBusinessDetailsInput, Prisma.BusinessUpdateWithoutPersonalBusinessDetailsInput>, Prisma.BusinessUncheckedUpdateWithoutPersonalBusinessDetailsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutPersonalsInput, Prisma.BusinessUpdateWithoutPersonalsInput>, Prisma.BusinessUncheckedUpdateWithoutPersonalsInput>
 }
 
-export type BusinessCreateWithoutEmployeesInput = {
+export type BusinessCreateNestedOneWithoutTypeAppointmentsInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutTypeAppointmentsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+}
+
+export type BusinessUpdateOneRequiredWithoutTypeAppointmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutTypeAppointmentsInput
+  upsert?: Prisma.BusinessUpsertWithoutTypeAppointmentsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutTypeAppointmentsInput, Prisma.BusinessUpdateWithoutTypeAppointmentsInput>, Prisma.BusinessUncheckedUpdateWithoutTypeAppointmentsInput>
+}
+
+export type BusinessCreateNestedOneWithoutAppointmentDetailsInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutAppointmentDetailsInput, Prisma.BusinessUncheckedCreateWithoutAppointmentDetailsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutAppointmentDetailsInput
+  connect?: Prisma.BusinessWhereUniqueInput
+}
+
+export type BusinessUpdateOneWithoutAppointmentDetailsNestedInput = {
+  create?: Prisma.XOR<Prisma.BusinessCreateWithoutAppointmentDetailsInput, Prisma.BusinessUncheckedCreateWithoutAppointmentDetailsInput>
+  connectOrCreate?: Prisma.BusinessCreateOrConnectWithoutAppointmentDetailsInput
+  upsert?: Prisma.BusinessUpsertWithoutAppointmentDetailsInput
+  disconnect?: Prisma.BusinessWhereInput | boolean
+  delete?: Prisma.BusinessWhereInput | boolean
+  connect?: Prisma.BusinessWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BusinessUpdateToOneWithWhereWithoutAppointmentDetailsInput, Prisma.BusinessUpdateWithoutAppointmentDetailsInput>, Prisma.BusinessUncheckedUpdateWithoutAppointmentDetailsInput>
+}
+
+export type BusinessCreateWithoutOwnerInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
+  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
-  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutBusinessInput
 }
 
-export type BusinessUncheckedCreateWithoutEmployeesInput = {
+export type BusinessUncheckedCreateWithoutOwnerInput = {
   id?: number
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
-  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutBusinessInput
 }
 
-export type BusinessCreateOrConnectWithoutEmployeesInput = {
+export type BusinessCreateOrConnectWithoutOwnerInput = {
   where: Prisma.BusinessWhereUniqueInput
-  create: Prisma.XOR<Prisma.BusinessCreateWithoutEmployeesInput, Prisma.BusinessUncheckedCreateWithoutEmployeesInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutOwnerInput, Prisma.BusinessUncheckedCreateWithoutOwnerInput>
 }
 
-export type BusinessUpsertWithoutEmployeesInput = {
-  update: Prisma.XOR<Prisma.BusinessUpdateWithoutEmployeesInput, Prisma.BusinessUncheckedUpdateWithoutEmployeesInput>
-  create: Prisma.XOR<Prisma.BusinessCreateWithoutEmployeesInput, Prisma.BusinessUncheckedCreateWithoutEmployeesInput>
-  where?: Prisma.BusinessWhereInput
+export type BusinessCreateManyOwnerInputEnvelope = {
+  data: Prisma.BusinessCreateManyOwnerInput | Prisma.BusinessCreateManyOwnerInput[]
+  skipDuplicates?: boolean
 }
 
-export type BusinessUpdateToOneWithWhereWithoutEmployeesInput = {
-  where?: Prisma.BusinessWhereInput
-  data: Prisma.XOR<Prisma.BusinessUpdateWithoutEmployeesInput, Prisma.BusinessUncheckedUpdateWithoutEmployeesInput>
-}
-
-export type BusinessUpdateWithoutEmployeesInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutBusinessNestedInput
-  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
-  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
-}
-
-export type BusinessUncheckedUpdateWithoutEmployeesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutBusinessNestedInput
-  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
-  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
-}
-
-export type BusinessCreateWithoutTypeAppointmentsInput = {
-  name: string
-  tel?: string | null
-  email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutBusinessInput
-  employees?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
-  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
-}
-
-export type BusinessUncheckedCreateWithoutTypeAppointmentsInput = {
-  id?: number
-  name: string
-  tel?: string | null
-  email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutBusinessInput
-  employees?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
-  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
-}
-
-export type BusinessCreateOrConnectWithoutTypeAppointmentsInput = {
+export type BusinessUpsertWithWhereUniqueWithoutOwnerInput = {
   where: Prisma.BusinessWhereUniqueInput
-  create: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutOwnerInput, Prisma.BusinessUncheckedUpdateWithoutOwnerInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutOwnerInput, Prisma.BusinessUncheckedCreateWithoutOwnerInput>
 }
 
-export type BusinessUpsertWithoutTypeAppointmentsInput = {
-  update: Prisma.XOR<Prisma.BusinessUpdateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedUpdateWithoutTypeAppointmentsInput>
-  create: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
-  where?: Prisma.BusinessWhereInput
+export type BusinessUpdateWithWhereUniqueWithoutOwnerInput = {
+  where: Prisma.BusinessWhereUniqueInput
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutOwnerInput, Prisma.BusinessUncheckedUpdateWithoutOwnerInput>
 }
 
-export type BusinessUpdateToOneWithWhereWithoutTypeAppointmentsInput = {
-  where?: Prisma.BusinessWhereInput
-  data: Prisma.XOR<Prisma.BusinessUpdateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedUpdateWithoutTypeAppointmentsInput>
+export type BusinessUpdateManyWithWhereWithoutOwnerInput = {
+  where: Prisma.BusinessScalarWhereInput
+  data: Prisma.XOR<Prisma.BusinessUpdateManyMutationInput, Prisma.BusinessUncheckedUpdateManyWithoutOwnerInput>
 }
 
-export type BusinessUpdateWithoutTypeAppointmentsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutBusinessNestedInput
-  employees?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
-  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
-}
-
-export type BusinessUncheckedUpdateWithoutTypeAppointmentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutBusinessNestedInput
-  employees?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
-  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+export type BusinessScalarWhereInput = {
+  AND?: Prisma.BusinessScalarWhereInput | Prisma.BusinessScalarWhereInput[]
+  OR?: Prisma.BusinessScalarWhereInput[]
+  NOT?: Prisma.BusinessScalarWhereInput | Prisma.BusinessScalarWhereInput[]
+  id?: Prisma.IntFilter<"Business"> | number
+  name?: Prisma.StringFilter<"Business"> | string
+  tel?: Prisma.StringNullableFilter<"Business"> | string | null
+  email?: Prisma.StringNullableFilter<"Business"> | string | null
+  direction?: Prisma.StringNullableFilter<"Business"> | string | null
+  hourOpen?: Prisma.DateTimeFilter<"Business"> | Date | string
+  hourClose?: Prisma.DateTimeFilter<"Business"> | Date | string
+  ownerid?: Prisma.IntFilter<"Business"> | number
 }
 
 export type BusinessCreateWithoutClientsInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsCreateNestedManyWithoutBusinessInput
-  employees?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
+  personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessUncheckedCreateWithoutClientsInput = {
@@ -632,12 +657,13 @@ export type BusinessUncheckedCreateWithoutClientsInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedCreateNestedManyWithoutBusinessInput
-  employees?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  ownerid: number
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutBusinessInput
 }
 
 export type BusinessCreateOrConnectWithoutClientsInput = {
@@ -660,12 +686,13 @@ export type BusinessUpdateWithoutClientsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUpdateManyWithoutBusinessNestedInput
-  employees?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
+  personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutBusinessNestedInput
 }
 
 export type BusinessUncheckedUpdateWithoutClientsInput = {
@@ -673,78 +700,270 @@ export type BusinessUncheckedUpdateWithoutClientsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  personalBusinessDetails?: Prisma.PersonalBusinessDetailsUncheckedUpdateManyWithoutBusinessNestedInput
-  employees?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerid?: Prisma.IntFieldUpdateOperationsInput | number
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutBusinessNestedInput
 }
 
-export type BusinessCreateWithoutPersonalBusinessDetailsInput = {
+export type BusinessCreateWithoutPersonalsInput = {
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  employees?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
-  typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutBusinessInput
 }
 
-export type BusinessUncheckedCreateWithoutPersonalBusinessDetailsInput = {
+export type BusinessUncheckedCreateWithoutPersonalsInput = {
   id?: number
   name: string
   tel?: string | null
   email?: string | null
-  direction: string
-  hourOpen: string
-  hourClose: string
-  employees?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
-  typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  ownerid: number
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutBusinessInput
 }
 
-export type BusinessCreateOrConnectWithoutPersonalBusinessDetailsInput = {
+export type BusinessCreateOrConnectWithoutPersonalsInput = {
   where: Prisma.BusinessWhereUniqueInput
-  create: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalBusinessDetailsInput, Prisma.BusinessUncheckedCreateWithoutPersonalBusinessDetailsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalsInput, Prisma.BusinessUncheckedCreateWithoutPersonalsInput>
 }
 
-export type BusinessUpsertWithoutPersonalBusinessDetailsInput = {
-  update: Prisma.XOR<Prisma.BusinessUpdateWithoutPersonalBusinessDetailsInput, Prisma.BusinessUncheckedUpdateWithoutPersonalBusinessDetailsInput>
-  create: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalBusinessDetailsInput, Prisma.BusinessUncheckedCreateWithoutPersonalBusinessDetailsInput>
+export type BusinessUpsertWithoutPersonalsInput = {
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutPersonalsInput, Prisma.BusinessUncheckedUpdateWithoutPersonalsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutPersonalsInput, Prisma.BusinessUncheckedCreateWithoutPersonalsInput>
   where?: Prisma.BusinessWhereInput
 }
 
-export type BusinessUpdateToOneWithWhereWithoutPersonalBusinessDetailsInput = {
+export type BusinessUpdateToOneWithWhereWithoutPersonalsInput = {
   where?: Prisma.BusinessWhereInput
-  data: Prisma.XOR<Prisma.BusinessUpdateWithoutPersonalBusinessDetailsInput, Prisma.BusinessUncheckedUpdateWithoutPersonalBusinessDetailsInput>
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutPersonalsInput, Prisma.BusinessUncheckedUpdateWithoutPersonalsInput>
 }
 
-export type BusinessUpdateWithoutPersonalBusinessDetailsInput = {
+export type BusinessUpdateWithoutPersonalsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  employees?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
-  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutBusinessNestedInput
 }
 
-export type BusinessUncheckedUpdateWithoutPersonalBusinessDetailsInput = {
+export type BusinessUncheckedUpdateWithoutPersonalsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  direction?: Prisma.StringFieldUpdateOperationsInput | string
-  hourOpen?: Prisma.StringFieldUpdateOperationsInput | string
-  hourClose?: Prisma.StringFieldUpdateOperationsInput | string
-  employees?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
-  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerid?: Prisma.IntFieldUpdateOperationsInput | number
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessCreateWithoutTypeAppointmentsInput = {
+  name: string
+  tel?: string | null
+  email?: string | null
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
+  personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
+  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessUncheckedCreateWithoutTypeAppointmentsInput = {
+  id?: number
+  name: string
+  tel?: string | null
+  email?: string | null
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  ownerid: number
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessCreateOrConnectWithoutTypeAppointmentsInput = {
+  where: Prisma.BusinessWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
+}
+
+export type BusinessUpsertWithoutTypeAppointmentsInput = {
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedUpdateWithoutTypeAppointmentsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedCreateWithoutTypeAppointmentsInput>
+  where?: Prisma.BusinessWhereInput
+}
+
+export type BusinessUpdateToOneWithWhereWithoutTypeAppointmentsInput = {
+  where?: Prisma.BusinessWhereInput
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutTypeAppointmentsInput, Prisma.BusinessUncheckedUpdateWithoutTypeAppointmentsInput>
+}
+
+export type BusinessUpdateWithoutTypeAppointmentsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
+  personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateWithoutTypeAppointmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerid?: Prisma.IntFieldUpdateOperationsInput | number
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessCreateWithoutAppointmentDetailsInput = {
+  name: string
+  tel?: string | null
+  email?: string | null
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
+  personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
+  clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
+  typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessUncheckedCreateWithoutAppointmentDetailsInput = {
+  id?: number
+  name: string
+  tel?: string | null
+  email?: string | null
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+  ownerid: number
+  personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
+  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
+}
+
+export type BusinessCreateOrConnectWithoutAppointmentDetailsInput = {
+  where: Prisma.BusinessWhereUniqueInput
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutAppointmentDetailsInput, Prisma.BusinessUncheckedCreateWithoutAppointmentDetailsInput>
+}
+
+export type BusinessUpsertWithoutAppointmentDetailsInput = {
+  update: Prisma.XOR<Prisma.BusinessUpdateWithoutAppointmentDetailsInput, Prisma.BusinessUncheckedUpdateWithoutAppointmentDetailsInput>
+  create: Prisma.XOR<Prisma.BusinessCreateWithoutAppointmentDetailsInput, Prisma.BusinessUncheckedCreateWithoutAppointmentDetailsInput>
+  where?: Prisma.BusinessWhereInput
+}
+
+export type BusinessUpdateToOneWithWhereWithoutAppointmentDetailsInput = {
+  where?: Prisma.BusinessWhereInput
+  data: Prisma.XOR<Prisma.BusinessUpdateWithoutAppointmentDetailsInput, Prisma.BusinessUncheckedUpdateWithoutAppointmentDetailsInput>
+}
+
+export type BusinessUpdateWithoutAppointmentDetailsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
+  personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateWithoutAppointmentDetailsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  ownerid?: Prisma.IntFieldUpdateOperationsInput | number
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessCreateManyOwnerInput = {
+  id?: number
+  name: string
+  tel?: string | null
+  email?: string | null
+  direction?: string | null
+  hourOpen: Date | string
+  hourClose: Date | string
+}
+
+export type BusinessUpdateWithoutOwnerInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
+  clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateWithoutOwnerInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
+  clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
+  typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
+  appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutBusinessNestedInput
+}
+
+export type BusinessUncheckedUpdateManyWithoutOwnerInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  tel?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -753,17 +972,17 @@ export type BusinessUncheckedUpdateWithoutPersonalBusinessDetailsInput = {
  */
 
 export type BusinessCountOutputType = {
-  personalBusinessDetails: number
-  employees: number
-  typeAppointments: number
+  personals: number
   clients: number
+  typeAppointments: number
+  appointmentDetails: number
 }
 
 export type BusinessCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  personalBusinessDetails?: boolean | BusinessCountOutputTypeCountPersonalBusinessDetailsArgs
-  employees?: boolean | BusinessCountOutputTypeCountEmployeesArgs
-  typeAppointments?: boolean | BusinessCountOutputTypeCountTypeAppointmentsArgs
+  personals?: boolean | BusinessCountOutputTypeCountPersonalsArgs
   clients?: boolean | BusinessCountOutputTypeCountClientsArgs
+  typeAppointments?: boolean | BusinessCountOutputTypeCountTypeAppointmentsArgs
+  appointmentDetails?: boolean | BusinessCountOutputTypeCountAppointmentDetailsArgs
 }
 
 /**
@@ -779,15 +998,15 @@ export type BusinessCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
 /**
  * BusinessCountOutputType without action
  */
-export type BusinessCountOutputTypeCountPersonalBusinessDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PersonalBusinessDetailsWhereInput
+export type BusinessCountOutputTypeCountPersonalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.PersonalWhereInput
 }
 
 /**
  * BusinessCountOutputType without action
  */
-export type BusinessCountOutputTypeCountEmployeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PersonalWhereInput
+export type BusinessCountOutputTypeCountClientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ClientWhereInput
 }
 
 /**
@@ -800,8 +1019,8 @@ export type BusinessCountOutputTypeCountTypeAppointmentsArgs<ExtArgs extends run
 /**
  * BusinessCountOutputType without action
  */
-export type BusinessCountOutputTypeCountClientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ClientWhereInput
+export type BusinessCountOutputTypeCountAppointmentDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AppointmentDetailsWhereInput
 }
 
 
@@ -813,10 +1032,12 @@ export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
-  personalBusinessDetails?: boolean | Prisma.Business$personalBusinessDetailsArgs<ExtArgs>
-  employees?: boolean | Prisma.Business$employeesArgs<ExtArgs>
-  typeAppointments?: boolean | Prisma.Business$typeAppointmentsArgs<ExtArgs>
+  ownerid?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  personals?: boolean | Prisma.Business$personalsArgs<ExtArgs>
   clients?: boolean | Prisma.Business$clientsArgs<ExtArgs>
+  typeAppointments?: boolean | Prisma.Business$typeAppointmentsArgs<ExtArgs>
+  appointmentDetails?: boolean | Prisma.Business$appointmentDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
 
@@ -828,6 +1049,8 @@ export type BusinessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  ownerid?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
 
 export type BusinessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -838,6 +1061,8 @@ export type BusinessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  ownerid?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
 
 export type BusinessSelectScalar = {
@@ -848,35 +1073,43 @@ export type BusinessSelectScalar = {
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  ownerid?: boolean
 }
 
-export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "tel" | "email" | "direction" | "hourOpen" | "hourClose", ExtArgs["result"]["business"]>
+export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "tel" | "email" | "direction" | "hourOpen" | "hourClose" | "ownerid", ExtArgs["result"]["business"]>
 export type BusinessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  personalBusinessDetails?: boolean | Prisma.Business$personalBusinessDetailsArgs<ExtArgs>
-  employees?: boolean | Prisma.Business$employeesArgs<ExtArgs>
-  typeAppointments?: boolean | Prisma.Business$typeAppointmentsArgs<ExtArgs>
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  personals?: boolean | Prisma.Business$personalsArgs<ExtArgs>
   clients?: boolean | Prisma.Business$clientsArgs<ExtArgs>
+  typeAppointments?: boolean | Prisma.Business$typeAppointmentsArgs<ExtArgs>
+  appointmentDetails?: boolean | Prisma.Business$appointmentDetailsArgs<ExtArgs>
   _count?: boolean | Prisma.BusinessCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type BusinessIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type BusinessIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type BusinessIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
+export type BusinessIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+}
 
 export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Business"
   objects: {
-    personalBusinessDetails: Prisma.$PersonalBusinessDetailsPayload<ExtArgs>[]
-    employees: Prisma.$PersonalPayload<ExtArgs>[]
-    typeAppointments: Prisma.$TypeAppointmentPayload<ExtArgs>[]
+    owner: Prisma.$UserPayload<ExtArgs>
+    personals: Prisma.$PersonalPayload<ExtArgs>[]
     clients: Prisma.$ClientPayload<ExtArgs>[]
+    typeAppointments: Prisma.$TypeAppointmentPayload<ExtArgs>[]
+    appointmentDetails: Prisma.$AppointmentDetailsPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     name: string
     tel: string | null
     email: string | null
-    direction: string
-    hourOpen: string
-    hourClose: string
+    direction: string | null
+    hourOpen: Date
+    hourClose: Date
+    ownerid: number
   }, ExtArgs["result"]["business"]>
   composites: {}
 }
@@ -1271,10 +1504,11 @@ readonly fields: BusinessFieldRefs;
  */
 export interface Prisma__BusinessClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  personalBusinessDetails<T extends Prisma.Business$personalBusinessDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$personalBusinessDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonalBusinessDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  employees<T extends Prisma.Business$employeesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$employeesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  typeAppointments<T extends Prisma.Business$typeAppointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$typeAppointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TypeAppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  personals<T extends Prisma.Business$personalsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$personalsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PersonalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clients<T extends Prisma.Business$clientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  typeAppointments<T extends Prisma.Business$typeAppointmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$typeAppointmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TypeAppointmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  appointmentDetails<T extends Prisma.Business$appointmentDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Business$appointmentDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AppointmentDetailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1309,8 +1543,9 @@ export interface BusinessFieldRefs {
   readonly tel: Prisma.FieldRef<"Business", 'String'>
   readonly email: Prisma.FieldRef<"Business", 'String'>
   readonly direction: Prisma.FieldRef<"Business", 'String'>
-  readonly hourOpen: Prisma.FieldRef<"Business", 'String'>
-  readonly hourClose: Prisma.FieldRef<"Business", 'String'>
+  readonly hourOpen: Prisma.FieldRef<"Business", 'DateTime'>
+  readonly hourClose: Prisma.FieldRef<"Business", 'DateTime'>
+  readonly ownerid: Prisma.FieldRef<"Business", 'Int'>
 }
     
 
@@ -1560,6 +1795,10 @@ export type BusinessCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    */
   data: Prisma.BusinessCreateManyInput | Prisma.BusinessCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BusinessIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1630,6 +1869,10 @@ export type BusinessUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many Businesses to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BusinessIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1699,33 +1942,9 @@ export type BusinessDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * Business.personalBusinessDetails
+ * Business.personals
  */
-export type Business$personalBusinessDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PersonalBusinessDetails
-   */
-  select?: Prisma.PersonalBusinessDetailsSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PersonalBusinessDetails
-   */
-  omit?: Prisma.PersonalBusinessDetailsOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PersonalBusinessDetailsInclude<ExtArgs> | null
-  where?: Prisma.PersonalBusinessDetailsWhereInput
-  orderBy?: Prisma.PersonalBusinessDetailsOrderByWithRelationInput | Prisma.PersonalBusinessDetailsOrderByWithRelationInput[]
-  cursor?: Prisma.PersonalBusinessDetailsWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PersonalBusinessDetailsScalarFieldEnum | Prisma.PersonalBusinessDetailsScalarFieldEnum[]
-}
-
-/**
- * Business.employees
- */
-export type Business$employeesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Business$personalsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Personal
    */
@@ -1744,6 +1963,30 @@ export type Business$employeesArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.PersonalScalarFieldEnum | Prisma.PersonalScalarFieldEnum[]
+}
+
+/**
+ * Business.clients
+ */
+export type Business$clientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Client
+   */
+  select?: Prisma.ClientSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Client
+   */
+  omit?: Prisma.ClientOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientInclude<ExtArgs> | null
+  where?: Prisma.ClientWhereInput
+  orderBy?: Prisma.ClientOrderByWithRelationInput | Prisma.ClientOrderByWithRelationInput[]
+  cursor?: Prisma.ClientWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ClientScalarFieldEnum | Prisma.ClientScalarFieldEnum[]
 }
 
 /**
@@ -1771,27 +2014,27 @@ export type Business$typeAppointmentsArgs<ExtArgs extends runtime.Types.Extensio
 }
 
 /**
- * Business.clients
+ * Business.appointmentDetails
  */
-export type Business$clientsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Business$appointmentDetailsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Client
+   * Select specific fields to fetch from the AppointmentDetails
    */
-  select?: Prisma.ClientSelect<ExtArgs> | null
+  select?: Prisma.AppointmentDetailsSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Client
+   * Omit specific fields from the AppointmentDetails
    */
-  omit?: Prisma.ClientOmit<ExtArgs> | null
+  omit?: Prisma.AppointmentDetailsOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ClientInclude<ExtArgs> | null
-  where?: Prisma.ClientWhereInput
-  orderBy?: Prisma.ClientOrderByWithRelationInput | Prisma.ClientOrderByWithRelationInput[]
-  cursor?: Prisma.ClientWhereUniqueInput
+  include?: Prisma.AppointmentDetailsInclude<ExtArgs> | null
+  where?: Prisma.AppointmentDetailsWhereInput
+  orderBy?: Prisma.AppointmentDetailsOrderByWithRelationInput | Prisma.AppointmentDetailsOrderByWithRelationInput[]
+  cursor?: Prisma.AppointmentDetailsWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ClientScalarFieldEnum | Prisma.ClientScalarFieldEnum[]
+  distinct?: Prisma.AppointmentDetailsScalarFieldEnum | Prisma.AppointmentDetailsScalarFieldEnum[]
 }
 
 /**

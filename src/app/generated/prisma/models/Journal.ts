@@ -38,22 +38,22 @@ export type JournalSumAggregateOutputType = {
 
 export type JournalMinAggregateOutputType = {
   id: number | null
-  hourStart: string | null
-  hourEnd: string | null
-  freeTime: string | null
+  hourStart: Date | null
+  hourEnd: Date | null
+  freeTime: Date | null
+  durationFreeTime: number | null
   startAbsence: Date | null
   endAbsence: Date | null
-  durationFreeTime: number | null
 }
 
 export type JournalMaxAggregateOutputType = {
   id: number | null
-  hourStart: string | null
-  hourEnd: string | null
-  freeTime: string | null
+  hourStart: Date | null
+  hourEnd: Date | null
+  freeTime: Date | null
+  durationFreeTime: number | null
   startAbsence: Date | null
   endAbsence: Date | null
-  durationFreeTime: number | null
 }
 
 export type JournalCountAggregateOutputType = {
@@ -61,9 +61,9 @@ export type JournalCountAggregateOutputType = {
   hourStart: number
   hourEnd: number
   freeTime: number
+  durationFreeTime: number
   startAbsence: number
   endAbsence: number
-  durationFreeTime: number
   _all: number
 }
 
@@ -83,9 +83,9 @@ export type JournalMinAggregateInputType = {
   hourStart?: true
   hourEnd?: true
   freeTime?: true
+  durationFreeTime?: true
   startAbsence?: true
   endAbsence?: true
-  durationFreeTime?: true
 }
 
 export type JournalMaxAggregateInputType = {
@@ -93,9 +93,9 @@ export type JournalMaxAggregateInputType = {
   hourStart?: true
   hourEnd?: true
   freeTime?: true
+  durationFreeTime?: true
   startAbsence?: true
   endAbsence?: true
-  durationFreeTime?: true
 }
 
 export type JournalCountAggregateInputType = {
@@ -103,9 +103,9 @@ export type JournalCountAggregateInputType = {
   hourStart?: true
   hourEnd?: true
   freeTime?: true
+  durationFreeTime?: true
   startAbsence?: true
   endAbsence?: true
-  durationFreeTime?: true
   _all?: true
 }
 
@@ -197,12 +197,12 @@ export type JournalGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type JournalGroupByOutputType = {
   id: number
-  hourStart: string
-  hourEnd: string
-  freeTime: string
+  hourStart: Date
+  hourEnd: Date
+  freeTime: Date
+  durationFreeTime: number
   startAbsence: Date
   endAbsence: Date
-  durationFreeTime: number
   _count: JournalCountAggregateOutputType | null
   _avg: JournalAvgAggregateOutputType | null
   _sum: JournalSumAggregateOutputType | null
@@ -230,12 +230,12 @@ export type JournalWhereInput = {
   OR?: Prisma.JournalWhereInput[]
   NOT?: Prisma.JournalWhereInput | Prisma.JournalWhereInput[]
   id?: Prisma.IntFilter<"Journal"> | number
-  hourStart?: Prisma.StringFilter<"Journal"> | string
-  hourEnd?: Prisma.StringFilter<"Journal"> | string
-  freeTime?: Prisma.StringFilter<"Journal"> | string
+  hourStart?: Prisma.DateTimeFilter<"Journal"> | Date | string
+  hourEnd?: Prisma.DateTimeFilter<"Journal"> | Date | string
+  freeTime?: Prisma.DateTimeFilter<"Journal"> | Date | string
+  durationFreeTime?: Prisma.IntFilter<"Journal"> | number
   startAbsence?: Prisma.DateTimeFilter<"Journal"> | Date | string
   endAbsence?: Prisma.DateTimeFilter<"Journal"> | Date | string
-  durationFreeTime?: Prisma.IntFilter<"Journal"> | number
   personals?: Prisma.PersonalListRelationFilter
 }
 
@@ -244,9 +244,9 @@ export type JournalOrderByWithRelationInput = {
   hourStart?: Prisma.SortOrder
   hourEnd?: Prisma.SortOrder
   freeTime?: Prisma.SortOrder
+  durationFreeTime?: Prisma.SortOrder
   startAbsence?: Prisma.SortOrder
   endAbsence?: Prisma.SortOrder
-  durationFreeTime?: Prisma.SortOrder
   personals?: Prisma.PersonalOrderByRelationAggregateInput
 }
 
@@ -255,12 +255,12 @@ export type JournalWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.JournalWhereInput | Prisma.JournalWhereInput[]
   OR?: Prisma.JournalWhereInput[]
   NOT?: Prisma.JournalWhereInput | Prisma.JournalWhereInput[]
-  hourStart?: Prisma.StringFilter<"Journal"> | string
-  hourEnd?: Prisma.StringFilter<"Journal"> | string
-  freeTime?: Prisma.StringFilter<"Journal"> | string
+  hourStart?: Prisma.DateTimeFilter<"Journal"> | Date | string
+  hourEnd?: Prisma.DateTimeFilter<"Journal"> | Date | string
+  freeTime?: Prisma.DateTimeFilter<"Journal"> | Date | string
+  durationFreeTime?: Prisma.IntFilter<"Journal"> | number
   startAbsence?: Prisma.DateTimeFilter<"Journal"> | Date | string
   endAbsence?: Prisma.DateTimeFilter<"Journal"> | Date | string
-  durationFreeTime?: Prisma.IntFilter<"Journal"> | number
   personals?: Prisma.PersonalListRelationFilter
 }, "id">
 
@@ -269,9 +269,9 @@ export type JournalOrderByWithAggregationInput = {
   hourStart?: Prisma.SortOrder
   hourEnd?: Prisma.SortOrder
   freeTime?: Prisma.SortOrder
+  durationFreeTime?: Prisma.SortOrder
   startAbsence?: Prisma.SortOrder
   endAbsence?: Prisma.SortOrder
-  durationFreeTime?: Prisma.SortOrder
   _count?: Prisma.JournalCountOrderByAggregateInput
   _avg?: Prisma.JournalAvgOrderByAggregateInput
   _max?: Prisma.JournalMaxOrderByAggregateInput
@@ -284,83 +284,83 @@ export type JournalScalarWhereWithAggregatesInput = {
   OR?: Prisma.JournalScalarWhereWithAggregatesInput[]
   NOT?: Prisma.JournalScalarWhereWithAggregatesInput | Prisma.JournalScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Journal"> | number
-  hourStart?: Prisma.StringWithAggregatesFilter<"Journal"> | string
-  hourEnd?: Prisma.StringWithAggregatesFilter<"Journal"> | string
-  freeTime?: Prisma.StringWithAggregatesFilter<"Journal"> | string
+  hourStart?: Prisma.DateTimeWithAggregatesFilter<"Journal"> | Date | string
+  hourEnd?: Prisma.DateTimeWithAggregatesFilter<"Journal"> | Date | string
+  freeTime?: Prisma.DateTimeWithAggregatesFilter<"Journal"> | Date | string
+  durationFreeTime?: Prisma.IntWithAggregatesFilter<"Journal"> | number
   startAbsence?: Prisma.DateTimeWithAggregatesFilter<"Journal"> | Date | string
   endAbsence?: Prisma.DateTimeWithAggregatesFilter<"Journal"> | Date | string
-  durationFreeTime?: Prisma.IntWithAggregatesFilter<"Journal"> | number
 }
 
 export type JournalCreateInput = {
-  hourStart: string
-  hourEnd: string
-  freeTime: string
+  hourStart: Date | string
+  hourEnd: Date | string
+  freeTime: Date | string
+  durationFreeTime: number
   startAbsence: Date | string
   endAbsence: Date | string
-  durationFreeTime: number
   personals?: Prisma.PersonalCreateNestedManyWithoutJournalInput
 }
 
 export type JournalUncheckedCreateInput = {
   id?: number
-  hourStart: string
-  hourEnd: string
-  freeTime: string
+  hourStart: Date | string
+  hourEnd: Date | string
+  freeTime: Date | string
+  durationFreeTime: number
   startAbsence: Date | string
   endAbsence: Date | string
-  durationFreeTime: number
   personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutJournalInput
 }
 
 export type JournalUpdateInput = {
-  hourStart?: Prisma.StringFieldUpdateOperationsInput | string
-  hourEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  freeTime?: Prisma.StringFieldUpdateOperationsInput | string
+  hourStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  freeTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   startAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   personals?: Prisma.PersonalUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  hourStart?: Prisma.StringFieldUpdateOperationsInput | string
-  hourEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  freeTime?: Prisma.StringFieldUpdateOperationsInput | string
+  hourStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  freeTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   startAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   personals?: Prisma.PersonalUncheckedUpdateManyWithoutJournalNestedInput
 }
 
 export type JournalCreateManyInput = {
   id?: number
-  hourStart: string
-  hourEnd: string
-  freeTime: string
+  hourStart: Date | string
+  hourEnd: Date | string
+  freeTime: Date | string
+  durationFreeTime: number
   startAbsence: Date | string
   endAbsence: Date | string
-  durationFreeTime: number
 }
 
 export type JournalUpdateManyMutationInput = {
-  hourStart?: Prisma.StringFieldUpdateOperationsInput | string
-  hourEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  freeTime?: Prisma.StringFieldUpdateOperationsInput | string
+  hourStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  freeTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   startAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type JournalUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  hourStart?: Prisma.StringFieldUpdateOperationsInput | string
-  hourEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  freeTime?: Prisma.StringFieldUpdateOperationsInput | string
+  hourStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  freeTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   startAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type JournalCountOrderByAggregateInput = {
@@ -368,9 +368,9 @@ export type JournalCountOrderByAggregateInput = {
   hourStart?: Prisma.SortOrder
   hourEnd?: Prisma.SortOrder
   freeTime?: Prisma.SortOrder
+  durationFreeTime?: Prisma.SortOrder
   startAbsence?: Prisma.SortOrder
   endAbsence?: Prisma.SortOrder
-  durationFreeTime?: Prisma.SortOrder
 }
 
 export type JournalAvgOrderByAggregateInput = {
@@ -383,9 +383,9 @@ export type JournalMaxOrderByAggregateInput = {
   hourStart?: Prisma.SortOrder
   hourEnd?: Prisma.SortOrder
   freeTime?: Prisma.SortOrder
+  durationFreeTime?: Prisma.SortOrder
   startAbsence?: Prisma.SortOrder
   endAbsence?: Prisma.SortOrder
-  durationFreeTime?: Prisma.SortOrder
 }
 
 export type JournalMinOrderByAggregateInput = {
@@ -393,9 +393,9 @@ export type JournalMinOrderByAggregateInput = {
   hourStart?: Prisma.SortOrder
   hourEnd?: Prisma.SortOrder
   freeTime?: Prisma.SortOrder
+  durationFreeTime?: Prisma.SortOrder
   startAbsence?: Prisma.SortOrder
   endAbsence?: Prisma.SortOrder
-  durationFreeTime?: Prisma.SortOrder
 }
 
 export type JournalSumOrderByAggregateInput = {
@@ -403,9 +403,21 @@ export type JournalSumOrderByAggregateInput = {
   durationFreeTime?: Prisma.SortOrder
 }
 
-export type JournalScalarRelationFilter = {
-  is?: Prisma.JournalWhereInput
-  isNot?: Prisma.JournalWhereInput
+export type JournalNullableScalarRelationFilter = {
+  is?: Prisma.JournalWhereInput | null
+  isNot?: Prisma.JournalWhereInput | null
+}
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type JournalCreateNestedOneWithoutPersonalsInput = {
@@ -414,31 +426,33 @@ export type JournalCreateNestedOneWithoutPersonalsInput = {
   connect?: Prisma.JournalWhereUniqueInput
 }
 
-export type JournalUpdateOneRequiredWithoutPersonalsNestedInput = {
+export type JournalUpdateOneWithoutPersonalsNestedInput = {
   create?: Prisma.XOR<Prisma.JournalCreateWithoutPersonalsInput, Prisma.JournalUncheckedCreateWithoutPersonalsInput>
   connectOrCreate?: Prisma.JournalCreateOrConnectWithoutPersonalsInput
   upsert?: Prisma.JournalUpsertWithoutPersonalsInput
+  disconnect?: Prisma.JournalWhereInput | boolean
+  delete?: Prisma.JournalWhereInput | boolean
   connect?: Prisma.JournalWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.JournalUpdateToOneWithWhereWithoutPersonalsInput, Prisma.JournalUpdateWithoutPersonalsInput>, Prisma.JournalUncheckedUpdateWithoutPersonalsInput>
 }
 
 export type JournalCreateWithoutPersonalsInput = {
-  hourStart: string
-  hourEnd: string
-  freeTime: string
+  hourStart: Date | string
+  hourEnd: Date | string
+  freeTime: Date | string
+  durationFreeTime: number
   startAbsence: Date | string
   endAbsence: Date | string
-  durationFreeTime: number
 }
 
 export type JournalUncheckedCreateWithoutPersonalsInput = {
   id?: number
-  hourStart: string
-  hourEnd: string
-  freeTime: string
+  hourStart: Date | string
+  hourEnd: Date | string
+  freeTime: Date | string
+  durationFreeTime: number
   startAbsence: Date | string
   endAbsence: Date | string
-  durationFreeTime: number
 }
 
 export type JournalCreateOrConnectWithoutPersonalsInput = {
@@ -458,22 +472,22 @@ export type JournalUpdateToOneWithWhereWithoutPersonalsInput = {
 }
 
 export type JournalUpdateWithoutPersonalsInput = {
-  hourStart?: Prisma.StringFieldUpdateOperationsInput | string
-  hourEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  freeTime?: Prisma.StringFieldUpdateOperationsInput | string
+  hourStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  freeTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   startAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type JournalUncheckedUpdateWithoutPersonalsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  hourStart?: Prisma.StringFieldUpdateOperationsInput | string
-  hourEnd?: Prisma.StringFieldUpdateOperationsInput | string
-  freeTime?: Prisma.StringFieldUpdateOperationsInput | string
+  hourStart?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  hourEnd?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  freeTime?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
   startAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   endAbsence?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  durationFreeTime?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -512,9 +526,9 @@ export type JournalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   hourStart?: boolean
   hourEnd?: boolean
   freeTime?: boolean
+  durationFreeTime?: boolean
   startAbsence?: boolean
   endAbsence?: boolean
-  durationFreeTime?: boolean
   personals?: boolean | Prisma.Journal$personalsArgs<ExtArgs>
   _count?: boolean | Prisma.JournalCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["journal"]>
@@ -524,9 +538,9 @@ export type JournalSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   hourStart?: boolean
   hourEnd?: boolean
   freeTime?: boolean
+  durationFreeTime?: boolean
   startAbsence?: boolean
   endAbsence?: boolean
-  durationFreeTime?: boolean
 }, ExtArgs["result"]["journal"]>
 
 export type JournalSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -534,9 +548,9 @@ export type JournalSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   hourStart?: boolean
   hourEnd?: boolean
   freeTime?: boolean
+  durationFreeTime?: boolean
   startAbsence?: boolean
   endAbsence?: boolean
-  durationFreeTime?: boolean
 }, ExtArgs["result"]["journal"]>
 
 export type JournalSelectScalar = {
@@ -544,12 +558,12 @@ export type JournalSelectScalar = {
   hourStart?: boolean
   hourEnd?: boolean
   freeTime?: boolean
+  durationFreeTime?: boolean
   startAbsence?: boolean
   endAbsence?: boolean
-  durationFreeTime?: boolean
 }
 
-export type JournalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hourStart" | "hourEnd" | "freeTime" | "startAbsence" | "endAbsence" | "durationFreeTime", ExtArgs["result"]["journal"]>
+export type JournalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "hourStart" | "hourEnd" | "freeTime" | "durationFreeTime" | "startAbsence" | "endAbsence", ExtArgs["result"]["journal"]>
 export type JournalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   personals?: boolean | Prisma.Journal$personalsArgs<ExtArgs>
   _count?: boolean | Prisma.JournalCountOutputTypeDefaultArgs<ExtArgs>
@@ -564,12 +578,12 @@ export type $JournalPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    hourStart: string
-    hourEnd: string
-    freeTime: string
+    hourStart: Date
+    hourEnd: Date
+    freeTime: Date
+    durationFreeTime: number
     startAbsence: Date
     endAbsence: Date
-    durationFreeTime: number
   }, ExtArgs["result"]["journal"]>
   composites: {}
 }
@@ -995,12 +1009,12 @@ export interface Prisma__JournalClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface JournalFieldRefs {
   readonly id: Prisma.FieldRef<"Journal", 'Int'>
-  readonly hourStart: Prisma.FieldRef<"Journal", 'String'>
-  readonly hourEnd: Prisma.FieldRef<"Journal", 'String'>
-  readonly freeTime: Prisma.FieldRef<"Journal", 'String'>
+  readonly hourStart: Prisma.FieldRef<"Journal", 'DateTime'>
+  readonly hourEnd: Prisma.FieldRef<"Journal", 'DateTime'>
+  readonly freeTime: Prisma.FieldRef<"Journal", 'DateTime'>
+  readonly durationFreeTime: Prisma.FieldRef<"Journal", 'Int'>
   readonly startAbsence: Prisma.FieldRef<"Journal", 'DateTime'>
   readonly endAbsence: Prisma.FieldRef<"Journal", 'DateTime'>
-  readonly durationFreeTime: Prisma.FieldRef<"Journal", 'Int'>
 }
     
 

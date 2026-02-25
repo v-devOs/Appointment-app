@@ -2,20 +2,8 @@
 
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { UserSchema } from "@/schemas/user";
 import { z } from "zod";
-
-// Schema de validación para registro
-const registerSchema = z.object({
-  email: z.string().email("Email inválido"),
-  password: z.string().min(8, "La contraseña debe tener al menos 8 caracteres"),
-  typeUser: z.enum(["ADMIN", "OWNER_BUSSINES", "EMPLOYEE"]).optional(),
-});
-
-// Schema de validación para login
-const loginSchema = z.object({
-  email: z.string().email("Email inválido"),
-  password: z.string().min(1, "La contraseña es requerida"),
-});
 
 export async function registerUser(formData: {
   email: string;
@@ -23,8 +11,8 @@ export async function registerUser(formData: {
   typeUser?: "OWNER_BUSSINES" | "EMPLOYEE";
 }) {
   try {
-    // Validar datos
-    const validatedData = registerSchema.parse(formData);
+    // Validar datos con el schema existente
+    const validatedData = UserSchema.parse(formData);
 
     // Verificar si el usuario ya existe
     const existingUser = await prisma.user.findUnique({
@@ -46,7 +34,7 @@ export async function registerUser(formData: {
       data: {
         email: validatedData.email,
         password: hashedPassword,
-        typeUser: validatedData.typeUser || "OWNER_BUSSINES",
+        typeUser: validatedData.typeUser,
       },
       select: {
         id: true,
@@ -57,6 +45,7 @@ export async function registerUser(formData: {
 
     return {
       success: true,
+      message: "Usuario registrado exitosamente",
       user: {
         id: user.id,
         email: user.email,
@@ -76,37 +65,5 @@ export async function registerUser(formData: {
       success: false,
       error: "Error al registrar usuario",
     };
-  }
-}
-
-export async function validateCredentials(email: string, password: string) {
-  try {
-    const validatedData = loginSchema.parse({ email, password });
-
-    const user = await prisma.user.findUnique({
-      where: { email: validatedData.email },
-    });
-
-    if (!user || !user.password) {
-      return null;
-    }
-
-    const isPasswordValid = await bcrypt.compare(
-      validatedData.password,
-      user.password,
-    );
-
-    if (!isPasswordValid) {
-      return null;
-    }
-
-    return {
-      id: user.id,
-      email: user.email,
-      typeUser: user.typeUser,
-    };
-  } catch (error) {
-    console.error("Error en validación:", error);
-    return null;
   }
 }

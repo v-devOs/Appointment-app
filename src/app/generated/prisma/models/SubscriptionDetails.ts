@@ -30,35 +30,35 @@ export type SubscriptionDetailsAvgAggregateOutputType = {
   id: number | null
   subscriptionid: number | null
   paymentid: number | null
-  personalid: number | null
+  userid: number | null
 }
 
 export type SubscriptionDetailsSumAggregateOutputType = {
   id: number | null
   subscriptionid: number | null
   paymentid: number | null
-  personalid: number | null
+  userid: number | null
 }
 
 export type SubscriptionDetailsMinAggregateOutputType = {
   id: number | null
   subscriptionid: number | null
   paymentid: number | null
-  personalid: number | null
+  userid: number | null
 }
 
 export type SubscriptionDetailsMaxAggregateOutputType = {
   id: number | null
   subscriptionid: number | null
   paymentid: number | null
-  personalid: number | null
+  userid: number | null
 }
 
 export type SubscriptionDetailsCountAggregateOutputType = {
   id: number
   subscriptionid: number
   paymentid: number
-  personalid: number
+  userid: number
   _all: number
 }
 
@@ -67,35 +67,35 @@ export type SubscriptionDetailsAvgAggregateInputType = {
   id?: true
   subscriptionid?: true
   paymentid?: true
-  personalid?: true
+  userid?: true
 }
 
 export type SubscriptionDetailsSumAggregateInputType = {
   id?: true
   subscriptionid?: true
   paymentid?: true
-  personalid?: true
+  userid?: true
 }
 
 export type SubscriptionDetailsMinAggregateInputType = {
   id?: true
   subscriptionid?: true
   paymentid?: true
-  personalid?: true
+  userid?: true
 }
 
 export type SubscriptionDetailsMaxAggregateInputType = {
   id?: true
   subscriptionid?: true
   paymentid?: true
-  personalid?: true
+  userid?: true
 }
 
 export type SubscriptionDetailsCountAggregateInputType = {
   id?: true
   subscriptionid?: true
   paymentid?: true
-  personalid?: true
+  userid?: true
   _all?: true
 }
 
@@ -189,7 +189,7 @@ export type SubscriptionDetailsGroupByOutputType = {
   id: number
   subscriptionid: number
   paymentid: number
-  personalid: number
+  userid: number
   _count: SubscriptionDetailsCountAggregateOutputType | null
   _avg: SubscriptionDetailsAvgAggregateOutputType | null
   _sum: SubscriptionDetailsSumAggregateOutputType | null
@@ -219,20 +219,20 @@ export type SubscriptionDetailsWhereInput = {
   id?: Prisma.IntFilter<"SubscriptionDetails"> | number
   subscriptionid?: Prisma.IntFilter<"SubscriptionDetails"> | number
   paymentid?: Prisma.IntFilter<"SubscriptionDetails"> | number
-  personalid?: Prisma.IntFilter<"SubscriptionDetails"> | number
+  userid?: Prisma.IntFilter<"SubscriptionDetails"> | number
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
-  personal?: Prisma.XOR<Prisma.PersonalScalarRelationFilter, Prisma.PersonalWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }
 
 export type SubscriptionDetailsOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
   subscription?: Prisma.SubscriptionOrderByWithRelationInput
   payment?: Prisma.PaymentOrderByWithRelationInput
-  personal?: Prisma.PersonalOrderByWithRelationInput
+  user?: Prisma.UserOrderByWithRelationInput
 }
 
 export type SubscriptionDetailsWhereUniqueInput = Prisma.AtLeast<{
@@ -242,17 +242,17 @@ export type SubscriptionDetailsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SubscriptionDetailsWhereInput | Prisma.SubscriptionDetailsWhereInput[]
   subscriptionid?: Prisma.IntFilter<"SubscriptionDetails"> | number
   paymentid?: Prisma.IntFilter<"SubscriptionDetails"> | number
-  personalid?: Prisma.IntFilter<"SubscriptionDetails"> | number
+  userid?: Prisma.IntFilter<"SubscriptionDetails"> | number
   subscription?: Prisma.XOR<Prisma.SubscriptionScalarRelationFilter, Prisma.SubscriptionWhereInput>
   payment?: Prisma.XOR<Prisma.PaymentScalarRelationFilter, Prisma.PaymentWhereInput>
-  personal?: Prisma.XOR<Prisma.PersonalScalarRelationFilter, Prisma.PersonalWhereInput>
+  user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
 }, "id">
 
 export type SubscriptionDetailsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
   _count?: Prisma.SubscriptionDetailsCountOrderByAggregateInput
   _avg?: Prisma.SubscriptionDetailsAvgOrderByAggregateInput
   _max?: Prisma.SubscriptionDetailsMaxOrderByAggregateInput
@@ -267,40 +267,40 @@ export type SubscriptionDetailsScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"SubscriptionDetails"> | number
   subscriptionid?: Prisma.IntWithAggregatesFilter<"SubscriptionDetails"> | number
   paymentid?: Prisma.IntWithAggregatesFilter<"SubscriptionDetails"> | number
-  personalid?: Prisma.IntWithAggregatesFilter<"SubscriptionDetails"> | number
+  userid?: Prisma.IntWithAggregatesFilter<"SubscriptionDetails"> | number
 }
 
 export type SubscriptionDetailsCreateInput = {
   subscription: Prisma.SubscriptionCreateNestedOneWithoutSubscriptionDetailsInput
   payment: Prisma.PaymentCreateNestedOneWithoutSubscriptionDetailsInput
-  personal: Prisma.PersonalCreateNestedOneWithoutSubscriptionDetailsInput
+  user: Prisma.UserCreateNestedOneWithoutSubscriptionDetailsInput
 }
 
 export type SubscriptionDetailsUncheckedCreateInput = {
   id?: number
   subscriptionid: number
   paymentid: number
-  personalid: number
+  userid: number
 }
 
 export type SubscriptionDetailsUpdateInput = {
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
   payment?: Prisma.PaymentUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
-  personal?: Prisma.PersonalUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
 }
 
 export type SubscriptionDetailsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
   paymentid?: Prisma.IntFieldUpdateOperationsInput | number
-  personalid?: Prisma.IntFieldUpdateOperationsInput | number
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SubscriptionDetailsCreateManyInput = {
   id?: number
   subscriptionid: number
   paymentid: number
-  personalid: number
+  userid: number
 }
 
 export type SubscriptionDetailsUpdateManyMutationInput = {
@@ -311,7 +311,7 @@ export type SubscriptionDetailsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
   paymentid?: Prisma.IntFieldUpdateOperationsInput | number
-  personalid?: Prisma.IntFieldUpdateOperationsInput | number
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SubscriptionDetailsListRelationFilter = {
@@ -328,35 +328,77 @@ export type SubscriptionDetailsCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
 }
 
 export type SubscriptionDetailsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
 }
 
 export type SubscriptionDetailsMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
 }
 
 export type SubscriptionDetailsMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
 }
 
 export type SubscriptionDetailsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   subscriptionid?: Prisma.SortOrder
   paymentid?: Prisma.SortOrder
-  personalid?: Prisma.SortOrder
+  userid?: Prisma.SortOrder
+}
+
+export type SubscriptionDetailsCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput> | Prisma.SubscriptionDetailsCreateWithoutUserInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.SubscriptionDetailsCreateManyUserInputEnvelope
+  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+}
+
+export type SubscriptionDetailsUncheckedCreateNestedManyWithoutUserInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput> | Prisma.SubscriptionDetailsCreateWithoutUserInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput[]
+  createMany?: Prisma.SubscriptionDetailsCreateManyUserInputEnvelope
+  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+}
+
+export type SubscriptionDetailsUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput> | Prisma.SubscriptionDetailsCreateWithoutUserInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutUserInput | Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.SubscriptionDetailsCreateManyUserInputEnvelope
+  set?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  disconnect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  delete?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  update?: Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutUserInput | Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutUserInput | Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
+}
+
+export type SubscriptionDetailsUncheckedUpdateManyWithoutUserNestedInput = {
+  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput> | Prisma.SubscriptionDetailsCreateWithoutUserInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput[]
+  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutUserInput[]
+  upsert?: Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutUserInput | Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutUserInput[]
+  createMany?: Prisma.SubscriptionDetailsCreateManyUserInputEnvelope
+  set?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  disconnect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  delete?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+  update?: Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutUserInput | Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutUserInput[]
+  updateMany?: Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutUserInput | Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
 }
 
 export type SubscriptionDetailsCreateNestedManyWithoutPaymentInput = {
@@ -443,57 +485,62 @@ export type SubscriptionDetailsUncheckedUpdateManyWithoutSubscriptionNestedInput
   deleteMany?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
 }
 
-export type SubscriptionDetailsCreateNestedManyWithoutPersonalInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput> | Prisma.SubscriptionDetailsCreateWithoutPersonalInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput[]
-  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput[]
-  createMany?: Prisma.SubscriptionDetailsCreateManyPersonalInputEnvelope
-  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+export type SubscriptionDetailsCreateWithoutUserInput = {
+  subscription: Prisma.SubscriptionCreateNestedOneWithoutSubscriptionDetailsInput
+  payment: Prisma.PaymentCreateNestedOneWithoutSubscriptionDetailsInput
 }
 
-export type SubscriptionDetailsUncheckedCreateNestedManyWithoutPersonalInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput> | Prisma.SubscriptionDetailsCreateWithoutPersonalInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput[]
-  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput[]
-  createMany?: Prisma.SubscriptionDetailsCreateManyPersonalInputEnvelope
-  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
+export type SubscriptionDetailsUncheckedCreateWithoutUserInput = {
+  id?: number
+  subscriptionid: number
+  paymentid: number
 }
 
-export type SubscriptionDetailsUpdateManyWithoutPersonalNestedInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput> | Prisma.SubscriptionDetailsCreateWithoutPersonalInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput[]
-  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput[]
-  upsert?: Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutPersonalInput | Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutPersonalInput[]
-  createMany?: Prisma.SubscriptionDetailsCreateManyPersonalInputEnvelope
-  set?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  disconnect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  delete?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  update?: Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutPersonalInput | Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutPersonalInput[]
-  updateMany?: Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutPersonalInput | Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutPersonalInput[]
-  deleteMany?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
+export type SubscriptionDetailsCreateOrConnectWithoutUserInput = {
+  where: Prisma.SubscriptionDetailsWhereUniqueInput
+  create: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput>
 }
 
-export type SubscriptionDetailsUncheckedUpdateManyWithoutPersonalNestedInput = {
-  create?: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput> | Prisma.SubscriptionDetailsCreateWithoutPersonalInput[] | Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput[]
-  connectOrCreate?: Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput | Prisma.SubscriptionDetailsCreateOrConnectWithoutPersonalInput[]
-  upsert?: Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutPersonalInput | Prisma.SubscriptionDetailsUpsertWithWhereUniqueWithoutPersonalInput[]
-  createMany?: Prisma.SubscriptionDetailsCreateManyPersonalInputEnvelope
-  set?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  disconnect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  delete?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  connect?: Prisma.SubscriptionDetailsWhereUniqueInput | Prisma.SubscriptionDetailsWhereUniqueInput[]
-  update?: Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutPersonalInput | Prisma.SubscriptionDetailsUpdateWithWhereUniqueWithoutPersonalInput[]
-  updateMany?: Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutPersonalInput | Prisma.SubscriptionDetailsUpdateManyWithWhereWithoutPersonalInput[]
-  deleteMany?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
+export type SubscriptionDetailsCreateManyUserInputEnvelope = {
+  data: Prisma.SubscriptionDetailsCreateManyUserInput | Prisma.SubscriptionDetailsCreateManyUserInput[]
+  skipDuplicates?: boolean
+}
+
+export type SubscriptionDetailsUpsertWithWhereUniqueWithoutUserInput = {
+  where: Prisma.SubscriptionDetailsWhereUniqueInput
+  update: Prisma.XOR<Prisma.SubscriptionDetailsUpdateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedUpdateWithoutUserInput>
+  create: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutUserInput>
+}
+
+export type SubscriptionDetailsUpdateWithWhereUniqueWithoutUserInput = {
+  where: Prisma.SubscriptionDetailsWhereUniqueInput
+  data: Prisma.XOR<Prisma.SubscriptionDetailsUpdateWithoutUserInput, Prisma.SubscriptionDetailsUncheckedUpdateWithoutUserInput>
+}
+
+export type SubscriptionDetailsUpdateManyWithWhereWithoutUserInput = {
+  where: Prisma.SubscriptionDetailsScalarWhereInput
+  data: Prisma.XOR<Prisma.SubscriptionDetailsUpdateManyMutationInput, Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutUserInput>
+}
+
+export type SubscriptionDetailsScalarWhereInput = {
+  AND?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
+  OR?: Prisma.SubscriptionDetailsScalarWhereInput[]
+  NOT?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
+  id?: Prisma.IntFilter<"SubscriptionDetails"> | number
+  subscriptionid?: Prisma.IntFilter<"SubscriptionDetails"> | number
+  paymentid?: Prisma.IntFilter<"SubscriptionDetails"> | number
+  userid?: Prisma.IntFilter<"SubscriptionDetails"> | number
 }
 
 export type SubscriptionDetailsCreateWithoutPaymentInput = {
   subscription: Prisma.SubscriptionCreateNestedOneWithoutSubscriptionDetailsInput
-  personal: Prisma.PersonalCreateNestedOneWithoutSubscriptionDetailsInput
+  user: Prisma.UserCreateNestedOneWithoutSubscriptionDetailsInput
 }
 
 export type SubscriptionDetailsUncheckedCreateWithoutPaymentInput = {
   id?: number
   subscriptionid: number
-  personalid: number
+  userid: number
 }
 
 export type SubscriptionDetailsCreateOrConnectWithoutPaymentInput = {
@@ -522,25 +569,15 @@ export type SubscriptionDetailsUpdateManyWithWhereWithoutPaymentInput = {
   data: Prisma.XOR<Prisma.SubscriptionDetailsUpdateManyMutationInput, Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPaymentInput>
 }
 
-export type SubscriptionDetailsScalarWhereInput = {
-  AND?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
-  OR?: Prisma.SubscriptionDetailsScalarWhereInput[]
-  NOT?: Prisma.SubscriptionDetailsScalarWhereInput | Prisma.SubscriptionDetailsScalarWhereInput[]
-  id?: Prisma.IntFilter<"SubscriptionDetails"> | number
-  subscriptionid?: Prisma.IntFilter<"SubscriptionDetails"> | number
-  paymentid?: Prisma.IntFilter<"SubscriptionDetails"> | number
-  personalid?: Prisma.IntFilter<"SubscriptionDetails"> | number
-}
-
 export type SubscriptionDetailsCreateWithoutSubscriptionInput = {
   payment: Prisma.PaymentCreateNestedOneWithoutSubscriptionDetailsInput
-  personal: Prisma.PersonalCreateNestedOneWithoutSubscriptionDetailsInput
+  user: Prisma.UserCreateNestedOneWithoutSubscriptionDetailsInput
 }
 
 export type SubscriptionDetailsUncheckedCreateWithoutSubscriptionInput = {
   id?: number
   paymentid: number
-  personalid: number
+  userid: number
 }
 
 export type SubscriptionDetailsCreateOrConnectWithoutSubscriptionInput = {
@@ -569,110 +606,73 @@ export type SubscriptionDetailsUpdateManyWithWhereWithoutSubscriptionInput = {
   data: Prisma.XOR<Prisma.SubscriptionDetailsUpdateManyMutationInput, Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutSubscriptionInput>
 }
 
-export type SubscriptionDetailsCreateWithoutPersonalInput = {
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutSubscriptionDetailsInput
-  payment: Prisma.PaymentCreateNestedOneWithoutSubscriptionDetailsInput
-}
-
-export type SubscriptionDetailsUncheckedCreateWithoutPersonalInput = {
+export type SubscriptionDetailsCreateManyUserInput = {
   id?: number
   subscriptionid: number
   paymentid: number
 }
 
-export type SubscriptionDetailsCreateOrConnectWithoutPersonalInput = {
-  where: Prisma.SubscriptionDetailsWhereUniqueInput
-  create: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput>
+export type SubscriptionDetailsUpdateWithoutUserInput = {
+  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
+  payment?: Prisma.PaymentUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
 }
 
-export type SubscriptionDetailsCreateManyPersonalInputEnvelope = {
-  data: Prisma.SubscriptionDetailsCreateManyPersonalInput | Prisma.SubscriptionDetailsCreateManyPersonalInput[]
-  skipDuplicates?: boolean
+export type SubscriptionDetailsUncheckedUpdateWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
+  paymentid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type SubscriptionDetailsUpsertWithWhereUniqueWithoutPersonalInput = {
-  where: Prisma.SubscriptionDetailsWhereUniqueInput
-  update: Prisma.XOR<Prisma.SubscriptionDetailsUpdateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedUpdateWithoutPersonalInput>
-  create: Prisma.XOR<Prisma.SubscriptionDetailsCreateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedCreateWithoutPersonalInput>
-}
-
-export type SubscriptionDetailsUpdateWithWhereUniqueWithoutPersonalInput = {
-  where: Prisma.SubscriptionDetailsWhereUniqueInput
-  data: Prisma.XOR<Prisma.SubscriptionDetailsUpdateWithoutPersonalInput, Prisma.SubscriptionDetailsUncheckedUpdateWithoutPersonalInput>
-}
-
-export type SubscriptionDetailsUpdateManyWithWhereWithoutPersonalInput = {
-  where: Prisma.SubscriptionDetailsScalarWhereInput
-  data: Prisma.XOR<Prisma.SubscriptionDetailsUpdateManyMutationInput, Prisma.SubscriptionDetailsUncheckedUpdateManyWithoutPersonalInput>
+export type SubscriptionDetailsUncheckedUpdateManyWithoutUserInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
+  paymentid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SubscriptionDetailsCreateManyPaymentInput = {
   id?: number
   subscriptionid: number
-  personalid: number
+  userid: number
 }
 
 export type SubscriptionDetailsUpdateWithoutPaymentInput = {
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
-  personal?: Prisma.PersonalUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
 }
 
 export type SubscriptionDetailsUncheckedUpdateWithoutPaymentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
-  personalid?: Prisma.IntFieldUpdateOperationsInput | number
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SubscriptionDetailsUncheckedUpdateManyWithoutPaymentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
-  personalid?: Prisma.IntFieldUpdateOperationsInput | number
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SubscriptionDetailsCreateManySubscriptionInput = {
   id?: number
   paymentid: number
-  personalid: number
+  userid: number
 }
 
 export type SubscriptionDetailsUpdateWithoutSubscriptionInput = {
   payment?: Prisma.PaymentUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
-  personal?: Prisma.PersonalUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
+  user?: Prisma.UserUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
 }
 
 export type SubscriptionDetailsUncheckedUpdateWithoutSubscriptionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   paymentid?: Prisma.IntFieldUpdateOperationsInput | number
-  personalid?: Prisma.IntFieldUpdateOperationsInput | number
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type SubscriptionDetailsUncheckedUpdateManyWithoutSubscriptionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   paymentid?: Prisma.IntFieldUpdateOperationsInput | number
-  personalid?: Prisma.IntFieldUpdateOperationsInput | number
-}
-
-export type SubscriptionDetailsCreateManyPersonalInput = {
-  id?: number
-  subscriptionid: number
-  paymentid: number
-}
-
-export type SubscriptionDetailsUpdateWithoutPersonalInput = {
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
-  payment?: Prisma.PaymentUpdateOneRequiredWithoutSubscriptionDetailsNestedInput
-}
-
-export type SubscriptionDetailsUncheckedUpdateWithoutPersonalInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentid?: Prisma.IntFieldUpdateOperationsInput | number
-}
-
-export type SubscriptionDetailsUncheckedUpdateManyWithoutPersonalInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  subscriptionid?: Prisma.IntFieldUpdateOperationsInput | number
-  paymentid?: Prisma.IntFieldUpdateOperationsInput | number
+  userid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -681,54 +681,54 @@ export type SubscriptionDetailsSelect<ExtArgs extends runtime.Types.Extensions.I
   id?: boolean
   subscriptionid?: boolean
   paymentid?: boolean
-  personalid?: boolean
+  userid?: boolean
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
-  personal?: boolean | Prisma.PersonalDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subscriptionDetails"]>
 
 export type SubscriptionDetailsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   subscriptionid?: boolean
   paymentid?: boolean
-  personalid?: boolean
+  userid?: boolean
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
-  personal?: boolean | Prisma.PersonalDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subscriptionDetails"]>
 
 export type SubscriptionDetailsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   subscriptionid?: boolean
   paymentid?: boolean
-  personalid?: boolean
+  userid?: boolean
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
-  personal?: boolean | Prisma.PersonalDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subscriptionDetails"]>
 
 export type SubscriptionDetailsSelectScalar = {
   id?: boolean
   subscriptionid?: boolean
   paymentid?: boolean
-  personalid?: boolean
+  userid?: boolean
 }
 
-export type SubscriptionDetailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subscriptionid" | "paymentid" | "personalid", ExtArgs["result"]["subscriptionDetails"]>
+export type SubscriptionDetailsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "subscriptionid" | "paymentid" | "userid", ExtArgs["result"]["subscriptionDetails"]>
 export type SubscriptionDetailsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
-  personal?: boolean | Prisma.PersonalDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type SubscriptionDetailsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
-  personal?: boolean | Prisma.PersonalDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 export type SubscriptionDetailsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   subscription?: boolean | Prisma.SubscriptionDefaultArgs<ExtArgs>
   payment?: boolean | Prisma.PaymentDefaultArgs<ExtArgs>
-  personal?: boolean | Prisma.PersonalDefaultArgs<ExtArgs>
+  user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
 
 export type $SubscriptionDetailsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -736,13 +736,13 @@ export type $SubscriptionDetailsPayload<ExtArgs extends runtime.Types.Extensions
   objects: {
     subscription: Prisma.$SubscriptionPayload<ExtArgs>
     payment: Prisma.$PaymentPayload<ExtArgs>
-    personal: Prisma.$PersonalPayload<ExtArgs>
+    user: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     subscriptionid: number
     paymentid: number
-    personalid: number
+    userid: number
   }, ExtArgs["result"]["subscriptionDetails"]>
   composites: {}
 }
@@ -1139,7 +1139,7 @@ export interface Prisma__SubscriptionDetailsClient<T, Null = never, ExtArgs exte
   readonly [Symbol.toStringTag]: "PrismaPromise"
   subscription<T extends Prisma.SubscriptionDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubscriptionDefaultArgs<ExtArgs>>): Prisma.Prisma__SubscriptionClient<runtime.Types.Result.GetResult<Prisma.$SubscriptionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   payment<T extends Prisma.PaymentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PaymentDefaultArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  personal<T extends Prisma.PersonalDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.PersonalDefaultArgs<ExtArgs>>): Prisma.Prisma__PersonalClient<runtime.Types.Result.GetResult<Prisma.$PersonalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1172,7 +1172,7 @@ export interface SubscriptionDetailsFieldRefs {
   readonly id: Prisma.FieldRef<"SubscriptionDetails", 'Int'>
   readonly subscriptionid: Prisma.FieldRef<"SubscriptionDetails", 'Int'>
   readonly paymentid: Prisma.FieldRef<"SubscriptionDetails", 'Int'>
-  readonly personalid: Prisma.FieldRef<"SubscriptionDetails", 'Int'>
+  readonly userid: Prisma.FieldRef<"SubscriptionDetails", 'Int'>
 }
     
 

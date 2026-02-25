@@ -1,11 +1,17 @@
 import * as z from "zod";
-import { format } from "date-fns";
+import { parse } from "date-fns";
 
 export const JournalSchema = z.object({
   id: z.number().int().optional(),
-  hourStart: z.date().transform((val) => format(val, "HH:MM")),
-  hourEnd: z.date().transform((val) => format(val, "HH:MM")),
-  freeTime: z.date().transform((val) => format(val, "HH:MM")),
+  hourStart: z
+    .string()
+    .transform((timeStr) => parse(timeStr, "HH:MM", new Date())),
+  hourEnd: z
+    .string()
+    .transform((timeStr) => parse(timeStr, "HH:MM", new Date())),
+  freeTime: z
+    .string()
+    .transform((timeStr) => parse(timeStr, "HH:MM", new Date())),
   startAbsence: z.date(),
   endAbsence: z.date(),
   durationFreeTime: z

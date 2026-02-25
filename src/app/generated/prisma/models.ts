@@ -8,15 +8,14 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Payment'
-export type * from './models/User'
-export type * from './models/Subscription'
 export type * from './models/Journal'
+export type * from './models/User'
 export type * from './models/Business'
+export type * from './models/Payment'
+export type * from './models/Client'
+export type * from './models/Subscription'
 export type * from './models/Personal'
 export type * from './models/TypeAppointment'
-export type * from './models/Appointment'
-export type * from './models/Client'
 export type * from './models/SubscriptionDetails'
-export type * from './models/PersonalBusinessDetails'
+export type * from './models/AppointmentDetails'
 export type * from './commonInputTypes'

@@ -12,4 +12,5 @@ export const PaymentSchema = z.object({
   discount: z.number().positive(),
   datePayment: z.date(),
   status: typePaymentStatusEnum,
+  comentaries: z.string().optional(),
 });
