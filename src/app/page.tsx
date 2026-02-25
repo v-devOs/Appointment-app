@@ -217,7 +217,7 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <Link href="/signup" className="block">
+                <Link href="/auth/signup" className="block">
                   <Button className="w-full" size="lg">
                     Comenzar ahora
                   </Button>
@@ -266,7 +266,7 @@ export default function Home() {
                   ))}
                 </ul>
 
-                <Link href="/signup" className="block">
+                <Link href="/auth/signup" className="block">
                   <Button
                     className="w-full bg-white text-purple-600 hover:bg-zinc-100"
                     size="lg"
