@@ -7,6 +7,7 @@ export async function getPaginatedSubscriptions(
   page: number = 1,
   limit: number = 10,
   searchParam?: string,
+  searhParamStatus?: string,
 ) {
   const pageNum = Math.max(1, Number(page));
   const limitNum = Math.max(1, Number(limit));
@@ -15,6 +16,7 @@ export async function getPaginatedSubscriptions(
   const where: Prisma.SubscriptionWhereInput = searchParam
     ? {
         createdAt: { equals: searchParam },
+        status: { equals: searhParamStatus ? "ACTIVE" : "PENDING_PAYMENT" },
       }
     : {};
 

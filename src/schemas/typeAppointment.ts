@@ -8,6 +8,6 @@ export const TypeAppointmentSchema = z.object({
     .string()
     .min(5, "La descripción del tipo de cita debe ser valida")
     .optional(),
-  businessid: z.number().int().optional(),
+  businessid: z.number().int(),
   status: typeStatusEnum,
 });

@@ -178,7 +178,14 @@ model SubscriptionDetails {
   payment Payment @relation(fields: [paymentid], references: [id])
   user User @relation(fields: [userid], references: [id])
 }
+model AppointmentComments {
+  id Int @id @default(autoincrement())
+  comment String? 
+  createdAt DateTime @default(now())
 
+  appointmentDetailsid Int?
+  appointmentDetails AppointmentDetails? @relation(fields: [appointmentDetailsid], references: [id])
+}
 model AppointmentDetails {
   id Int @id @default(autoincrement())
 
@@ -200,4 +207,7 @@ model AppointmentDetails {
   business Business? @relation(fields: [businessid], references: [id])
   typeAppointment TypeAppointment? @relation(fields: [typeAppointmentid], references: [id]) 
   client Client? @relation(fields: [clientid], references: [id])
+
+  appointmentComments AppointmentComments[]
 }
+

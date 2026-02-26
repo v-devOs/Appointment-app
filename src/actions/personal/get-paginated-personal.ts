@@ -6,6 +6,7 @@ export async function getPaginatedPersonal(
   limit: number = 1,
   page: number = 1,
   searchParam?: string,
+  searchParamStatus: "ACTIVE" | "NO_ACTIVE" = "ACTIVE",
 ) {
   const pageNum = Math.max(1, Number(page));
   const limitNum = Math.max(1, Number(limit));
@@ -17,6 +18,10 @@ export async function getPaginatedPersonal(
         firstName: {
           contains: searchParam,
           mode: "insensitive" as Prisma.QueryMode,
+        },
+
+        status: {
+          equals: searchParamStatus,
         },
       }
     : {};

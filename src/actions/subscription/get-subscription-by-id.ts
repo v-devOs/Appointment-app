@@ -8,7 +8,9 @@ export async function getSubscriptionById(subscriptionid: number) {
       where: {
         id: subscriptionid,
       },
-      include: {},
+      include: {
+        subscriptionDetails: true,
+      },
     });
 
     if (!subscription)
