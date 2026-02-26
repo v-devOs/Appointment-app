@@ -57,13 +57,13 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           <ThemeToggle />
           <Link
-            href="/login"
+            href="/auth/login"
             className="hidden md:inline-flex h-10 items-center justify-center rounded-lg px-6 text-sm font-medium text-zinc-900 transition-colors hover:bg-zinc-100 dark:text-zinc-50 dark:hover:bg-zinc-800"
           >
             Iniciar sesión
           </Link>
           <Link
-            href="/signup"
+            href="/auth/signup"
             className="inline-flex h-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-6 text-sm font-medium text-white transition-all hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:shadow-purple-500/50"
           >
             Comenzar
