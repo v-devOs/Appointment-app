@@ -4,7 +4,7 @@ import { parse } from "date-fns";
 
 export const typeStatusAppointmentEnum = z.enum(StatusAppointment);
 
-export const AppointmentSchema = z.object({
+export const AppointmentDetailsSchema = z.object({
   id: z.number().int().optional(),
   status: typeStatusAppointmentEnum,
   date: z.date(),
