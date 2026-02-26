@@ -8,6 +8,9 @@ export async function getPaymentById(paymnetid: number) {
       where: {
         id: paymnetid,
       },
+      include: {
+        subscriptionDetails: true,
+      },
     });
 
     if (!payment)

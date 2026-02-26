@@ -40,6 +40,7 @@ export type TypeAppointmentMinAggregateOutputType = {
   id: number | null
   typeAppointment: string | null
   description: string | null
+  status: $Enums.Status | null
   businessid: number | null
 }
 
@@ -47,6 +48,7 @@ export type TypeAppointmentMaxAggregateOutputType = {
   id: number | null
   typeAppointment: string | null
   description: string | null
+  status: $Enums.Status | null
   businessid: number | null
 }
 
@@ -54,6 +56,7 @@ export type TypeAppointmentCountAggregateOutputType = {
   id: number
   typeAppointment: number
   description: number
+  status: number
   businessid: number
   _all: number
 }
@@ -73,6 +76,7 @@ export type TypeAppointmentMinAggregateInputType = {
   id?: true
   typeAppointment?: true
   description?: true
+  status?: true
   businessid?: true
 }
 
@@ -80,6 +84,7 @@ export type TypeAppointmentMaxAggregateInputType = {
   id?: true
   typeAppointment?: true
   description?: true
+  status?: true
   businessid?: true
 }
 
@@ -87,6 +92,7 @@ export type TypeAppointmentCountAggregateInputType = {
   id?: true
   typeAppointment?: true
   description?: true
+  status?: true
   businessid?: true
   _all?: true
 }
@@ -181,6 +187,7 @@ export type TypeAppointmentGroupByOutputType = {
   id: number
   typeAppointment: string
   description: string | null
+  status: $Enums.Status
   businessid: number
   _count: TypeAppointmentCountAggregateOutputType | null
   _avg: TypeAppointmentAvgAggregateOutputType | null
@@ -211,6 +218,7 @@ export type TypeAppointmentWhereInput = {
   id?: Prisma.IntFilter<"TypeAppointment"> | number
   typeAppointment?: Prisma.StringFilter<"TypeAppointment"> | string
   description?: Prisma.StringNullableFilter<"TypeAppointment"> | string | null
+  status?: Prisma.EnumStatusFilter<"TypeAppointment"> | $Enums.Status
   businessid?: Prisma.IntFilter<"TypeAppointment"> | number
   business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>
   appointmentDetails?: Prisma.AppointmentDetailsListRelationFilter
@@ -220,6 +228,7 @@ export type TypeAppointmentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   typeAppointment?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   business?: Prisma.BusinessOrderByWithRelationInput
   appointmentDetails?: Prisma.AppointmentDetailsOrderByRelationAggregateInput
@@ -232,6 +241,7 @@ export type TypeAppointmentWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.TypeAppointmentWhereInput | Prisma.TypeAppointmentWhereInput[]
   typeAppointment?: Prisma.StringFilter<"TypeAppointment"> | string
   description?: Prisma.StringNullableFilter<"TypeAppointment"> | string | null
+  status?: Prisma.EnumStatusFilter<"TypeAppointment"> | $Enums.Status
   businessid?: Prisma.IntFilter<"TypeAppointment"> | number
   business?: Prisma.XOR<Prisma.BusinessScalarRelationFilter, Prisma.BusinessWhereInput>
   appointmentDetails?: Prisma.AppointmentDetailsListRelationFilter
@@ -241,6 +251,7 @@ export type TypeAppointmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   typeAppointment?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   _count?: Prisma.TypeAppointmentCountOrderByAggregateInput
   _avg?: Prisma.TypeAppointmentAvgOrderByAggregateInput
@@ -256,12 +267,14 @@ export type TypeAppointmentScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"TypeAppointment"> | number
   typeAppointment?: Prisma.StringWithAggregatesFilter<"TypeAppointment"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"TypeAppointment"> | string | null
+  status?: Prisma.EnumStatusWithAggregatesFilter<"TypeAppointment"> | $Enums.Status
   businessid?: Prisma.IntWithAggregatesFilter<"TypeAppointment"> | number
 }
 
 export type TypeAppointmentCreateInput = {
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   business: Prisma.BusinessCreateNestedOneWithoutTypeAppointmentsInput
   appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutTypeAppointmentInput
 }
@@ -270,6 +283,7 @@ export type TypeAppointmentUncheckedCreateInput = {
   id?: number
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   businessid: number
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutTypeAppointmentInput
 }
@@ -277,6 +291,7 @@ export type TypeAppointmentUncheckedCreateInput = {
 export type TypeAppointmentUpdateInput = {
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   business?: Prisma.BusinessUpdateOneRequiredWithoutTypeAppointmentsNestedInput
   appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutTypeAppointmentNestedInput
 }
@@ -285,6 +300,7 @@ export type TypeAppointmentUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutTypeAppointmentNestedInput
 }
@@ -293,18 +309,21 @@ export type TypeAppointmentCreateManyInput = {
   id?: number
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   businessid: number
 }
 
 export type TypeAppointmentUpdateManyMutationInput = {
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type TypeAppointmentUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -322,6 +341,7 @@ export type TypeAppointmentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   typeAppointment?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
 }
 
@@ -334,6 +354,7 @@ export type TypeAppointmentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   typeAppointment?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
 }
 
@@ -341,6 +362,7 @@ export type TypeAppointmentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   typeAppointment?: Prisma.SortOrder
   description?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
 }
 
@@ -415,6 +437,7 @@ export type TypeAppointmentUpdateOneWithoutAppointmentDetailsNestedInput = {
 export type TypeAppointmentCreateWithoutBusinessInput = {
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutTypeAppointmentInput
 }
 
@@ -422,6 +445,7 @@ export type TypeAppointmentUncheckedCreateWithoutBusinessInput = {
   id?: number
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutTypeAppointmentInput
 }
 
@@ -458,12 +482,14 @@ export type TypeAppointmentScalarWhereInput = {
   id?: Prisma.IntFilter<"TypeAppointment"> | number
   typeAppointment?: Prisma.StringFilter<"TypeAppointment"> | string
   description?: Prisma.StringNullableFilter<"TypeAppointment"> | string | null
+  status?: Prisma.EnumStatusFilter<"TypeAppointment"> | $Enums.Status
   businessid?: Prisma.IntFilter<"TypeAppointment"> | number
 }
 
 export type TypeAppointmentCreateWithoutAppointmentDetailsInput = {
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   business: Prisma.BusinessCreateNestedOneWithoutTypeAppointmentsInput
 }
 
@@ -471,6 +497,7 @@ export type TypeAppointmentUncheckedCreateWithoutAppointmentDetailsInput = {
   id?: number
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
   businessid: number
 }
 
@@ -493,6 +520,7 @@ export type TypeAppointmentUpdateToOneWithWhereWithoutAppointmentDetailsInput = 
 export type TypeAppointmentUpdateWithoutAppointmentDetailsInput = {
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   business?: Prisma.BusinessUpdateOneRequiredWithoutTypeAppointmentsNestedInput
 }
 
@@ -500,6 +528,7 @@ export type TypeAppointmentUncheckedUpdateWithoutAppointmentDetailsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -507,11 +536,13 @@ export type TypeAppointmentCreateManyBusinessInput = {
   id?: number
   typeAppointment: string
   description?: string | null
+  status?: $Enums.Status
 }
 
 export type TypeAppointmentUpdateWithoutBusinessInput = {
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutTypeAppointmentNestedInput
 }
 
@@ -519,6 +550,7 @@ export type TypeAppointmentUncheckedUpdateWithoutBusinessInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutTypeAppointmentNestedInput
 }
 
@@ -526,6 +558,7 @@ export type TypeAppointmentUncheckedUpdateManyWithoutBusinessInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   typeAppointment?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 
@@ -563,6 +596,7 @@ export type TypeAppointmentSelect<ExtArgs extends runtime.Types.Extensions.Inter
   id?: boolean
   typeAppointment?: boolean
   description?: boolean
+  status?: boolean
   businessid?: boolean
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
   appointmentDetails?: boolean | Prisma.TypeAppointment$appointmentDetailsArgs<ExtArgs>
@@ -573,6 +607,7 @@ export type TypeAppointmentSelectCreateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   typeAppointment?: boolean
   description?: boolean
+  status?: boolean
   businessid?: boolean
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["typeAppointment"]>
@@ -581,6 +616,7 @@ export type TypeAppointmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Typ
   id?: boolean
   typeAppointment?: boolean
   description?: boolean
+  status?: boolean
   businessid?: boolean
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["typeAppointment"]>
@@ -589,10 +625,11 @@ export type TypeAppointmentSelectScalar = {
   id?: boolean
   typeAppointment?: boolean
   description?: boolean
+  status?: boolean
   businessid?: boolean
 }
 
-export type TypeAppointmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "typeAppointment" | "description" | "businessid", ExtArgs["result"]["typeAppointment"]>
+export type TypeAppointmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "typeAppointment" | "description" | "status" | "businessid", ExtArgs["result"]["typeAppointment"]>
 export type TypeAppointmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
   appointmentDetails?: boolean | Prisma.TypeAppointment$appointmentDetailsArgs<ExtArgs>
@@ -615,6 +652,7 @@ export type $TypeAppointmentPayload<ExtArgs extends runtime.Types.Extensions.Int
     id: number
     typeAppointment: string
     description: string | null
+    status: $Enums.Status
     businessid: number
   }, ExtArgs["result"]["typeAppointment"]>
   composites: {}
@@ -1044,6 +1082,7 @@ export interface TypeAppointmentFieldRefs {
   readonly id: Prisma.FieldRef<"TypeAppointment", 'Int'>
   readonly typeAppointment: Prisma.FieldRef<"TypeAppointment", 'String'>
   readonly description: Prisma.FieldRef<"TypeAppointment", 'String'>
+  readonly status: Prisma.FieldRef<"TypeAppointment", 'Status'>
   readonly businessid: Prisma.FieldRef<"TypeAppointment", 'Int'>
 }
     

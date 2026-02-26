@@ -14,6 +14,10 @@ datasource db {
 }
 
 // Enums
+enum Status {
+  ACTIVE
+  NO_ACTIVE
+}
 enum StatusPayment {
   ACEPTED
   CANCELED
@@ -54,8 +58,10 @@ model Journal {
 
 model User {
   id Int @id @default(autoincrement())
-  email String
+  email String @unique
   password String
+
+  status Status @default(ACTIVE)
 
   personals Personal[]
   businesses Business[]
@@ -71,6 +77,8 @@ model Business {
   direction String?
   hourOpen DateTime
   hourClose DateTime
+
+  status Status @default(ACTIVE)
 
   // Relations
   ownerid Int
@@ -131,6 +139,7 @@ model Personal {
   lastNameM String?
   tel String
   typePersonal TypeUser
+  status Status @default(ACTIVE)
 
   // Relations
   userid Int
@@ -148,6 +157,8 @@ model TypeAppointment {
   id Int @id @default(autoincrement())
   typeAppointment String
   description String?
+
+  status Status @default(ACTIVE)
 
   // Relations
   businessid Int

@@ -54,9 +54,13 @@ export async function deleteBusiness(businessid: number) {
         totalPersonals === 0 &&
         totalTypesAppointment === 0
       ) {
-        await tx.business.delete({
+        await tx.business.update({
           where: {
-            id: businessid,
+            id: businessToDelete.id,
+          },
+          data: {
+            ...businessToDelete,
+            status: "NO_ACTIVE",
           },
         });
 

@@ -29,9 +29,13 @@ export async function deletePersonal(personalid: number) {
           message: `No se puede eliminar al personal tiene ${totalAppointmentDetails} registro(s) de citas`,
         };
 
-      await tx.personal.delete({
+      await tx.personal.update({
         where: {
           id: personalToDelete.id,
+        },
+        data: {
+          ...personalToDelete,
+          status: "NO_ACTIVE",
         },
       });
 

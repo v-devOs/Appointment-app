@@ -8,6 +8,11 @@ export async function getBusinessById(businessid: number) {
       where: {
         id: businessid,
       },
+      include: {
+        clients: true,
+        owner: true,
+        personals: true,
+      },
     });
 
     if (!business)

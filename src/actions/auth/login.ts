@@ -41,6 +41,14 @@ export async function loginUser(data: LoginData) {
       };
     }
 
+    // Verificar que el usuario esté activo
+    if (user.status !== "ACTIVE") {
+      return {
+        ok: false,
+        message: "Tu cuenta está inactiva. Contacta al administrador",
+      };
+    }
+
     // Retornar datos del usuario para crear la sesión
     return {
       ok: true,

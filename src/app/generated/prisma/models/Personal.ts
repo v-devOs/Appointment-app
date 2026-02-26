@@ -48,6 +48,7 @@ export type PersonalMinAggregateOutputType = {
   lastNameM: string | null
   tel: string | null
   typePersonal: $Enums.TypeUser | null
+  status: $Enums.Status | null
   userid: number | null
   businessid: number | null
   journalid: number | null
@@ -61,6 +62,7 @@ export type PersonalMaxAggregateOutputType = {
   lastNameM: string | null
   tel: string | null
   typePersonal: $Enums.TypeUser | null
+  status: $Enums.Status | null
   userid: number | null
   businessid: number | null
   journalid: number | null
@@ -74,6 +76,7 @@ export type PersonalCountAggregateOutputType = {
   lastNameM: number
   tel: number
   typePersonal: number
+  status: number
   userid: number
   businessid: number
   journalid: number
@@ -103,6 +106,7 @@ export type PersonalMinAggregateInputType = {
   lastNameM?: true
   tel?: true
   typePersonal?: true
+  status?: true
   userid?: true
   businessid?: true
   journalid?: true
@@ -116,6 +120,7 @@ export type PersonalMaxAggregateInputType = {
   lastNameM?: true
   tel?: true
   typePersonal?: true
+  status?: true
   userid?: true
   businessid?: true
   journalid?: true
@@ -129,6 +134,7 @@ export type PersonalCountAggregateInputType = {
   lastNameM?: true
   tel?: true
   typePersonal?: true
+  status?: true
   userid?: true
   businessid?: true
   journalid?: true
@@ -229,6 +235,7 @@ export type PersonalGroupByOutputType = {
   lastNameM: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status: $Enums.Status
   userid: number
   businessid: number
   journalid: number | null
@@ -265,6 +272,7 @@ export type PersonalWhereInput = {
   lastNameM?: Prisma.StringNullableFilter<"Personal"> | string | null
   tel?: Prisma.StringFilter<"Personal"> | string
   typePersonal?: Prisma.EnumTypeUserFilter<"Personal"> | $Enums.TypeUser
+  status?: Prisma.EnumStatusFilter<"Personal"> | $Enums.Status
   userid?: Prisma.IntFilter<"Personal"> | number
   businessid?: Prisma.IntFilter<"Personal"> | number
   journalid?: Prisma.IntNullableFilter<"Personal"> | number | null
@@ -282,6 +290,7 @@ export type PersonalOrderByWithRelationInput = {
   lastNameM?: Prisma.SortOrderInput | Prisma.SortOrder
   tel?: Prisma.SortOrder
   typePersonal?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   userid?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   journalid?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -302,6 +311,7 @@ export type PersonalWhereUniqueInput = Prisma.AtLeast<{
   lastNameM?: Prisma.StringNullableFilter<"Personal"> | string | null
   tel?: Prisma.StringFilter<"Personal"> | string
   typePersonal?: Prisma.EnumTypeUserFilter<"Personal"> | $Enums.TypeUser
+  status?: Prisma.EnumStatusFilter<"Personal"> | $Enums.Status
   userid?: Prisma.IntFilter<"Personal"> | number
   businessid?: Prisma.IntFilter<"Personal"> | number
   journalid?: Prisma.IntNullableFilter<"Personal"> | number | null
@@ -319,6 +329,7 @@ export type PersonalOrderByWithAggregationInput = {
   lastNameM?: Prisma.SortOrderInput | Prisma.SortOrder
   tel?: Prisma.SortOrder
   typePersonal?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   userid?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   journalid?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -340,6 +351,7 @@ export type PersonalScalarWhereWithAggregatesInput = {
   lastNameM?: Prisma.StringNullableWithAggregatesFilter<"Personal"> | string | null
   tel?: Prisma.StringWithAggregatesFilter<"Personal"> | string
   typePersonal?: Prisma.EnumTypeUserWithAggregatesFilter<"Personal"> | $Enums.TypeUser
+  status?: Prisma.EnumStatusWithAggregatesFilter<"Personal"> | $Enums.Status
   userid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
   businessid?: Prisma.IntWithAggregatesFilter<"Personal"> | number
   journalid?: Prisma.IntNullableWithAggregatesFilter<"Personal"> | number | null
@@ -352,6 +364,7 @@ export type PersonalCreateInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   user: Prisma.UserCreateNestedOneWithoutPersonalsInput
   business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
   journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
@@ -366,6 +379,7 @@ export type PersonalUncheckedCreateInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   businessid: number
   journalid?: number | null
@@ -379,6 +393,7 @@ export type PersonalUpdateInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
   business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
   journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
@@ -393,6 +408,7 @@ export type PersonalUncheckedUpdateInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -407,6 +423,7 @@ export type PersonalCreateManyInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   businessid: number
   journalid?: number | null
@@ -419,6 +436,7 @@ export type PersonalUpdateManyMutationInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type PersonalUncheckedUpdateManyInput = {
@@ -429,6 +447,7 @@ export type PersonalUncheckedUpdateManyInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -452,6 +471,7 @@ export type PersonalCountOrderByAggregateInput = {
   lastNameM?: Prisma.SortOrder
   tel?: Prisma.SortOrder
   typePersonal?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   userid?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   journalid?: Prisma.SortOrder
@@ -472,6 +492,7 @@ export type PersonalMaxOrderByAggregateInput = {
   lastNameM?: Prisma.SortOrder
   tel?: Prisma.SortOrder
   typePersonal?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   userid?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   journalid?: Prisma.SortOrder
@@ -485,6 +506,7 @@ export type PersonalMinOrderByAggregateInput = {
   lastNameM?: Prisma.SortOrder
   tel?: Prisma.SortOrder
   typePersonal?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   userid?: Prisma.SortOrder
   businessid?: Prisma.SortOrder
   journalid?: Prisma.SortOrder
@@ -663,6 +685,7 @@ export type PersonalCreateWithoutJournalInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   user: Prisma.UserCreateNestedOneWithoutPersonalsInput
   business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
   appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
@@ -676,6 +699,7 @@ export type PersonalUncheckedCreateWithoutJournalInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   businessid: number
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
@@ -718,6 +742,7 @@ export type PersonalScalarWhereInput = {
   lastNameM?: Prisma.StringNullableFilter<"Personal"> | string | null
   tel?: Prisma.StringFilter<"Personal"> | string
   typePersonal?: Prisma.EnumTypeUserFilter<"Personal"> | $Enums.TypeUser
+  status?: Prisma.EnumStatusFilter<"Personal"> | $Enums.Status
   userid?: Prisma.IntFilter<"Personal"> | number
   businessid?: Prisma.IntFilter<"Personal"> | number
   journalid?: Prisma.IntNullableFilter<"Personal"> | number | null
@@ -730,6 +755,7 @@ export type PersonalCreateWithoutUserInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
   journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
   appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
@@ -743,6 +769,7 @@ export type PersonalUncheckedCreateWithoutUserInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   businessid: number
   journalid?: number | null
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
@@ -781,6 +808,7 @@ export type PersonalCreateWithoutBusinessInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   user: Prisma.UserCreateNestedOneWithoutPersonalsInput
   journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
   appointmentDetails?: Prisma.AppointmentDetailsCreateNestedManyWithoutPersonalInput
@@ -794,6 +822,7 @@ export type PersonalUncheckedCreateWithoutBusinessInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   journalid?: number | null
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedCreateNestedManyWithoutPersonalInput
@@ -832,6 +861,7 @@ export type PersonalCreateWithoutAppointmentDetailsInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   user: Prisma.UserCreateNestedOneWithoutPersonalsInput
   business: Prisma.BusinessCreateNestedOneWithoutPersonalsInput
   journal?: Prisma.JournalCreateNestedOneWithoutPersonalsInput
@@ -845,6 +875,7 @@ export type PersonalUncheckedCreateWithoutAppointmentDetailsInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   businessid: number
   journalid?: number | null
@@ -873,6 +904,7 @@ export type PersonalUpdateWithoutAppointmentDetailsInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
   business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
   journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
@@ -886,6 +918,7 @@ export type PersonalUncheckedUpdateWithoutAppointmentDetailsInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -899,6 +932,7 @@ export type PersonalCreateManyJournalInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   businessid: number
 }
@@ -910,6 +944,7 @@ export type PersonalUpdateWithoutJournalInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
   business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
   appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
@@ -923,6 +958,7 @@ export type PersonalUncheckedUpdateWithoutJournalInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
@@ -936,6 +972,7 @@ export type PersonalUncheckedUpdateManyWithoutJournalInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
 }
@@ -948,6 +985,7 @@ export type PersonalCreateManyUserInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   businessid: number
   journalid?: number | null
 }
@@ -959,6 +997,7 @@ export type PersonalUpdateWithoutUserInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   business?: Prisma.BusinessUpdateOneRequiredWithoutPersonalsNestedInput
   journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
   appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
@@ -972,6 +1011,7 @@ export type PersonalUncheckedUpdateWithoutUserInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
@@ -985,6 +1025,7 @@ export type PersonalUncheckedUpdateManyWithoutUserInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   businessid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
@@ -997,6 +1038,7 @@ export type PersonalCreateManyBusinessInput = {
   lastNameM?: string | null
   tel: string
   typePersonal: $Enums.TypeUser
+  status?: $Enums.Status
   userid: number
   journalid?: number | null
 }
@@ -1008,6 +1050,7 @@ export type PersonalUpdateWithoutBusinessInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   user?: Prisma.UserUpdateOneRequiredWithoutPersonalsNestedInput
   journal?: Prisma.JournalUpdateOneWithoutPersonalsNestedInput
   appointmentDetails?: Prisma.AppointmentDetailsUpdateManyWithoutPersonalNestedInput
@@ -1021,6 +1064,7 @@ export type PersonalUncheckedUpdateWithoutBusinessInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   appointmentDetails?: Prisma.AppointmentDetailsUncheckedUpdateManyWithoutPersonalNestedInput
@@ -1034,6 +1078,7 @@ export type PersonalUncheckedUpdateManyWithoutBusinessInput = {
   lastNameM?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   tel?: Prisma.StringFieldUpdateOperationsInput | string
   typePersonal?: Prisma.EnumTypeUserFieldUpdateOperationsInput | $Enums.TypeUser
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   userid?: Prisma.IntFieldUpdateOperationsInput | number
   journalid?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
@@ -1077,6 +1122,7 @@ export type PersonalSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   lastNameM?: boolean
   tel?: boolean
   typePersonal?: boolean
+  status?: boolean
   userid?: boolean
   businessid?: boolean
   journalid?: boolean
@@ -1095,6 +1141,7 @@ export type PersonalSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   lastNameM?: boolean
   tel?: boolean
   typePersonal?: boolean
+  status?: boolean
   userid?: boolean
   businessid?: boolean
   journalid?: boolean
@@ -1111,6 +1158,7 @@ export type PersonalSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   lastNameM?: boolean
   tel?: boolean
   typePersonal?: boolean
+  status?: boolean
   userid?: boolean
   businessid?: boolean
   journalid?: boolean
@@ -1127,12 +1175,13 @@ export type PersonalSelectScalar = {
   lastNameM?: boolean
   tel?: boolean
   typePersonal?: boolean
+  status?: boolean
   userid?: boolean
   businessid?: boolean
   journalid?: boolean
 }
 
-export type PersonalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "secondName" | "lastNameP" | "lastNameM" | "tel" | "typePersonal" | "userid" | "businessid" | "journalid", ExtArgs["result"]["personal"]>
+export type PersonalOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "secondName" | "lastNameP" | "lastNameM" | "tel" | "typePersonal" | "status" | "userid" | "businessid" | "journalid", ExtArgs["result"]["personal"]>
 export type PersonalInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   business?: boolean | Prisma.BusinessDefaultArgs<ExtArgs>
@@ -1167,6 +1216,7 @@ export type $PersonalPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     lastNameM: string | null
     tel: string
     typePersonal: $Enums.TypeUser
+    status: $Enums.Status
     userid: number
     businessid: number
     journalid: number | null
@@ -1604,6 +1654,7 @@ export interface PersonalFieldRefs {
   readonly lastNameM: Prisma.FieldRef<"Personal", 'String'>
   readonly tel: Prisma.FieldRef<"Personal", 'String'>
   readonly typePersonal: Prisma.FieldRef<"Personal", 'TypeUser'>
+  readonly status: Prisma.FieldRef<"Personal", 'Status'>
   readonly userid: Prisma.FieldRef<"Personal", 'Int'>
   readonly businessid: Prisma.FieldRef<"Personal", 'Int'>
   readonly journalid: Prisma.FieldRef<"Personal", 'Int'>

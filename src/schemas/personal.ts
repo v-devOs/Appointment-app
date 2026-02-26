@@ -1,5 +1,6 @@
 import { TypeUser } from "@/app/generated/prisma/enums";
 import * as z from "zod";
+import { typeStatusEnum } from "./generalEnums";
 
 export const typeUserEnum = z.enum(TypeUser);
 
@@ -17,4 +18,5 @@ export const PersonalSchema = z.object({
   userid: z.number().int(),
   businessid: z.number().int(),
   journalid: z.number().int().optional(),
+  status: typeStatusEnum,
 });

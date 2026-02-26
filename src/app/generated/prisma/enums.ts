@@ -9,6 +9,14 @@
 * 🟢 You can import this file directly.
 */
 
+export const Status = {
+  ACTIVE: 'ACTIVE',
+  NO_ACTIVE: 'NO_ACTIVE'
+} as const
+
+export type Status = (typeof Status)[keyof typeof Status]
+
+
 export const StatusPayment = {
   ACEPTED: 'ACEPTED',
   CANCELED: 'CANCELED',

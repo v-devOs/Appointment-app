@@ -8,6 +8,12 @@ export async function getPersonalById(personalid: number) {
       where: {
         id: personalid,
       },
+      include: {
+        appointmentDetails: true,
+        business: true,
+        journal: true,
+        user: true,
+      },
     });
 
     if (!personal) {

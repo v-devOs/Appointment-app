@@ -1,5 +1,6 @@
 import * as z from "zod";
 import { parse } from "date-fns";
+import { typeStatusEnum } from "./generalEnums";
 
 export const BusinessSchema = z.object({
   id: z.number().int().optional(),
@@ -14,4 +15,5 @@ export const BusinessSchema = z.object({
     .string()
     .transform((strDate) => parse(strDate, "HH:mm", new Date())),
   ownerid: z.number().int(),
+  status: typeStatusEnum,
 });

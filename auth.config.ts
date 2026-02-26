@@ -35,6 +35,11 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Credenciales inválidas");
         }
 
+        // Verificar que el usuario esté activo
+        if (user.status !== "ACTIVE") {
+          throw new Error("Tu cuenta está inactiva. Contacta al administrador");
+        }
+
         return {
           id: user.id.toString(),
           email: user.email,

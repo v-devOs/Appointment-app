@@ -44,6 +44,7 @@ export type BusinessMinAggregateOutputType = {
   direction: string | null
   hourOpen: Date | null
   hourClose: Date | null
+  status: $Enums.Status | null
   ownerid: number | null
 }
 
@@ -55,6 +56,7 @@ export type BusinessMaxAggregateOutputType = {
   direction: string | null
   hourOpen: Date | null
   hourClose: Date | null
+  status: $Enums.Status | null
   ownerid: number | null
 }
 
@@ -66,6 +68,7 @@ export type BusinessCountAggregateOutputType = {
   direction: number
   hourOpen: number
   hourClose: number
+  status: number
   ownerid: number
   _all: number
 }
@@ -89,6 +92,7 @@ export type BusinessMinAggregateInputType = {
   direction?: true
   hourOpen?: true
   hourClose?: true
+  status?: true
   ownerid?: true
 }
 
@@ -100,6 +104,7 @@ export type BusinessMaxAggregateInputType = {
   direction?: true
   hourOpen?: true
   hourClose?: true
+  status?: true
   ownerid?: true
 }
 
@@ -111,6 +116,7 @@ export type BusinessCountAggregateInputType = {
   direction?: true
   hourOpen?: true
   hourClose?: true
+  status?: true
   ownerid?: true
   _all?: true
 }
@@ -209,6 +215,7 @@ export type BusinessGroupByOutputType = {
   direction: string | null
   hourOpen: Date
   hourClose: Date
+  status: $Enums.Status
   ownerid: number
   _count: BusinessCountAggregateOutputType | null
   _avg: BusinessAvgAggregateOutputType | null
@@ -243,6 +250,7 @@ export type BusinessWhereInput = {
   direction?: Prisma.StringNullableFilter<"Business"> | string | null
   hourOpen?: Prisma.DateTimeFilter<"Business"> | Date | string
   hourClose?: Prisma.DateTimeFilter<"Business"> | Date | string
+  status?: Prisma.EnumStatusFilter<"Business"> | $Enums.Status
   ownerid?: Prisma.IntFilter<"Business"> | number
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   personals?: Prisma.PersonalListRelationFilter
@@ -259,6 +267,7 @@ export type BusinessOrderByWithRelationInput = {
   direction?: Prisma.SortOrderInput | Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   ownerid?: Prisma.SortOrder
   owner?: Prisma.UserOrderByWithRelationInput
   personals?: Prisma.PersonalOrderByRelationAggregateInput
@@ -278,6 +287,7 @@ export type BusinessWhereUniqueInput = Prisma.AtLeast<{
   direction?: Prisma.StringNullableFilter<"Business"> | string | null
   hourOpen?: Prisma.DateTimeFilter<"Business"> | Date | string
   hourClose?: Prisma.DateTimeFilter<"Business"> | Date | string
+  status?: Prisma.EnumStatusFilter<"Business"> | $Enums.Status
   ownerid?: Prisma.IntFilter<"Business"> | number
   owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   personals?: Prisma.PersonalListRelationFilter
@@ -294,6 +304,7 @@ export type BusinessOrderByWithAggregationInput = {
   direction?: Prisma.SortOrderInput | Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   ownerid?: Prisma.SortOrder
   _count?: Prisma.BusinessCountOrderByAggregateInput
   _avg?: Prisma.BusinessAvgOrderByAggregateInput
@@ -313,6 +324,7 @@ export type BusinessScalarWhereWithAggregatesInput = {
   direction?: Prisma.StringNullableWithAggregatesFilter<"Business"> | string | null
   hourOpen?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
   hourClose?: Prisma.DateTimeWithAggregatesFilter<"Business"> | Date | string
+  status?: Prisma.EnumStatusWithAggregatesFilter<"Business"> | $Enums.Status
   ownerid?: Prisma.IntWithAggregatesFilter<"Business"> | number
 }
 
@@ -323,6 +335,7 @@ export type BusinessCreateInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
   personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
@@ -338,6 +351,7 @@ export type BusinessUncheckedCreateInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   ownerid: number
   personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
@@ -352,6 +366,7 @@ export type BusinessUpdateInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
   personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
@@ -367,6 +382,7 @@ export type BusinessUncheckedUpdateInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   ownerid?: Prisma.IntFieldUpdateOperationsInput | number
   personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
@@ -382,6 +398,7 @@ export type BusinessCreateManyInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   ownerid: number
 }
 
@@ -392,6 +409,7 @@ export type BusinessUpdateManyMutationInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 export type BusinessUncheckedUpdateManyInput = {
@@ -402,6 +420,7 @@ export type BusinessUncheckedUpdateManyInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   ownerid?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
@@ -423,6 +442,7 @@ export type BusinessCountOrderByAggregateInput = {
   direction?: Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   ownerid?: Prisma.SortOrder
 }
 
@@ -439,6 +459,7 @@ export type BusinessMaxOrderByAggregateInput = {
   direction?: Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   ownerid?: Prisma.SortOrder
 }
 
@@ -450,6 +471,7 @@ export type BusinessMinOrderByAggregateInput = {
   direction?: Prisma.SortOrder
   hourOpen?: Prisma.SortOrder
   hourClose?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   ownerid?: Prisma.SortOrder
 }
 
@@ -579,6 +601,7 @@ export type BusinessCreateWithoutOwnerInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
@@ -593,6 +616,7 @@ export type BusinessUncheckedCreateWithoutOwnerInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
@@ -636,6 +660,7 @@ export type BusinessScalarWhereInput = {
   direction?: Prisma.StringNullableFilter<"Business"> | string | null
   hourOpen?: Prisma.DateTimeFilter<"Business"> | Date | string
   hourClose?: Prisma.DateTimeFilter<"Business"> | Date | string
+  status?: Prisma.EnumStatusFilter<"Business"> | $Enums.Status
   ownerid?: Prisma.IntFilter<"Business"> | number
 }
 
@@ -646,6 +671,7 @@ export type BusinessCreateWithoutClientsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
   personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
@@ -660,6 +686,7 @@ export type BusinessUncheckedCreateWithoutClientsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   ownerid: number
   personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
@@ -689,6 +716,7 @@ export type BusinessUpdateWithoutClientsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
   personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
@@ -703,6 +731,7 @@ export type BusinessUncheckedUpdateWithoutClientsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   ownerid?: Prisma.IntFieldUpdateOperationsInput | number
   personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
@@ -716,6 +745,7 @@ export type BusinessCreateWithoutPersonalsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentCreateNestedManyWithoutBusinessInput
@@ -730,6 +760,7 @@ export type BusinessUncheckedCreateWithoutPersonalsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   ownerid: number
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedCreateNestedManyWithoutBusinessInput
@@ -759,6 +790,7 @@ export type BusinessUpdateWithoutPersonalsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
@@ -773,6 +805,7 @@ export type BusinessUncheckedUpdateWithoutPersonalsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   ownerid?: Prisma.IntFieldUpdateOperationsInput | number
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
@@ -786,6 +819,7 @@ export type BusinessCreateWithoutTypeAppointmentsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
   personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
@@ -800,6 +834,7 @@ export type BusinessUncheckedCreateWithoutTypeAppointmentsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   ownerid: number
   personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
@@ -829,6 +864,7 @@ export type BusinessUpdateWithoutTypeAppointmentsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
   personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
@@ -843,6 +879,7 @@ export type BusinessUncheckedUpdateWithoutTypeAppointmentsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   ownerid?: Prisma.IntFieldUpdateOperationsInput | number
   personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
@@ -856,6 +893,7 @@ export type BusinessCreateWithoutAppointmentDetailsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   owner: Prisma.UserCreateNestedOneWithoutBusinessesInput
   personals?: Prisma.PersonalCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientCreateNestedManyWithoutBusinessInput
@@ -870,6 +908,7 @@ export type BusinessUncheckedCreateWithoutAppointmentDetailsInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
   ownerid: number
   personals?: Prisma.PersonalUncheckedCreateNestedManyWithoutBusinessInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutBusinessInput
@@ -899,6 +938,7 @@ export type BusinessUpdateWithoutAppointmentDetailsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   owner?: Prisma.UserUpdateOneRequiredWithoutBusinessesNestedInput
   personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
@@ -913,6 +953,7 @@ export type BusinessUncheckedUpdateWithoutAppointmentDetailsInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   ownerid?: Prisma.IntFieldUpdateOperationsInput | number
   personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
@@ -927,6 +968,7 @@ export type BusinessCreateManyOwnerInput = {
   direction?: string | null
   hourOpen: Date | string
   hourClose: Date | string
+  status?: $Enums.Status
 }
 
 export type BusinessUpdateWithoutOwnerInput = {
@@ -936,6 +978,7 @@ export type BusinessUpdateWithoutOwnerInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   personals?: Prisma.PersonalUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUpdateManyWithoutBusinessNestedInput
@@ -950,6 +993,7 @@ export type BusinessUncheckedUpdateWithoutOwnerInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
   personals?: Prisma.PersonalUncheckedUpdateManyWithoutBusinessNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutBusinessNestedInput
   typeAppointments?: Prisma.TypeAppointmentUncheckedUpdateManyWithoutBusinessNestedInput
@@ -964,6 +1008,7 @@ export type BusinessUncheckedUpdateManyWithoutOwnerInput = {
   direction?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   hourOpen?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   hourClose?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumStatusFieldUpdateOperationsInput | $Enums.Status
 }
 
 
@@ -1032,6 +1077,7 @@ export type BusinessSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  status?: boolean
   ownerid?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   personals?: boolean | Prisma.Business$personalsArgs<ExtArgs>
@@ -1049,6 +1095,7 @@ export type BusinessSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  status?: boolean
   ownerid?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
@@ -1061,6 +1108,7 @@ export type BusinessSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  status?: boolean
   ownerid?: boolean
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["business"]>
@@ -1073,10 +1121,11 @@ export type BusinessSelectScalar = {
   direction?: boolean
   hourOpen?: boolean
   hourClose?: boolean
+  status?: boolean
   ownerid?: boolean
 }
 
-export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "tel" | "email" | "direction" | "hourOpen" | "hourClose" | "ownerid", ExtArgs["result"]["business"]>
+export type BusinessOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "tel" | "email" | "direction" | "hourOpen" | "hourClose" | "status" | "ownerid", ExtArgs["result"]["business"]>
 export type BusinessInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   personals?: boolean | Prisma.Business$personalsArgs<ExtArgs>
@@ -1109,6 +1158,7 @@ export type $BusinessPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     direction: string | null
     hourOpen: Date
     hourClose: Date
+    status: $Enums.Status
     ownerid: number
   }, ExtArgs["result"]["business"]>
   composites: {}
@@ -1545,6 +1595,7 @@ export interface BusinessFieldRefs {
   readonly direction: Prisma.FieldRef<"Business", 'String'>
   readonly hourOpen: Prisma.FieldRef<"Business", 'DateTime'>
   readonly hourClose: Prisma.FieldRef<"Business", 'DateTime'>
+  readonly status: Prisma.FieldRef<"Business", 'Status'>
   readonly ownerid: Prisma.FieldRef<"Business", 'Int'>
 }
     

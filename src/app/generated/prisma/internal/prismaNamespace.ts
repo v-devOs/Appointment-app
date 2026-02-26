@@ -1208,7 +1208,8 @@ export type JournalScalarFieldEnum = (typeof JournalScalarFieldEnum)[keyof typeo
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  status: 'status'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -1222,6 +1223,7 @@ export const BusinessScalarFieldEnum = {
   direction: 'direction',
   hourOpen: 'hourOpen',
   hourClose: 'hourClose',
+  status: 'status',
   ownerid: 'ownerid'
 } as const
 
@@ -1273,6 +1275,7 @@ export const PersonalScalarFieldEnum = {
   lastNameM: 'lastNameM',
   tel: 'tel',
   typePersonal: 'typePersonal',
+  status: 'status',
   userid: 'userid',
   businessid: 'businessid',
   journalid: 'journalid'
@@ -1285,6 +1288,7 @@ export const TypeAppointmentScalarFieldEnum = {
   id: 'id',
   typeAppointment: 'typeAppointment',
   description: 'description',
+  status: 'status',
   businessid: 'businessid'
 } as const
 
@@ -1387,6 +1391,20 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
  * Reference to a field of type 'String[]'
  */
 export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Status'
+ */
+export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+    
+
+
+/**
+ * Reference to a field of type 'Status[]'
+ */
+export type ListEnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status[]'>
     
 
 

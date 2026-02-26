@@ -1,4 +1,5 @@
 import * as z from "zod";
+import { typeStatusEnum } from "./generalEnums";
 
 export const TypeAppointmentSchema = z.object({
   id: z.number().int().optional(),
@@ -8,4 +9,5 @@ export const TypeAppointmentSchema = z.object({
     .min(5, "La descripción del tipo de cita debe ser valida")
     .optional(),
   businessid: z.number().int().optional(),
+  status: typeStatusEnum,
 });

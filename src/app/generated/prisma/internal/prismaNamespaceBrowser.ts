@@ -95,7 +95,8 @@ export type JournalScalarFieldEnum = (typeof JournalScalarFieldEnum)[keyof typeo
 export const UserScalarFieldEnum = {
   id: 'id',
   email: 'email',
-  password: 'password'
+  password: 'password',
+  status: 'status'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -109,6 +110,7 @@ export const BusinessScalarFieldEnum = {
   direction: 'direction',
   hourOpen: 'hourOpen',
   hourClose: 'hourClose',
+  status: 'status',
   ownerid: 'ownerid'
 } as const
 
@@ -160,6 +162,7 @@ export const PersonalScalarFieldEnum = {
   lastNameM: 'lastNameM',
   tel: 'tel',
   typePersonal: 'typePersonal',
+  status: 'status',
   userid: 'userid',
   businessid: 'businessid',
   journalid: 'journalid'
@@ -172,6 +175,7 @@ export const TypeAppointmentScalarFieldEnum = {
   id: 'id',
   typeAppointment: 'typeAppointment',
   description: 'description',
+  status: 'status',
   businessid: 'businessid'
 } as const
 
