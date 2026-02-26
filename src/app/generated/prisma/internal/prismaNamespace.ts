@@ -393,6 +393,7 @@ export const ModelName = {
   Personal: 'Personal',
   TypeAppointment: 'TypeAppointment',
   SubscriptionDetails: 'SubscriptionDetails',
+  AppointmentComments: 'AppointmentComments',
   AppointmentDetails: 'AppointmentDetails'
 } as const
 
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "journal" | "user" | "business" | "payment" | "client" | "subscription" | "personal" | "typeAppointment" | "subscriptionDetails" | "appointmentDetails"
+    modelProps: "journal" | "user" | "business" | "payment" | "client" | "subscription" | "personal" | "typeAppointment" | "subscriptionDetails" | "appointmentComments" | "appointmentDetails"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1079,6 +1080,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    AppointmentComments: {
+      payload: Prisma.$AppointmentCommentsPayload<ExtArgs>
+      fields: Prisma.AppointmentCommentsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AppointmentCommentsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AppointmentCommentsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>
+        }
+        findFirst: {
+          args: Prisma.AppointmentCommentsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AppointmentCommentsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>
+        }
+        findMany: {
+          args: Prisma.AppointmentCommentsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>[]
+        }
+        create: {
+          args: Prisma.AppointmentCommentsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>
+        }
+        createMany: {
+          args: Prisma.AppointmentCommentsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AppointmentCommentsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>[]
+        }
+        delete: {
+          args: Prisma.AppointmentCommentsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>
+        }
+        update: {
+          args: Prisma.AppointmentCommentsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>
+        }
+        deleteMany: {
+          args: Prisma.AppointmentCommentsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AppointmentCommentsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AppointmentCommentsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>[]
+        }
+        upsert: {
+          args: Prisma.AppointmentCommentsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AppointmentCommentsPayload>
+        }
+        aggregate: {
+          args: Prisma.AppointmentCommentsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAppointmentComments>
+        }
+        groupBy: {
+          args: Prisma.AppointmentCommentsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppointmentCommentsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AppointmentCommentsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AppointmentCommentsCountAggregateOutputType> | number
+        }
+      }
+    }
     AppointmentDetails: {
       payload: Prisma.$AppointmentDetailsPayload<ExtArgs>
       fields: Prisma.AppointmentDetailsFieldRefs
@@ -1303,6 +1378,16 @@ export const SubscriptionDetailsScalarFieldEnum = {
 } as const
 
 export type SubscriptionDetailsScalarFieldEnum = (typeof SubscriptionDetailsScalarFieldEnum)[keyof typeof SubscriptionDetailsScalarFieldEnum]
+
+
+export const AppointmentCommentsScalarFieldEnum = {
+  id: 'id',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  appointmentDetailsid: 'appointmentDetailsid'
+} as const
+
+export type AppointmentCommentsScalarFieldEnum = (typeof AppointmentCommentsScalarFieldEnum)[keyof typeof AppointmentCommentsScalarFieldEnum]
 
 
 export const AppointmentDetailsScalarFieldEnum = {
@@ -1581,6 +1666,7 @@ export type GlobalOmitConfig = {
   personal?: Prisma.PersonalOmit
   typeAppointment?: Prisma.TypeAppointmentOmit
   subscriptionDetails?: Prisma.SubscriptionDetailsOmit
+  appointmentComments?: Prisma.AppointmentCommentsOmit
   appointmentDetails?: Prisma.AppointmentDetailsOmit
 }
 

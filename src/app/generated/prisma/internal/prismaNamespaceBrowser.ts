@@ -60,6 +60,7 @@ export const ModelName = {
   Personal: 'Personal',
   TypeAppointment: 'TypeAppointment',
   SubscriptionDetails: 'SubscriptionDetails',
+  AppointmentComments: 'AppointmentComments',
   AppointmentDetails: 'AppointmentDetails'
 } as const
 
@@ -190,6 +191,16 @@ export const SubscriptionDetailsScalarFieldEnum = {
 } as const
 
 export type SubscriptionDetailsScalarFieldEnum = (typeof SubscriptionDetailsScalarFieldEnum)[keyof typeof SubscriptionDetailsScalarFieldEnum]
+
+
+export const AppointmentCommentsScalarFieldEnum = {
+  id: 'id',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  appointmentDetailsid: 'appointmentDetailsid'
+} as const
+
+export type AppointmentCommentsScalarFieldEnum = (typeof AppointmentCommentsScalarFieldEnum)[keyof typeof AppointmentCommentsScalarFieldEnum]
 
 
 export const AppointmentDetailsScalarFieldEnum = {

@@ -85,6 +85,11 @@ export type TypeAppointment = Prisma.TypeAppointmentModel
  */
 export type SubscriptionDetails = Prisma.SubscriptionDetailsModel
 /**
+ * Model AppointmentComments
+ * 
+ */
+export type AppointmentComments = Prisma.AppointmentCommentsModel
+/**
  * Model AppointmentDetails
  * 
  */
