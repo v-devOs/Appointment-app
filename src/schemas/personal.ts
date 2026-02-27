@@ -18,5 +18,5 @@ export const PersonalSchema = z.object({
   userid: z.number().int(),
   businessid: z.number().int(),
   journalid: z.number().int().optional(),
-  status: typeStatusEnum,
+  status: typeStatusEnum.optional().default("ACTIVE"),
 });

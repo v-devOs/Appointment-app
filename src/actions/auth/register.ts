@@ -5,6 +5,9 @@ import prisma from "@/lib/prisma";
 import { UserSchema } from "@/schemas/user";
 import { BusinessSchema } from "@/schemas/business";
 import { PersonalSchema } from "@/schemas/personal";
+import { PaymentSchema } from "@/schemas/payment";
+import { SubscriptionSchema } from "@/schemas/subscription";
+import { SubscriptionDetailsSchema } from "@/schemas/subscriptionDetails";
 
 interface RegisterData {
   // Step 1: Credenciales
@@ -58,7 +61,7 @@ export async function registerUser(data: RegisterData) {
     // Hashear la contraseña
     const hashedPassword = await bcrypt.hash(data.password, 10);
 
-    // Crear el usuario, negocio y personal en una transacción
+    // Crear el usuario, negocio, personal y suscripción de prueba en una transacción
     const result = await prisma.$transaction(async (tx) => {
       // 1. Crear usuario
       const user = await tx.user.create({
@@ -107,10 +110,68 @@ export async function registerUser(data: RegisterData) {
         data: personalValidation.data,
       });
 
+      // 4. Crear pago de prueba (monto 0)
+      const now = new Date();
+
+      const paymentValidation = PaymentSchema.safeParse({
+        amount: 0,
+        discount: 0,
+        datePayment: now,
+        status: "ACEPTED",
+        comentaries: "30 days test",
+      });
+
+      if (!paymentValidation.success) {
+        throw new Error("Error al crear pago de prueba");
+      }
+
+      const payment = await tx.payment.create({
+        data: paymentValidation.data,
+      });
+
+      // 5. Crear suscripción de prueba (30 días)
+      const trialEndDate = new Date();
+      trialEndDate.setDate(trialEndDate.getDate() + 30);
+
+      const subscriptionValidation = SubscriptionSchema.safeParse({
+        amount: 0,
+        dateStartCurrentPeriod: now,
+        dateEndCurrentPeriod: trialEndDate,
+        status: "ACTIVE",
+      });
+
+      if (!subscriptionValidation.success) {
+        throw new Error("Error al crear suscripción de prueba");
+      }
+
+      const subscription = await tx.subscription.create({
+        data: subscriptionValidation.data,
+      });
+
+      // 6. Crear detalles de suscripción
+      const subscriptionDetailsValidation = SubscriptionDetailsSchema.safeParse(
+        {
+          userid: user.id,
+          subscriptionid: subscription.id,
+          paymentid: payment.id,
+        },
+      );
+
+      if (!subscriptionDetailsValidation.success) {
+        throw new Error("Error al relacionar suscripción");
+      }
+
+      const subscriptionDetails = await tx.subscriptionDetails.create({
+        data: subscriptionDetailsValidation.data,
+      });
+
       return {
         user,
         business,
         personal,
+        payment,
+        subscription,
+        subscriptionDetails,
       };
     });
 

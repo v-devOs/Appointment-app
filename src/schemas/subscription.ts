@@ -5,7 +5,10 @@ export const typeSubscriptionStatusEnum = z.enum(StatusSubscription);
 
 export const SubscriptionSchema = z.object({
   id: z.number().int().optional(),
-  amount: z.number().transform((val) => parseFloat(val.toFixed(2))),
+  amount: z
+    .number()
+    .nonnegative()
+    .transform((val) => parseFloat(val.toFixed(2))),
   dateEndCurrentPeriod: z.date(),
   dateStartCurrentPeriod: z.date(),
   status: typeSubscriptionStatusEnum,
