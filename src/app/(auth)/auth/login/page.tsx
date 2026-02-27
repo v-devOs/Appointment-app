@@ -36,8 +36,11 @@ export default function LoginPage() {
       }
 
       if (result?.ok) {
-        router.push("/dashboard");
-        router.refresh();
+        // Esperar un poco para que se actualice la sesión
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
+        // Forzar una recarga completa para que el middleware se ejecute
+        window.location.href = "/";
       }
     } catch {
       setError("Error al iniciar sesión");

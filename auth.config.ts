@@ -40,9 +40,25 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Tu cuenta está inactiva. Contacta al administrador");
         }
 
+        // Obtener el rol del usuario desde la tabla Personal
+        const personal = await prisma.personal.findFirst({
+          where: {
+            userid: user.id,
+            status: "ACTIVE",
+          },
+          orderBy: {
+            id: "desc",
+          },
+        });
+
+        if (!personal) {
+          throw new Error("No se encontró información del personal asociado");
+        }
+
         return {
           id: user.id.toString(),
           email: user.email,
+          role: personal.typePersonal,
         };
       },
     }),
@@ -52,6 +68,7 @@ export const authOptions: NextAuthOptions = {
       if (user) {
         token.id = user.id;
         token.email = user.email;
+        token.role = user.role;
       }
       return token;
     },
@@ -59,6 +76,7 @@ export const authOptions: NextAuthOptions = {
       if (token && session.user) {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
+        session.user.role = token.role as string;
       }
       return session;
     },

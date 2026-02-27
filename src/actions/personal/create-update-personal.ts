@@ -12,6 +12,15 @@ export async function createOrUpdatePersonal(personal: unknown) {
       message: "Información de personal invalida",
     };
 
+  // Validar que no se intente crear personal con rol ADMIN
+  // Los ADMIN solo pueden ser creados directamente desde la base de datos
+  if (data.typePersonal === "ADMIN") {
+    return {
+      ok: false,
+      message: "No se puede crear personal con rol ADMIN desde la aplicación",
+    };
+  }
+
   try {
     const res = await prisma.personal.upsert({
       where: {
